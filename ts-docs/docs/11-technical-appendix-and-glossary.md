@@ -1,15 +1,15 @@
 ---
-sidebar_position: 16
-title: 15. Technical Appendix & Glossary
+sidebar_position: 14
+title: 11. Technical Appendix & Glossary
 ---
 
-# 15. Technical Appendix & Glossary
+# 11. Technical Appendix & Glossary
 
 This section contains the Glossary of terms and the Technical Appendix containing event payloads and Kubernetes manifest structures.
 
 ---
 
-## 15.1 Glossary of Terms
+## 11.1 Glossary of Terms
 
 - **Service Desk Admin (Adam)**: Platform administrator. Configures routing parameters, maps categories, and maintains the device registry.
 - **Service Desk Agent (Joseph)**: Frontline triage agent. Reviews tickets, verifies devices, and reassigns tickets.
@@ -29,9 +29,9 @@ This section contains the Glossary of terms and the Technical Appendix containin
 
 ---
 
-## 15.2 Technical Appendix
+## 11.2 Technical Appendix
 
-### 15.2.1 Allowed Attachment MIME Formats
+### 11.2.1 Allowed Attachment MIME Formats
 - `application/pdf` (.pdf)
 - `application/msword` (.doc)
 - `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (.docx)
@@ -39,13 +39,13 @@ This section contains the Glossary of terms and the Technical Appendix containin
 - `image/jpeg` (.jpg)
 - `image/png` (.png)
 
-### 15.2.2 Apache Kafka Topic Registry
+### 11.2.2 Apache Kafka Topic Registry
 - `ticket-creation`: Carries `TicketCreatedEvent` payloads.
 - `ticket-assignment`: Carries `TicketAssignedEvent` payloads.
 - `device-linking`: Carries `DeviceLinkedToTicketEvent` payloads.
 - `ticket-notifications`: Queue for email and WhatsApp notifications.
 
-### 15.2.3 Kafka Event Payload Schemas (JSON)
+### 11.2.3 Kafka Event Payload Schemas (JSON)
 
 #### `DeviceLinkedToTicketEvent` Schema
 ```json
@@ -65,7 +65,7 @@ This section contains the Glossary of terms and the Technical Appendix containin
 }
 ```
 
-### 15.2.4 Kubernetes Deployment Manifest (API Gateway Ingress)
+### 11.2.4 Kubernetes Deployment Manifest (API Gateway Ingress)
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress

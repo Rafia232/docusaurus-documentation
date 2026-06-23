@@ -5,11 +5,14 @@ title: MoH Helpdesk Documentation Portal
 
 # MoH Helpdesk Documentation Portal
 
-Welcome to the comprehensive, enterprise-grade Product Documentation Suite for the **Ministry of Health (MoH) Helpdesk Management System**. This documentation acts as a combined **Business Requirements Document (BRD)**, **Product Requirements Document (PRD)**, **Functional Specification Document (FSD)**, **System Design Document (SDD)**, and **Operational Manual**.
+Welcome to the **MoH Helpdesk Documentation Portal**. This documentation provides a complete guide for understanding, configuring, managing, and using the MoH Service Desk platform.
 
-The system is logically split into two primary operational portals:
-1. **Facility User Self-Service Portal**: Used by health facility staff (e.g. Dr. Mary) to create tickets, associate devices, follow ticket statuses, and submit conversation updates.
-2. **Service Desk Administration Portal**: Used by administrators, agents, and experts (Adam, Joseph, and John) to manage workflow assignments, configure teams, track audit timelines, and resolve issues.
+The portal is designed to help administrators, Service Desk users, facility users, and technical teams quickly understand how the system works. It covers the full support process, including user management, ticket creation, ticket assignment, communication, workflow tracking, reporting, security, deployment, API usage, and self-service support.
+
+Through this documentation, users can learn how to set up the platform, manage access and permissions, handle support tickets, track ticket lifecycle stages, configure workflows, and maintain the system effectively.
+
+This guide is organized into clear sections so each user group can easily find the information they need and follow the correct process for their role.
+
 
 ---
 
@@ -19,21 +22,17 @@ Use the left-hand navigation sidebar to browse the following sections of the sui
 
 | # | Section | Key Contents | Target Audience |
 |---|---------|--------------|-----------------|
-| 1 | **[Business Requirements](./1-business-requirements.md)** | Executive Summary, Vision, Objectives, Problem Statement, Scope | Executive Sponsors, PMs, Business Analysts |
-| 2 | **[System Overview & Personas](./2-system-overview-and-personas.md)** | High-Level Architecture, Personas (Adam, Joseph, John, Dr. Mary), Permission Matrix | Product Owners, QA Leads, Architects |
-| 3 | **[Functional Specifications](./3-functional-specifications.md)** | Portal Features list, Non-Functional Requirements, Business Rules, Validation rules | Developers, QA Engineers, Security Leads |
-| 4 | **[User Stories & Use Cases](./4-user-stories-and-use-cases.md)** | Detailed User Stories (Agile format) and detailed operational Use Cases | QA Engineers, Product Owners, Developers |
-| 5 | **[Journeys & Ticket Lifecycle](./5-journeys-and-lifecycle.md)** | Ticket Lifecycle States, Facility and Support Staff Journeys | UX Specialists, Operators, QA Engineers |
-| 6 | **[Process Workflows](./6-process-workflows.md)** | Mermaid Flowcharts (Creation, Assignment, Reassignment, Transfers, Resolution, Email) | System Architects, Developers, Business Analysts |
-| 7 | **[Data Architecture](./7-data-architecture.md)** | Mermaid ERD, Microservices Table Schemas, Constraints, Indexes, DDL Scripts | Database Administrators, Backend Developers |
-| 8 | **[REST API Specifications](./8-api-specifications.md)** | REST Endpoints, Payloads, Webhooks, JSON schemas, Error validations | Integration Teams, Backend/Frontend Developers |
-| 9 | **[UI/UX Specifications](./9-ui-ux-specifications.md)** | 9 Screen Layouts, UI Components list, Actions, Validations | UI/UX Designers, Frontend Developers |
-| 10 | **[Reporting & Security](./10-reporting-and-security.md)** | KPIs, SLAs, mTLS authentication, JWT validation, Kafka SCRAM | IT Security, QA, Business Operations |
-| 11 | **[Deployment & Testing](./11-deployment-and-testing.md)** | Kubernetes Topology, Testing Layers, QA Test Cases tables | DevOps, QA Engineers, Release Managers |
-| 12 | **[Acceptance Criteria & Future Roadmap](./12-acceptance-criteria-and-future.md)** | Acceptance Criteria matrices, Risks Mitigation, Future AI & SLA roadmap | Product Owners, Support Leads, DevOps |
-| 13 | **[User Manual](./13-user-manual.md)** | Self-service Portal User Guide for health facility staff (Dr. Mary) | Facility Admins, Medical Officers, End Users |
-| 14 | **[Administrator Guide](./14-administrator-guide.md)** | Operational and operator configuration guide for Adam and Joseph | Helpdesk Admins, Support Leads, Operators |
-| 15 | **[Technical Appendix & Glossary](./15-technical-appendix-and-glossary.md)** | Glossary of Terms, MIME formats, Kafka event payloads, Yaml deployment configurations | DevOps Teams, Support Engineers, Architects |
+| 1 | **[MoH Helpdesk Administrator Guide](./1-moh-helpdesk-administrator-guide.md)** | User setup, roles, permissions, portal settings, email, automation, and facility management | System Admins and Organization Admins |
+| 2 | **[Service Desk](./2-service-desk.md)** | Teams, categories, ticket creation, assignment, communication, tracking, and closure | Service Desk Admins, Agents and Experts |
+| 3 | **[Facility User](./3-facility-user.md)** | Portal login, ticket submission, ticket tracking, replies, attachments, and notifications | Facility Users and Portal End Users |
+| 4 | **[Journeys & Ticket Lifecycle](./4-ticket-lifecycle-and-journey.md)** | Ticket journey from creation to assignment, progress tracking, communication, overdue handling, and closure | Admins, Service Desk Teams, Facility Users |
+| 5 | **[Process Workflows](./5-process-workflows.md)** | Mermaid Flowcharts (Creation, Assignment, Reassignment, Transfers, Resolution, Email) | System Architects, Developers, Business Analysts |
+| 6 | **[Data Architecture](./6-data-architecture.md)** | Mermaid ERD, Microservices Table Schemas, Constraints, Indexes, DDL Scripts | Database Administrators, Backend Developers |
+| 7 | **[REST API Specifications](./7-api-specifications.md)** | REST Endpoints, Payloads, Webhooks, JSON schemas, Error validations | Integration Teams, Backend/Frontend Developers |
+| 8 | **[Reporting & Security](./8-reporting-and-security.md)** | KPIs, SLAs, mTLS authentication, JWT validation, Kafka SCRAM | IT Security, QA, Business Operations |
+| 9 | **[Deployment & Testing](./9-deployment-and-testing.md)** | Kubernetes Topology, Testing Layers, QA Test Cases tables | DevOps, QA Engineers, Release Managers |
+| 10 | **[Acceptance Criteria & Future Roadmap](./10-acceptance-criteria-and-future.md)** | Acceptance Criteria matrices, Risks Mitigation, Future AI & SLA roadmap | Product Owners, Support Leads, DevOps |
+| 11 | **[Technical Appendix & Glossary](./11-technical-appendix-and-glossary.md)** | Glossary of Terms, MIME formats, Kafka event payloads, Yaml deployment configurations | DevOps Teams, Support Engineers, Architects |
 
 ---
 

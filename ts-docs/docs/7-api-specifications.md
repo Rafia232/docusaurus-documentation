@@ -1,15 +1,15 @@
 ---
-sidebar_position: 9
-title: 8. REST API Specifications
+sidebar_position: 8
+title: 7. REST API Specifications
 ---
 
-# 8. REST API Specifications
+# 7. REST API Specifications
 
 This section defines the REST API design for the MoH Helpdesk Management System backend. All ticketing service endpoints are routed through the base path prefix `/ticket-api/`.
 
 ---
 
-## 8.1 API Catalog
+## 7.1 API Catalog
 
 | HTTP Method | Endpoint | Description / Operation | Primary Tag |
 |:---|:---|:---|:---|
@@ -84,17 +84,17 @@ This section defines the REST API design for the MoH Helpdesk Management System 
 
 ---
 
-## 8.2 Common Enums and Values
+## 7.2 Common Enums and Values
 
 The API uses integer-based enums for several status, priority, and source fields. Below are the key mappings to their string representations:
 
-### 8.2.1 TicketPriority
+### 7.2.1 TicketPriority
 - `1`: Low
 - `2`: Medium
 - `3`: High
 - `4`: Critical
 
-### 8.2.2 IncidentStatus
+### 7.2.2 IncidentStatus
 - `0`: Unknown
 - `1`: Open
 - `2`: In Progress
@@ -103,28 +103,28 @@ The API uses integer-based enums for several status, priority, and source fields
 - `5`: Re-Opened
 - `6`: Cancelled
 
-### 8.2.3 SourceOfIncident
+### 7.2.3 SourceOfIncident
 - `1`: Email
 - `2`: Phone Call
 - `3`: Web Form
 - `4`: In Person
 - `5`: Other
 
-### 8.2.4 IncdentCreateMethod
+### 7.2.4 IncdentCreateMethod
 - `1`: System
 - `2`: Email
 - `3`: Device
 - `4`: RDP
 - `5`: Other
 
-### 8.2.5 ActionType
+### 7.2.5 ActionType
 - `1`: View, `2`: Create, `3`: Update, `4`: Delete, `5`: Assign, `6`: Close, `7`: ManageMembers, `8`: Configure, `9`: ManagePermission, `10`: AssignService, `11`: ChangePassword, `12`: DealAction
 
 ---
 
-## 8.3 Branch Management API
+## 7.3 Branch Management API
 
-### 8.3.1 POST /ticket-api/branch
+### 7.3.1 POST /ticket-api/branch
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/branch`
 - **Request Payload**:
@@ -143,7 +143,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.3.2 GET /ticket-api/branch/\{key\}
+### 7.3.2 GET /ticket-api/branch/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/branch/{key}`
 - **Parameters**:
@@ -155,7 +155,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.3.3 PUT /ticket-api/branch/\{key\}
+### 7.3.3 PUT /ticket-api/branch/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/branch/{key}`
 - **Parameters**:
@@ -179,7 +179,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.3.4 DELETE /ticket-api/branch/\{key\}
+### 7.3.4 DELETE /ticket-api/branch/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/branch/{key}`
 - **Parameters**:
@@ -191,7 +191,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.3.5 GET /ticket-api/branches/\{organizationId\}
+### 7.3.5 GET /ticket-api/branches/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/branches/{organizationId}`
 - **Parameters**:
@@ -208,7 +208,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.3.6 PUT /ticket-api/bulk-branches
+### 7.3.6 PUT /ticket-api/bulk-branches
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/bulk-branches`
 - **Request Payload**:
@@ -228,9 +228,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.4 Branch Permission API
+## 7.4 Branch Permission API
 
-### 8.4.1 POST /ticket-api/branch-permission
+### 7.4.1 POST /ticket-api/branch-permission
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/branch-permission`
 - **Request Payload**:
@@ -249,7 +249,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.4.2 GET /ticket-api/branch-permission/\{key\}
+### 7.4.2 GET /ticket-api/branch-permission/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/branch-permission/{key}`
 - **Parameters**:
@@ -261,7 +261,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.4.3 PUT /ticket-api/branch-permission/\{key\}
+### 7.4.3 PUT /ticket-api/branch-permission/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/branch-permission/{key}`
 - **Parameters**:
@@ -285,7 +285,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.4.4 DELETE /ticket-api/branch-permission/\{key\}
+### 7.4.4 DELETE /ticket-api/branch-permission/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/branch-permission/{key}`
 - **Parameters**:
@@ -297,7 +297,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.4.5 GET /ticket-api/branch-permissions/\{organizationId\}/\{branchId\}
+### 7.4.5 GET /ticket-api/branch-permissions/\{organizationId\}/\{branchId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/branch-permissions/{organizationId}/{branchId}`
 - **Parameters**:
@@ -315,9 +315,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.5 Category API
+## 7.5 Category API
 
-### 8.5.1 GET /ticket-api/categories/\{organizationId\}
+### 7.5.1 GET /ticket-api/categories/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/categories/{organizationId}`
 - **Parameters**:
@@ -334,7 +334,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.5.2 POST /ticket-api/category
+### 7.5.2 POST /ticket-api/category
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/category`
 - **Request Payload**:
@@ -352,7 +352,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.5.3 GET /ticket-api/category/\{key\}
+### 7.5.3 GET /ticket-api/category/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/category/{key}`
 - **Parameters**:
@@ -364,7 +364,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.5.4 PUT /ticket-api/category/\{key\}
+### 7.5.4 PUT /ticket-api/category/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/category/{key}`
 - **Parameters**:
@@ -387,7 +387,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.5.5 DELETE /ticket-api/category/\{key\}
+### 7.5.5 DELETE /ticket-api/category/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/category/{key}`
 - **Parameters**:
@@ -399,9 +399,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.6 Identified Category API
+## 7.6 Identified Category API
 
-### 8.6.1 GET /ticket-api/identify-categories/\{categoryId\}/\{organizationId\}
+### 7.6.1 GET /ticket-api/identify-categories/\{categoryId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/identify-categories/{categoryId}/{organizationId}`
 - **Parameters**:
@@ -414,7 +414,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.6.2 GET /ticket-api/identify-categories/\{organizationId\}
+### 7.6.2 GET /ticket-api/identify-categories/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/identify-categories/{organizationId}`
 - **Parameters**:
@@ -431,7 +431,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.6.3 POST /ticket-api/identify-category
+### 7.6.3 POST /ticket-api/identify-category
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/identify-category`
 - **Request Payload**:
@@ -449,7 +449,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.6.4 GET /ticket-api/identify-category/\{key\}
+### 7.6.4 GET /ticket-api/identify-category/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/identify-category/{key}`
 - **Parameters**:
@@ -461,7 +461,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.6.5 PUT /ticket-api/identify-category/\{key\}
+### 7.6.5 PUT /ticket-api/identify-category/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/identify-category/{key}`
 - **Parameters**:
@@ -484,7 +484,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.6.6 DELETE /ticket-api/identify-category/\{key\}
+### 7.6.6 DELETE /ticket-api/identify-category/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/identify-category/{key}`
 - **Parameters**:
@@ -496,9 +496,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.7 Incident Management API
+## 7.7 Incident Management API
 
-### 8.7.1 GET /ticket-api/admin-incidents/\{organizationId\}
+### 7.7.1 GET /ticket-api/admin-incidents/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/admin-incidents/{organizationId}`
 - **Parameters**:
@@ -510,7 +510,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.2 GET /ticket-api/filter-incidents/\{organizationId\}/\{startDate\}/\{endDate\}
+### 7.7.2 GET /ticket-api/filter-incidents/\{organizationId\}/\{startDate\}/\{endDate\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/filter-incidents/{organizationId}/{startDate}/{endDate}`
 - **Parameters**:
@@ -524,7 +524,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.3 POST /ticket-api/incident
+### 7.7.3 POST /ticket-api/incident
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/incident`
 - **Request Payload**:
@@ -578,7 +578,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.4 PUT /ticket-api/incident-close/\{organizationId\}
+### 7.7.4 PUT /ticket-api/incident-close/\{organizationId\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/incident-close/{organizationId}`
 - **Parameters**:
@@ -602,7 +602,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.5 GET /ticket-api/incident-details/\{key\}/\{organizationId\}
+### 7.7.5 GET /ticket-api/incident-details/\{key\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-details/{key}/{organizationId}`
 - **Parameters**:
@@ -615,7 +615,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.6 GET /ticket-api/incident-list/\{organizationId\}
+### 7.7.6 GET /ticket-api/incident-list/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-list/{organizationId}`
 - **Parameters**:
@@ -630,7 +630,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.7 GET /ticket-api/incident-portal/\{key\}/\{organizationId\}
+### 7.7.7 GET /ticket-api/incident-portal/\{key\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-portal/{key}/{organizationId}`
 - **Parameters**:
@@ -648,7 +648,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.8 GET /ticket-api/incident-status/\{email\}/\{organizationId\}
+### 7.7.8 GET /ticket-api/incident-status/\{email\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-status/{email}/{organizationId}`
 - **Parameters**:
@@ -662,7 +662,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.9 PUT /ticket-api/incident-status/\{key\}
+### 7.7.9 PUT /ticket-api/incident-status/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/incident-status/{key}`
 - **Parameters**:
@@ -685,7 +685,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.10 GET /ticket-api/incident/contactId/\{contactId\}/\{organizationId\}
+### 7.7.10 GET /ticket-api/incident/contactId/\{contactId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident/contactId/{contactId}/{organizationId}`
 - **Parameters**:
@@ -703,7 +703,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.11 GET /ticket-api/incident/networkDeviceId/\{networkDeviceId\}
+### 7.7.11 GET /ticket-api/incident/networkDeviceId/\{networkDeviceId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident/networkDeviceId/{networkDeviceId}`
 - **Parameters**:
@@ -715,7 +715,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.12 PUT /ticket-api/incident/\{key\}
+### 7.7.12 PUT /ticket-api/incident/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/incident/{key}`
 - **Parameters**:
@@ -774,7 +774,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.13 DELETE /ticket-api/incident/\{key\}
+### 7.7.13 DELETE /ticket-api/incident/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/incident/{key}`
 - **Parameters**:
@@ -787,7 +787,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.14 GET /ticket-api/incident/\{key\}/\{organizationId\}
+### 7.7.14 GET /ticket-api/incident/\{key\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident/{key}/{organizationId}`
 - **Parameters**:
@@ -800,7 +800,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.15 GET /ticket-api/incidents/\{organizationId\}
+### 7.7.15 GET /ticket-api/incidents/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incidents/{organizationId}`
 - **Parameters**:
@@ -818,7 +818,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.16 GET /ticket-api/last-incident/organizationId/\{organizationId\}
+### 7.7.16 GET /ticket-api/last-incident/organizationId/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/last-incident/organizationId/{organizationId}`
 - **Parameters**:
@@ -830,7 +830,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.7.17 PUT /ticket-api/transfer-incident/\{key\}
+### 7.7.17 PUT /ticket-api/transfer-incident/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/transfer-incident/{key}`
 - **Parameters**:
@@ -860,9 +860,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.8 Incident Assignment API
+## 7.8 Incident Assignment API
 
-### 8.8.1 POST /ticket-api/incident-assigned
+### 7.8.1 POST /ticket-api/incident-assigned
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/incident-assigned`
 - **Request Payload**:
@@ -885,7 +885,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.2 GET /ticket-api/incident-assigned-by-user/\{userId\}/\{organizationId\}
+### 7.8.2 GET /ticket-api/incident-assigned-by-user/\{userId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigned-by-user/{userId}/{organizationId}`
 - **Parameters**:
@@ -903,7 +903,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.3 GET /ticket-api/incident-assigned-thread/\{userId\}/\{incidentId\}
+### 7.8.3 GET /ticket-api/incident-assigned-thread/\{userId\}/\{incidentId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigned-thread/{userId}/{incidentId}`
 - **Parameters**:
@@ -921,7 +921,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.4 GET /ticket-api/incident-assigned/member/download-csv/\{organizationId\}
+### 7.8.4 GET /ticket-api/incident-assigned/member/download-csv/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigned/member/download-csv/{organizationId}`
 - **Parameters**:
@@ -938,7 +938,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.5 GET /ticket-api/incident-assigned/member/\{memberId\}/\{organizationId\}
+### 7.8.5 GET /ticket-api/incident-assigned/member/\{memberId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigned/member/{memberId}/{organizationId}`
 - **Parameters**:
@@ -957,7 +957,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.6 PUT /ticket-api/incident-assigned/\{key\}
+### 7.8.6 PUT /ticket-api/incident-assigned/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/incident-assigned/{key}`
 - **Parameters**:
@@ -984,7 +984,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.7 DELETE /ticket-api/incident-assigned/\{key\}
+### 7.8.7 DELETE /ticket-api/incident-assigned/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/incident-assigned/{key}`
 - **Parameters**:
@@ -996,7 +996,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.8 GET /ticket-api/incident-assigned/\{key\}/\{organizationId\}
+### 7.8.8 GET /ticket-api/incident-assigned/\{key\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigned/{key}/{organizationId}`
 - **Parameters**:
@@ -1018,7 +1018,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.8.9 GET /ticket-api/incident-assigns/\{incidentId\}/\{organizationId\}
+### 7.8.9 GET /ticket-api/incident-assigns/\{incidentId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-assigns/{incidentId}/{organizationId}`
 - **Parameters**:
@@ -1036,9 +1036,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.9 Incident Attachment API
+## 7.9 Incident Attachment API
 
-### 8.9.1 DELETE /ticket-api/delete-incident-attachment
+### 7.9.1 DELETE /ticket-api/delete-incident-attachment
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/delete-incident-attachment`
 - **Request Payload**:
@@ -1055,7 +1055,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.9.2 GET /ticket-api/incident-attachment/\{incidentId\}
+### 7.9.2 GET /ticket-api/incident-attachment/\{incidentId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-attachment/{incidentId}`
 - **Parameters**:
@@ -1067,9 +1067,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.10 Incident History API
+## 7.10 Incident History API
 
-### 8.10.1 GET /ticket-api/incident-history/\{incidentId\}/\{organizationId\}
+### 7.10.1 GET /ticket-api/incident-history/\{incidentId\}/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/incident-history/{incidentId}/{organizationId}`
 - **Parameters**:
@@ -1088,9 +1088,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.11 Message API
+## 7.11 Message API
 
-### 8.11.1 POST /ticket-api/message
+### 7.11.1 POST /ticket-api/message
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/message`
 - **Request Payload**:
@@ -1149,7 +1149,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.11.2 GET /ticket-api/message/\{key\}
+### 7.11.2 GET /ticket-api/message/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/message/{key}`
 - **Parameters**:
@@ -1186,7 +1186,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.11.3 PUT /ticket-api/message/\{key\}
+### 7.11.3 PUT /ticket-api/message/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/message/{key}`
 - **Parameters**:
@@ -1249,7 +1249,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.11.4 DELETE /ticket-api/message/\{key\}
+### 7.11.4 DELETE /ticket-api/message/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/message/{key}`
 - **Parameters**:
@@ -1268,7 +1268,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.11.5 GET /ticket-api/messages-external/\{incidentId\}
+### 7.11.5 GET /ticket-api/messages-external/\{incidentId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/messages-external/{incidentId}`
 - **Parameters**:
@@ -1285,7 +1285,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.11.6 GET /ticket-api/messages/\{incidentId\}
+### 7.11.6 GET /ticket-api/messages/\{incidentId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/messages/{incidentId}`
 - **Parameters**:
@@ -1302,9 +1302,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.12 Team API
+## 7.12 Team API
 
-### 8.12.1 POST /ticket-api/team
+### 7.12.1 POST /ticket-api/team
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/team`
 - **Request Payload**:
@@ -1323,7 +1323,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.12.2 GET /ticket-api/team/\{key\}
+### 7.12.2 GET /ticket-api/team/\{key\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/team/{key}`
 - **Parameters**:
@@ -1335,7 +1335,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.12.3 PUT /ticket-api/team/\{key\}
+### 7.12.3 PUT /ticket-api/team/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/team/{key}`
 - **Parameters**:
@@ -1359,7 +1359,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.12.4 DELETE /ticket-api/team/\{key\}
+### 7.12.4 DELETE /ticket-api/team/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/team/{key}`
 - **Parameters**:
@@ -1371,7 +1371,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.12.5 GET /ticket-api/teams/\{organizationId\}
+### 7.12.5 GET /ticket-api/teams/\{organizationId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/teams/{organizationId}`
 - **Parameters**:
@@ -1388,7 +1388,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.12.6 GET /ticket-api/user-teams/\{organizationId\}/\{userId\}
+### 7.12.6 GET /ticket-api/user-teams/\{organizationId\}/\{userId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/user-teams/{organizationId}/{userId}`
 - **Parameters**:
@@ -1401,9 +1401,9 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-## 8.13 Team Member API
+## 7.13 Team Member API
 
-### 8.13.1 DELETE /ticket-api/bulk-team-member
+### 7.13.1 DELETE /ticket-api/bulk-team-member
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/bulk-team-member`
 - **Request Payload**:
@@ -1422,7 +1422,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.13.2 POST /ticket-api/team-member
+### 7.13.2 POST /ticket-api/team-member
 - **Method**: `POST`
 - **Endpoint**: `/ticket-api/team-member`
 - **Request Payload**:
@@ -1442,7 +1442,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.13.3 PUT /ticket-api/team-member/\{key\}
+### 7.13.3 PUT /ticket-api/team-member/\{key\}
 - **Method**: `PUT`
 - **Endpoint**: `/ticket-api/team-member/{key}`
 - **Parameters**:
@@ -1467,7 +1467,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.13.4 DELETE /ticket-api/team-member/\{key\}
+### 7.13.4 DELETE /ticket-api/team-member/\{key\}
 - **Method**: `DELETE`
 - **Endpoint**: `/ticket-api/team-member/{key}`
 - **Parameters**:
@@ -1479,7 +1479,7 @@ The API uses integer-based enums for several status, priority, and source fields
 
 ---
 
-### 8.13.5 GET /ticket-api/team-members/\{organizationId\}/\{teamId\}
+### 7.13.5 GET /ticket-api/team-members/\{organizationId\}/\{teamId\}
 - **Method**: `GET`
 - **Endpoint**: `/ticket-api/team-members/{organizationId}/{teamId}`
 - **Parameters**:
