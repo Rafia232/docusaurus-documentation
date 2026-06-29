@@ -1,15 +1,15 @@
 ---
-sidebar_position: 13
-title: 12. Acceptance Criteria & Future Roadmap
+sidebar_position: 11
+title: 10. Acceptance Criteria & Future Roadmap
 ---
 
-# 12. Acceptance Criteria & Future Roadmap
+# 10. Acceptance Criteria & Future Roadmap
 
 This section documents User Acceptance Criteria (UAT), risk mitigations, and the product development roadmap.
 
 ---
 
-## 12.1 Acceptance Criteria Matrix
+## 10.1 Acceptance Criteria Matrix
 
 For the system to be approved for production, the following criteria must be satisfied during User Acceptance Testing (UAT):
 
@@ -25,7 +25,7 @@ For the system to be approved for production, the following criteria must be sat
 
 ---
 
-## 12.2 Operational & Technical Risk Matrix
+## 10.2 Operational & Technical Risk Matrix
 
 | Risk Description | Impact | Probability | Mitigation Strategy |
 |:---|:---:|:---:|:---|
@@ -36,7 +36,7 @@ For the system to be approved for production, the following criteria must be sat
 
 ---
 
-## 12.3 Future Enhancements Roadmap
+## 10.3 Future Enhancements Roadmap
 
 - **SLA Management**: Dedicated SLA timers tracking response and resolution progress.
 - **Escalation Rules**: Automatic reassignment to higher teams if ticket exceeds resolution limits.

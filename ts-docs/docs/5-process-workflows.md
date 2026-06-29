@@ -1,15 +1,15 @@
 ---
-sidebar_position: 7
-title: 6. Process Workflows
+sidebar_position: 6
+title: 5. Process Workflows
 ---
 
-# 6. Process Workflows
+# 5. Process Workflows
 
 This section visualizes the key operational workflows of the MoH Helpdesk Management System using **Mermaid diagrams**.
 
 ---
 
-## 6.1 Facility User Ticket Creation Flow
+## 5.1 Facility User Ticket Creation Flow
 
 Visualizes how Dr. Mary submits a ticket, associates a device, and triggers team mapping.
 
@@ -47,7 +47,7 @@ graph TD
 
 ---
 
-## 6.2 Ticket Assignment Flow
+## 5.2 Ticket Assignment Flow
 
 Shows Joseph assigning a ticket to John.
 
@@ -76,7 +76,7 @@ sequenceDiagram
 
 ---
 
-## 6.3 Ticket Reassignment Flow
+## 5.3 Ticket Reassignment Flow
 
 Shows reassigning a ticket to a different expert.
 
@@ -101,7 +101,7 @@ graph TD
 ---
 
 
-## 6.4 Ticket Resolution Flow
+## 5.4 Ticket Resolution Flow
 
 Tracks ticket resolution, closure, and the 7-day reopen window.
 
@@ -132,7 +132,7 @@ graph TD
 
 ---
 
-## 6.5 Notification Engine Flow
+## 5.5 Notification Engine Flow
 
 Visualizes the event-driven notifications loop.
 

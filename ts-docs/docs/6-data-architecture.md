@@ -1,15 +1,15 @@
 ---
-sidebar_position: 8
-title: 7. Data Architecture
+sidebar_position: 7
+title: 6. Data Architecture
 ---
 
-# 7. Data Architecture
+# 6. Data Architecture
 
 This section details the **Data Model** and **Database Design** of the MoH Helpdesk Management System. The databases are partitioned into three PostgreSQL databases: **User DB**, **Ticket DB**, and **Device DB**.
 
 ---
 
-## 7.1 Entity Definitions
+## 6.1 Entity Definitions
 
 1. **Users**: System operators (Admins, Agents, Experts) with role classifications.
 2. **Teams**: Operational support groups (e.g. Network Support Team).
@@ -24,7 +24,7 @@ This section details the **Data Model** and **Database Design** of the MoH Helpd
 
 ---
 
-## 7.2 Entity Relationship Diagram (ERD)
+## 6.2 Entity Relationship Diagram (ERD)
 
 ```mermaid
 erDiagram
@@ -149,9 +149,9 @@ erDiagram
 
 ---
 
-## 7.3 PostgreSQL DDL Schemas
+## 6.3 PostgreSQL DDL Schemas
 
-### 7.3.1 User Database Schema
+### 6.3.1 User Database Schema
 ```sql
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
@@ -178,7 +178,7 @@ ALTER TABLE teams ADD CONSTRAINT fk_teams_lead FOREIGN KEY (lead_id) REFERENCES 
 
 ---
 
-### 7.3.2 Ticket Database Schema
+### 6.3.2 Ticket Database Schema
 ```sql
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
@@ -269,7 +269,7 @@ FOR EACH ROW EXECUTE FUNCTION block_modify_audit_log();
 
 ---
 
-### 7.3.3 Device Database Schema
+### 6.3.3 Device Database Schema
 ```sql
 CREATE TABLE devices (
     id SERIAL PRIMARY KEY,

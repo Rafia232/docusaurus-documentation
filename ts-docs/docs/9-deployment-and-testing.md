@@ -1,15 +1,15 @@
 ---
-sidebar_position: 12
-title: 11. Deployment & Testing
+sidebar_position: 10
+title: 9. Deployment & Testing
 ---
 
-# 11. Deployment & Testing
+# 9. Deployment & Testing
 
 This section defines the infrastructure deployment topology, testing plan, and QA verification matrices.
 
 ---
 
-## 11.1 Deployment Topology
+## 9.1 Deployment Topology
 
 The MoH Helpdesk is hosted as a microservice framework within a Kubernetes (K8s) cluster.
 
@@ -52,7 +52,7 @@ graph TD
 
 ---
 
-## 11.2 Testing Strategy
+## 9.2 Testing Strategy
 
 The QA strategy is composed of five specialized verification layers:
 
@@ -64,7 +64,7 @@ The QA strategy is composed of five specialized verification layers:
 
 ---
 
-## 11.3 QA Test Cases Matrix
+## 9.3 QA Test Cases Matrix
 
 | Test ID | Module | Test Objective | Input / Action | Expected Result | Pass/Fail |
 |:---|:---|:---|:---|:---|:---:|
