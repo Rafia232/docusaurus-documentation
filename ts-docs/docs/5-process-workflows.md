@@ -3,6 +3,13 @@ sidebar_position: 6
 title: 5. Process Workflows
 ---
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import ticketCreationFlow from './images/ticket_creation_flow.png';
+import ticketAssignmentFlow from './images/ticket_assignment_flow.png';
+import ticketReassignmentFlow from './images/ticket_reassignment_flow.png';
+import ticketResolutionFlow from './images/ticket_resolution_flow.png';
+import notificationEngineFlow from './images/notification_engine_flow.png';
+
 # 5. Process Workflows
 
 This section visualizes the key operational workflows of the MoH Helpdesk Management System using **Mermaid diagrams**.
@@ -12,6 +19,8 @@ This section visualizes the key operational workflows of the MoH Helpdesk Manage
 ## 5.1 Facility User Ticket Creation Flow
 
 Visualizes how Dr. Mary submits a ticket, associates a device, and triggers team mapping.
+
+<ZoomableImage src={ticketCreationFlow} alt="Facility User Ticket Creation Flow" />
 
 ```mermaid
 graph TD
@@ -51,6 +60,8 @@ graph TD
 
 Shows Joseph assigning a ticket to John.
 
+<ZoomableImage src={ticketAssignmentFlow} alt="Ticket Assignment Flow" />
+
 ```mermaid
 sequenceDiagram
     autonumber
@@ -80,6 +91,8 @@ sequenceDiagram
 
 Shows reassigning a ticket to a different expert.
 
+<ZoomableImage src={ticketReassignmentFlow} alt="Ticket Reassignment Flow" />
+
 ```mermaid
 graph TD
     A[Start Reassignment] --> B[Joseph opens Ticket details]
@@ -104,6 +117,8 @@ graph TD
 ## 5.4 Ticket Resolution Flow
 
 Tracks ticket resolution, closure, and the 7-day reopen window.
+
+<ZoomableImage src={ticketResolutionFlow} alt="Ticket Resolution Flow" />
 
 ```mermaid
 graph TD
@@ -135,6 +150,8 @@ graph TD
 ## 5.5 Notification Engine Flow
 
 Visualizes the event-driven notifications loop.
+
+<ZoomableImage src={notificationEngineFlow} alt="Notification Engine Flow" />
 
 ```mermaid
 sequenceDiagram

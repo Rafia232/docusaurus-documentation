@@ -3,6 +3,9 @@ sidebar_position: 10
 title: 9. Deployment & Testing
 ---
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import deploymentTopology from './images/deployment_topology.png';
+
 # 9. Deployment & Testing
 
 This section defines the infrastructure deployment topology, testing plan, and QA verification matrices.
@@ -12,6 +15,8 @@ This section defines the infrastructure deployment topology, testing plan, and Q
 ## 9.1 Deployment Topology
 
 The MoH Helpdesk is hosted as a microservice framework within a Kubernetes (K8s) cluster.
+
+<ZoomableImage src={deploymentTopology} alt="Deployment Topology" />
 
 ```mermaid
 graph TD
