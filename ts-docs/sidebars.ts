@@ -26,33 +26,63 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'role-based-user-guide',
-          label: '2. Role-Based User Guide',
+          id: 'admin-configuration-guide',
+          label: '2. Admin & Configuration Guide',
+        },
+        {
+          type: 'category',
+          label: '3. Role-Based User Guide',
+          link: {
+            type: 'doc',
+            id: 'role-based-user-guide',
+          },
+          items: [
+            {
+              type: 'link',
+              label: '3.1 Facility User',
+              href: '/docs/role-based-user-guide#2-facility-user-guide',
+            },
+            {
+              type: 'link',
+              label: '3.2 Regional User',
+              href: '/docs/role-based-user-guide#3-regional-user-guide',
+            },
+            {
+              type: 'link',
+              label: '3.3 National User',
+              href: '/docs/role-based-user-guide#4-national-user-guide',
+            },
+            {
+              type: 'link',
+              label: '3.4 Administrator',
+              href: '/docs/role-based-user-guide#5-administrator-guide',
+            },
+          ],
         },
         {
           type: 'doc',
-          id: 'admin-configuration-guide',
-          label: '3. Admin & Configuration Guide',
+          id: 'reporting-and-security',
+          label: '4. Reports',
         },
         {
           type: 'doc',
           id: 'architecture-technical-design',
-          label: '4. Architecture / Technical Design',
+          label: '5. Architecture / Technical Design',
         },
         {
           type: 'doc',
           id: 'api-specifications',
-          label: '5. REST API Specifications',
+          label: '6. REST API Specifications',
         },
         {
           type: 'doc',
           id: 'integrations',
-          label: '6. API / Integration Documentation',
+          label: '7. API / Integration Documentation',
         },
         {
           type: 'doc',
           id: 'code-transfer-readiness',
-          label: '7. Code Transfer Readiness',
+          label: '8. Code Transfer Readiness',
         },
       ],
     },
@@ -84,11 +114,6 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'process-workflows',
           label: 'Process Workflows',
-        },
-        {
-          type: 'doc',
-          id: 'reporting-and-security',
-          label: 'Reporting & Security',
         },
       ],
     },

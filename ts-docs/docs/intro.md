@@ -23,16 +23,17 @@ Use the left-hand navigation sidebar to browse the following sections of the sui
 | # | Section | Key Contents | Target Audience |
 |---|---------|--------------|-----------------|
 | 1 | **[Installation Manual](./12-installation-manual.md)** | Windows Server with IIS and Linux Docker deployment through Portainer | System Admins, DevOps, Implementation Teams |
-| 2 | **[Role-Based User Guide](./13-role-based-user-guide.md)** | Facility, Regional, National, and Administrator responsibilities and access | Business Users, Support Leads, Trainers |
-| 3 | **[Admin & Configuration Guide](./14-admin-configuration-guide.md)** | Categories, SLA, regions, lookups, user management, permissions, and notifications | System Admins and Organization Admins |
-| 4 | **[Architecture / Technical Design](./15-architecture-technical-design.md)** | System context, services, data architecture, security, deployment, and operations | Architects, Developers, DevOps |
-| 5 | **[REST API Specifications](./7-api-specifications.md)** | REST endpoints, payloads, enums, request parameters, and responses | Integration Teams, Backend/Frontend Developers |
-| 6 | **[API / Integration Documentation](./16-integrations.md)** | REST, Kafka, SMTP, object storage, WhatsApp, and external synchronization | Integration Teams, DevOps, Security |
-| 7 | **[Code Transfer Readiness](./17-code-transfer-readiness.md)** | Documentation, codebase, comments, handover, and acceptance checklist | Project Owners, Developers, Handover Teams |
-| 8 | **[MoH Helpdesk Administrator Guide](./1-moh-helpdesk-administrator-guide.md)** | Existing administrator screenshots and operational walkthrough | System Admins and Organization Admins |
-| 9 | **[Service Desk](./2-service-desk.md)** | Teams, categories, ticket creation, assignment, communication, tracking, and closure | Service Desk Admins, Agents and Experts |
-| 10 | **[Facility User](./3-facility-user.md)** | Portal login, ticket submission, ticket tracking, replies, attachments, and notifications | Facility Users and Portal End Users |
-| 11 | **[Data Architecture](./6-data-architecture.md)** | ERD, microservice table schemas, constraints, indexes, and DDL scripts | Database Administrators, Backend Developers |
+| 2 | **[Admin & Configuration Guide](./14-admin-configuration-guide.md)** | Categories, SLA, regions, lookups, user management, permissions, and notifications | System Admins and Organization Admins |
+| 3 | **[Role-Based User Guide](./13-role-based-user-guide.md)** | Facility, Regional, National, and Administrator responsibilities and access | Business Users, Support Leads, Trainers |
+| 3.1 | **[Facility User](./13-role-based-user-guide.md#2-facility-user-guide)** | Public portal ticket creation, tracking, replies, and attachments | Facility Users |
+| 3.2 | **[Regional User](./13-role-based-user-guide.md#3-regional-user-guide)** | Regional dashboards, regional ticket monitoring, and regional reports | Regional Users |
+| 3.3 | **[National User](./13-role-based-user-guide.md#4-national-user-guide)** | National dashboards, SLA oversight, escalation review, and national reports | National Users |
+| 3.4 | **[Administrator](./13-role-based-user-guide.md#5-administrator-guide)** | Platform setup, users, roles, categories, teams, SLA, and notifications | Administrators |
+| 4 | **[Reports](./8-reporting-and-security.md)** | Reporting, KPIs, SLA monitoring, and security notes | Managers, Support Leads, IT Security |
+| 5 | **[Architecture / Technical Design](./15-architecture-technical-design.md)** | System context, services, data architecture, security, deployment, and operations | Architects, Developers, DevOps |
+| 6 | **[REST API Specifications](./7-api-specifications.md)** | REST endpoints, payloads, enums, request parameters, and responses | Integration Teams, Backend/Frontend Developers |
+| 7 | **[API / Integration Documentation](./16-integrations.md)** | REST, Kafka, SMTP, object storage, WhatsApp, and external synchronization | Integration Teams, DevOps, Security |
+| 8 | **[Code Transfer Readiness](./17-code-transfer-readiness.md)** | Documentation, codebase, comments, handover, and acceptance checklist | Project Owners, Developers, Handover Teams |
 
 ---
 
