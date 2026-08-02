@@ -1,41 +1,42 @@
-# Website
+# MoH Helpdesk Documentation Portal
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository contains the Docusaurus documentation portal for the MoH Helpdesk platform. It includes installation, user, administrator, architecture, API, integration, and handover documentation.
 
 ## Installation
 
 ```bash
-yarn
+npm install
 ```
 
 ## Local Development
 
 ```bash
-yarn start
+npm run start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This starts a local development server. Most documentation changes are reflected live without restarting the server.
 
 ## Build
 
 ```bash
-yarn build
+npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This generates static content into the `build` directory.
 
-## Deployment
+## Documentation Structure
 
-Using SSH:
+- Installation Manual: Windows Server/IIS and Linux Docker/Portainer.
+- Role-Based User Guide: Facility, Regional, National, and Administrator users.
+- Admin & Configuration Guide: categories, SLA, regions, lookups, user management, and notifications.
+- Architecture / Technical Design: system design, deployment model, data architecture, security, and operations.
+- REST API Specifications and Integration Documentation.
+- Code Transfer Readiness checklist.
+
+## Verification
+
+Run this before handover:
 
 ```bash
-USE_SSH=true yarn deploy
+npm run build
 ```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
