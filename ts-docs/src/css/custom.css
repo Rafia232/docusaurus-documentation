@@ -28,3 +28,78 @@
   --ifm-color-primary-lightest: #ffffff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.visual-step-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: 1rem 0 1.5rem;
+}
+
+.visual-step {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-card-background-color);
+  overflow: hidden;
+}
+
+.visual-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  padding: 0.65rem 0.8rem;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.visual-step-code {
+  font-weight: 700;
+  color: var(--ifm-color-primary-darkest);
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .visual-step-code {
+  color: var(--ifm-color-primary-lightest);
+}
+
+.visual-step-title {
+  font-weight: 600;
+  text-align: right;
+}
+
+.visual-step-frame {
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    linear-gradient(90deg, var(--ifm-color-emphasis-100) 1px, transparent 1px),
+    linear-gradient(var(--ifm-color-emphasis-100) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.visual-step-frame-inner {
+  width: 100%;
+  min-height: 110px;
+  border: 2px dashed var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.visual-step-body {
+  padding: 0.8rem;
+}
+
+.visual-step-body p {
+  margin: 0 0 0.5rem;
+}
+
+.visual-step-body ul {
+  margin-bottom: 0;
+}
