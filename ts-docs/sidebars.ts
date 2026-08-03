@@ -4,13 +4,13 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 /**
  * Creating a sidebar enables you to:
- - create an ordered group of docs
- - render a sidebar for each doc of that group
- - provide next/previous navigation
-
- The sidebars can be generated from the filesystem, or explicitly defined here.
-
- Create as many sidebars as you want.
+ * - create an ordered group of docs
+ * - render a sidebar for each doc of that group
+ * - provide next/previous navigation
+ *
+ * The sidebars can be generated from the filesystem, or explicitly defined here.
+ *
+ * Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -40,49 +40,79 @@ const sidebars: SidebarsConfig = {
             {
               type: 'link',
               label: '3.1 Facility User',
-              href: '/docs/role-based-user-guide#2-facility-user-guide',
+              href: '/docs/role-based-user-guide#31-facility-user',
             },
             {
               type: 'link',
               label: '3.2 Regional User',
-              href: '/docs/role-based-user-guide#3-regional-user-guide',
+              href: '/docs/role-based-user-guide#32-regional-user',
             },
             {
               type: 'link',
               label: '3.3 National User',
-              href: '/docs/role-based-user-guide#4-national-user-guide',
+              href: '/docs/role-based-user-guide#33-national-user',
             },
             {
               type: 'link',
               label: '3.4 Administrator',
-              href: '/docs/role-based-user-guide#5-administrator-guide',
+              href: '/docs/role-based-user-guide#34-administrator',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: '4. Dashboard',
+          link: {
+            type: 'doc',
+            id: 'dashboard',
+          },
+          items: [
+            {
+              type: 'link',
+              label: '4.1 Technician Dashboard',
+              href: '/docs/dashboard#41-technician-dashboard--regional-user',
+            },
+            {
+              type: 'link',
+              label: '4.2 Regional Dashboard',
+              href: '/docs/dashboard#42-regional-dashboard--regional-user',
+            },
+            {
+              type: 'link',
+              label: '4.3 Management Dashboard',
+              href: '/docs/dashboard#43-management-dashboard--national-user',
+            },
+            {
+              type: 'link',
+              label: '4.4 Executive Dashboard',
+              href: '/docs/dashboard#44-executive-dashboard--administrator',
             },
           ],
         },
         {
           type: 'doc',
           id: 'reporting-and-security',
-          label: '4. Reports',
+          label: '5. Reports',
         },
         {
           type: 'doc',
           id: 'architecture-technical-design',
-          label: '5. Architecture / Technical Design',
+          label: '6. Architecture / Technical Design',
         },
         {
           type: 'doc',
           id: 'api-specifications',
-          label: '6. REST API Specifications',
+          label: '7. REST API Specifications',
         },
         {
           type: 'doc',
           id: 'integrations',
-          label: '7. API / Integration Documentation',
+          label: '8. API / Integration Documentation',
         },
         {
           type: 'doc',
           id: 'code-transfer-readiness',
-          label: '8. Code Transfer Readiness',
+          label: '9. Code Transfer Readiness',
         },
       ],
     },
