@@ -9,26 +9,16 @@ This guide explains how administrators can configure the organization, regions, 
 
 Administrators should complete the initial configuration in the following sequence:
 
-**1. Set Organization Profile**  
-↓  
-**2. Regions**  
-↓  
-**3. Locations**  
-↓  
+**1. Set Organization Profile**   
+**2. Regions**   
+**3. Locations**   
 **4. Users**  
-↓  
 **5. Assign Roles to Users**  
-↓  
 **6. Assign Permissions to Roles**  
-↓  
-**7. Email Configuration**  
-↓  
+**7. Email Configuration**   
 **8. Automation Rules**  
-↓  
 **9. Categories and Subcategories**  
-↓  
 **10. Applications**  
-↓  
 **11. Priorities**
 
 :::note
