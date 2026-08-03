@@ -8,12 +8,6 @@ import deploymentTopology from './images/deployment_topology.png';
 
 # 1. Installation Manual
 
-This installation manual is based on the actual TeraSupport solution located at:
-
-```text
-/Users/etl/Desktop/TeraSupport/TeraSupport_Avolytic/TeraSupport
-```
-
 The platform is a .NET 9 CQRS/MediatR microservice system with an Ocelot API Gateway, PostgreSQL databases, Kafka event messaging, and a Vite React web application. This guide covers:
 
 - Windows Server deployment with IIS.
@@ -23,7 +17,7 @@ The platform is a .NET 9 CQRS/MediatR microservice system with an Ocelot API Gat
 - Required software packages.
 - Linux deployment with Docker, Nginx load balancer, and Portainer.
 - Docker image build, push, and stack deployment.
-- Screenshot checklist for visual handover documentation.
+- Beginner-friendly verification checkpoints.
 
 ---
 
@@ -31,189 +25,148 @@ The platform is a .NET 9 CQRS/MediatR microservice system with an Ocelot API Gat
 
 Use this diagram as the first visual in the installation manual. It shows how users enter the system and how the .NET 9 CQRS/MediatR services, Ocelot API Gateway, PostgreSQL, Kafka, and web frontend fit together.
 
-```mermaid
-flowchart LR
-    U[Users: Facility, Regional, National, Admin] --> LB[Public HTTPS Entry]
-    LB --> WEB[React / Vite Web App]
-    WEB -->|/ts-api| GW[Ocelot API Gateway]
+<ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport visual deployment overview diagram" maxHeight="640px" />
 
-    GW --> USER[User Service<br/>CQRS + MediatR]
-    GW --> TICKET[Ticketing Service<br/>CQRS + MediatR]
-    GW --> CRM[CRM Service<br/>CQRS + MediatR]
-    GW --> CALL[Call Center Service<br/>CQRS + MediatR]
-    GW --> DEVICE[Device Management Service<br/>CQRS + MediatR]
-    GW --> MAIL[Mail Service<br/>CQRS + MediatR]
-    GW --> META[Meta Service<br/>CQRS + MediatR]
+Editable source: [Visual Deployment Overview.drawio](./images/installation/diagrams/Visual%20Deployment%20Overview.drawio)
 
-    USER --> UDB[(TSUserDB)]
-    TICKET --> TDB[(TSTicketDb)]
-    CRM --> CDB[(TSCRMDb)]
-    CALL --> CCDB[(TSCallCenterDb)]
-    DEVICE --> DDB[(TSDeviceDB)]
-    MAIL --> MDB[(TSMailDB)]
-    META --> MDS[(TSMetaDb)]
+### 1.0.1 Deployment Learning Path
 
-    USER <--> KAFKA[Kafka Broker]
-    TICKET <--> KAFKA
-    CRM <--> KAFKA
-    MAIL <--> KAFKA
-    KAFKA --> KD[Kafdrop Topic Monitor]
+Follow this order when deploying TeraSupport. The Windows path is for IIS hosting. The Linux path is for Docker and Portainer hosting.
 
-    TICKET --> FILES[wwwroot / Attachment Storage]
-    CRM --> FILES
-    MAIL --> SMTP[SMTP / Mail Gateway]
-```
-
-### 1.0.1 Visual Handover Storyboard
-
-Capture screenshots in this order so the final document reads like a real deployment story.
-
-| Step | Visual Type | What to Show | Screenshot File |
-| ---: | --- | --- | --- |
-| 1 | Diagram | Overall application topology | Mermaid diagram above |
-| 2 | Screenshot | Windows Server roles with IIS selected | `windows-server-iis-role.png` |
-| 3 | Screenshot | IIS URL Rewrite and ARR installed | `windows-url-rewrite-arr.png` |
-| 4 | Screenshot | .NET 9 Hosting Bundle/runtime installed | `windows-dotnet-runtime-list.png` |
-| 5 | Screenshot | PostgreSQL databases created | `windows-postgres-databases.png` |
-| 6 | Screenshot | Kafka/Zookeeper running and topic list | `windows-kafka-topic-list.png` |
-| 7 | Screenshot | IIS app pools for all services | `iis-app-pools.png` |
-| 8 | Screenshot | IIS bindings and HTTPS certificate | `iis-site-bindings.png` |
-| 9 | Screenshot | API Gateway environment variables | `iis-apigateway-env-vars.png` |
-| 10 | Screenshot | Gateway Swagger page | `gateway-swagger.png` |
-| 11 | Screenshot | Linux Docker network and images | `linux-docker-images.png` |
-| 12 | Screenshot | Portainer DB stack | `portainer-db-stack.png` |
-| 13 | Screenshot | Portainer Kafka stack and Kafdrop | `portainer-kafka-stack.png` |
-| 14 | Screenshot | Portainer application stack | `portainer-app-stack.png` |
-| 15 | Screenshot | Nginx/load balancer route | `linux-nginx-route-config.png` |
-| 16 | Screenshot | Web login page over HTTPS | `linux-public-login.png` |
-| 17 | Screenshot | Ticket creation and report export | `ticket-created.png`, `report-export.png` |
+| Step | Windows / IIS Path | Linux / Docker / Portainer Path |
+| ---: | --- | --- |
+| 1 | Prepare Windows Server, enable IIS, and install IIS management tools. | Prepare Ubuntu Server and install Docker Engine. |
+| 2 | Install URL Rewrite, Application Request Routing, .NET Hosting Bundle, Node.js, Yarn, PostgreSQL, and Kafka if Kafka is hosted on Windows. | Install Portainer CE and create the shared Docker network. |
+| 3 | Publish .NET services and build the React/Vite web app. | Build Docker images and push them to the selected registry if needed. |
+| 4 | Create IIS app pools, sites, bindings, environment variables, and rewrite rules. | Deploy PostgreSQL, Kafka, and application stacks through Portainer. |
+| 5 | Verify IIS, API Gateway, Swagger, login, ticket creation, mail/Kafka, file upload, and reports. | Verify containers, Nginx routes, public URL, Swagger, ticket workflow, mail/Kafka, and reports. |
 
 ### 1.0.2 Windows Visual Walkthrough
 
-Use these visual slots as the screenshot plan for the Windows Server/IIS deployment. Each slot should be replaced with a real screenshot after installation.
+Use these cards as the beginner deployment checklist for Windows Server and IIS.
 
 <div className="visual-step-grid">
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-01</span><span className="visual-step-title">Enable IIS Role</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Server Manager - Add Roles and Features - Web Server (IIS)</div></div>
-    <div className="visual-step-body"><p>Show IIS selected with required role services before clicking Install.</p><ul><li>File: <code>windows-server-iis-role.png</code></li><li>Verify: IIS Manager opens after installation.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Server Manager → Add roles and features → Web Server (IIS)</div></div>
+    <div className="visual-step-body"><p>Open Server Manager from the Windows Start menu. Select <strong>Manage</strong>, then <strong>Add Roles and Features</strong>. Choose <strong>Role-based or feature-based installation</strong>, select the local server, and enable <strong>Web Server (IIS)</strong>.</p><ul><li>Enable: <strong>Web Server</strong>, <strong>Management Tools</strong>, and <strong>IIS Management Console</strong>.</li><li>Under Web Server, include <strong>Common HTTP Features</strong>, <strong>Health and Diagnostics</strong>, <strong>Security</strong>, and <strong>Application Development</strong>.</li><li>Verify: open <strong>Internet Information Services (IIS) Manager</strong> from Start.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-02</span><span className="visual-step-title">Install Rewrite and ARR</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: IIS Manager showing URL Rewrite and ARR proxy settings</div></div>
-    <div className="visual-step-body"><p>Show URL Rewrite installed and ARR proxy enabled for API Gateway forwarding.</p><ul><li>File: <code>windows-url-rewrite-arr.png</code></li><li>Verify: Server Proxy Settings has proxy enabled.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Install IIS URL Rewrite and Application Request Routing</div></div>
+    <div className="visual-step-body"><p>Download and install <a href="https://www.iis.net/downloads/microsoft/url-rewrite">IIS URL Rewrite</a>, then install <a href="https://www.iis.net/downloads/microsoft/application-request-routing">Application Request Routing 3.0</a>. Open IIS Manager, select the server node, open <strong>Application Request Routing Cache</strong>, then click <strong>Server Proxy Settings</strong>.</p><ul><li>Check <strong>Enable proxy</strong>.</li><li>Click <strong>Apply</strong> in the right Actions panel.</li><li>Verify: <strong>URL Rewrite</strong> appears inside the IIS feature list.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-03</span><span className="visual-step-title">Install .NET 9 Runtime</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: PowerShell output for dotnet --list-runtimes</div></div>
-    <div className="visual-step-body"><p>Show .NET 9 ASP.NET Core runtime and Hosting Bundle available on the server.</p><ul><li>File: <code>windows-dotnet-runtime-list.png</code></li><li>Verify: IIS was restarted after installation.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Install ASP.NET Core Hosting Bundle for IIS</div></div>
+    <div className="visual-step-body"><p>Download the .NET 9 Hosting Bundle from the official <a href="https://dotnet.microsoft.com/en-us/download/dotnet/9.0">.NET 9 download page</a>. Run the installer as Administrator after IIS is installed.</p><ul><li>Run: <code>iisreset</code></li><li>Verify: <code>dotnet --list-runtimes</code></li><li>If IIS was installed after the Hosting Bundle, repair or rerun the Hosting Bundle installer.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-04</span><span className="visual-step-title">Prepare Databases</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: pgAdmin or psql database list</div></div>
-    <div className="visual-step-body"><p>Show service databases for User, Ticketing, CRM, Call Center, Device, and Mail.</p><ul><li>File: <code>windows-postgres-databases.png</code></li><li>Verify: service database user has access.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Install PostgreSQL and create service databases</div></div>
+    <div className="visual-step-body"><p>Install PostgreSQL using the official <a href="https://www.postgresql.org/download/windows/">PostgreSQL Windows installer</a>. The installer can include pgAdmin. If pgAdmin is needed separately, use the <a href="https://www.pgadmin.org/download/pgadmin-4-windows/">pgAdmin Windows download</a>.</p><ul><li>Create: <code>TSUserDB</code>, <code>TSTicketDb</code>, <code>TSCRMDb</code>, <code>TSCallCenterDb</code>, <code>TSDeviceDB</code>, and <code>TSMailDB</code>.</li><li>Create a production database user with a strong password.</li><li>Verify: connect using pgAdmin or <code>psql -h localhost -U &lt;user&gt; -d TSTicketDb</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-05</span><span className="visual-step-title">Configure Kafka</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Kafka topic list or Kafdrop equivalent</div></div>
-    <div className="visual-step-body"><p>Show Zookeeper, Kafka broker, and required TeraSupport topics.</p><ul><li>File: <code>windows-kafka-topic-list.png</code></li><li>Verify: services use <code>KAFKA_HOST</code> and <code>KAFKA_PORT</code>.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Use Linux/Docker Kafka or install Kafka manually on Windows</div></div>
+    <div className="visual-step-body"><p>Recommended: run Kafka through the Linux Docker stack and point Windows services to that broker. If Kafka must run on Windows, install Java 17+, download Kafka from <a href="https://kafka.apache.org/quickstart/">Apache Kafka Quickstart</a>, extract it to <code>C:\kafka</code>, then start the broker.</p><ul><li>Set service variables: <code>KAFKA_HOST=&lt;kafka-host&gt;</code> and <code>KAFKA_PORT=9092</code>.</li><li>Create required topics if auto-create is disabled.</li><li>Verify: <code>kafka-topics.bat --bootstrap-server localhost:9092 --list</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-06</span><span className="visual-step-title">Publish Services</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Visual Studio Publish screen or PowerShell publish output</div></div>
-    <div className="visual-step-body"><p>Show Release publish output for ApiGateway, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and Meta.</p><ul><li>File: <code>windows-dotnet-publish-output.png</code></li><li>Verify: each folder contains the service DLL and web.config.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Publish each .NET microservice in Release mode</div></div>
+    <div className="visual-step-body"><p>From the solution root, restore, build, and publish ApiGateway, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and Meta into separate folders under <code>C:\inetpub\terasupport</code>.</p><ul><li>Run: <code>dotnet restore TS.sln</code></li><li>Run: <code>dotnet build TS.sln -c Release</code></li><li>Verify: each publish folder contains the service DLL and generated <code>web.config</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-07</span><span className="visual-step-title">Build Web App</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: yarn build success and Web/dist folder</div></div>
-    <div className="visual-step-body"><p>Show the Vite web build using production <code>VITE_API_URL</code>.</p><ul><li>File: <code>windows-web-build-dist.png</code></li><li>Verify: <code>dist</code> copied to IIS web folder.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Install Node.js, install Yarn, and build React/Vite</div></div>
+    <div className="visual-step-body"><p>Install <a href="https://nodejs.org/en/download">Node.js LTS</a>. Then open PowerShell as Administrator and install Yarn if the project uses Yarn.</p><ul><li>Run: <code>npm install --global yarn</code></li><li>Run inside <code>Web</code>: <code>yarn install</code> and <code>yarn build</code></li><li>Copy <code>Web/dist</code> output to <code>C:\inetpub\terasupport\web</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-08</span><span className="visual-step-title">Create App Pools</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: IIS Application Pools list</div></div>
-    <div className="visual-step-body"><p>Show one app pool per service with No Managed Code, AlwaysRunning, and idle timeout disabled.</p><ul><li>File: <code>iis-app-pools.png</code></li><li>Verify: app pools are started.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">IIS Manager → Application Pools → Add Application Pool</div></div>
+    <div className="visual-step-body"><p>Create one app pool for each service and one for the web app. Use <strong>No Managed Code</strong> because ASP.NET Core runs out-of-process through the hosting module.</p><ul><li>Set <strong>Start Mode</strong> to <strong>AlwaysRunning</strong>.</li><li>Set <strong>Idle Time-out (minutes)</strong> to <strong>0</strong>.</li><li>Verify: each app pool is started before browsing the site.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-09</span><span className="visual-step-title">Bind Sites and Ports</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: IIS Bindings window</div></div>
-    <div className="visual-step-body"><p>Show HTTPS binding for public web and private bindings for service applications.</p><ul><li>File: <code>iis-site-bindings.png</code></li><li>Verify: certificate is selected.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">IIS Manager → Sites → Add Website / Add Application</div></div>
+    <div className="visual-step-body"><p>Create the public web site first, then add private sites or applications for API Gateway and services. Keep backend service ports private to the server when possible.</p><ul><li>Bind the web app to HTTPS with the production hostname.</li><li>Bind API Gateway to a private localhost port or internal host.</li><li>Verify: the selected certificate matches the public DNS name.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-10</span><span className="visual-step-title">Set Environment Variables</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: IIS Configuration Editor environment variables</div></div>
-    <div className="visual-step-body"><p>Show API Gateway and service variables such as Ocelot downstream hosts, DB connection, JWT, and Kafka.</p><ul><li>File: <code>iis-apigateway-env-vars.png</code></li><li>Verify: app pool recycled after changes.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">IIS Manager → Application → Configuration Editor</div></div>
+    <div className="visual-step-body"><p>Select the IIS application, open <strong>Configuration Editor</strong>, choose <code>system.webServer/aspNetCore</code>, and add environment variables under <code>environmentVariables</code>.</p><ul><li>Set DB connection, JWT secret, Kafka host/port, Ocelot downstream hosts, and service base URLs.</li><li>Use double underscores for nested .NET settings, for example <code>CONNECTIONSTRINGS__DBLOCATION</code>.</li><li>Recycle the app pool after every change.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-11</span><span className="visual-step-title">Configure Rewrite Rules</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: IIS URL Rewrite rules for /ts-api, /files, /swagger</div></div>
-    <div className="visual-step-body"><p>Show reverse proxy rules from the web site to the API Gateway.</p><ul><li>File: <code>iis-url-rewrite-rules.png</code></li><li>Verify: React SPA fallback is below API rules.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Web root → web.config → URL Rewrite rules</div></div>
+    <div className="visual-step-body"><p>Add reverse proxy rules so the React web site forwards <code>/ts-api</code>, <code>/files</code>, and <code>/swagger</code> to the API Gateway. Put the React SPA fallback rule after API rules.</p><ul><li>Verify: <code>https://&lt;host&gt;/ts-api/swagger</code> opens the gateway Swagger page.</li><li>Verify: refreshing a React route does not produce a 404.</li><li>Restart IIS with <code>iisreset</code> after rule changes if needed.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-12</span><span className="visual-step-title">Verify Application</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: login page, gateway Swagger, ticket created, report exported</div></div>
-    <div className="visual-step-body"><p>Show final proof that UI, API, Kafka, reports, and notifications work.</p><ul><li>Files: <code>iis-web-login.png</code>, <code>gateway-swagger.png</code>, <code>ticket-created.png</code></li><li>Verify: no startup errors in logs.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Verify login, API Gateway, ticket flow, mail events, and reports</div></div>
+    <div className="visual-step-body"><p>Open the public web URL, sign in, create a test ticket, assign it, upload a small attachment, and export a report.</p><ul><li>Check Windows Event Viewer and IIS logs if a service fails.</li><li>Confirm Kafka/mail logs show message processing.</li><li>Confirm no app pool is repeatedly stopping or recycling.</li></ul></div>
   </div>
 </div>
 
 ### 1.0.3 Linux / Portainer Visual Walkthrough
 
-Use these visual slots as the screenshot plan for the Linux Docker and Portainer deployment.
+Use these cards as the beginner deployment checklist for Linux, Docker, and Portainer.
 
 <div className="visual-step-grid">
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-01</span><span className="visual-step-title">Prepare Server</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Ubuntu version, Docker version, Docker Compose version</div></div>
-    <div className="visual-step-body"><p>Show the Linux host is updated and Docker is installed.</p><ul><li>File: <code>linux-docker-version.png</code></li><li>Verify: Docker service is enabled and running.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Install Ubuntu Server and Docker Engine</div></div>
+    <div className="visual-step-body"><p>Use Ubuntu Server 22.04 LTS or 24.04 LTS. Follow the official <a href="https://docs.docker.com/engine/install/ubuntu/">Docker Engine on Ubuntu</a> instructions to add Docker's apt repository and install Docker Engine.</p><ul><li>Run: <code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></li><li>Install: <code>docker-ce</code>, <code>docker-ce-cli</code>, <code>containerd.io</code>, <code>docker-buildx-plugin</code>, and <code>docker-compose-plugin</code>.</li><li>Verify: <code>sudo docker run hello-world</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-02</span><span className="visual-step-title">Create Docker Network</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: docker network ls showing ts-network</div></div>
-    <div className="visual-step-body"><p>Show the external <code>ts-network</code> required by compose files.</p><ul><li>File: <code>linux-docker-network.png</code></li><li>Verify: all stacks attach to the same network.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Create the shared Docker network used by all stacks</div></div>
+    <div className="visual-step-body"><p>The TeraSupport compose files expect all application, database, Kafka, and Nginx containers to share the same Docker network.</p><ul><li>Run: <code>docker network create ts-network</code></li><li>Verify: <code>docker network ls</code></li><li>If it already exists, Docker will report that the network exists; continue deployment.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-03</span><span className="visual-step-title">Install Portainer</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Portainer local environment dashboard</div></div>
-    <div className="visual-step-body"><p>Show Portainer is running on the server and connected to the local Docker engine.</p><ul><li>File: <code>portainer-local-environment.png</code></li><li>Verify: admin account is created.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Run Portainer CE container and create admin account</div></div>
+    <div className="visual-step-body"><p>Follow the official <a href="https://docs.portainer.io/start/install-ce">Portainer CE install guide</a>. Create the Portainer data volume and run the Portainer CE container.</p><ul><li>Open: <code>https://&lt;server-ip&gt;:9443</code></li><li>Create the first admin user.</li><li>Select the local Docker environment.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-04</span><span className="visual-step-title">Build Images</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Docker images for all TeraSupport services</div></div>
-    <div className="visual-step-body"><p>Show images for API Gateway, User, Ticketing, CRM, CallCenter, Device, Mail, Meta, Web, and Nginx.</p><ul><li>File: <code>linux-docker-images.png</code></li><li>Verify: tags match production compose image names.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Build API Gateway, services, web, and Nginx images</div></div>
+    <div className="visual-step-body"><p>From the TeraSupport solution root, build each Dockerfile with the same image names used in production compose files.</p><ul><li>Run: <code>docker build -t arcapps/terasupport-api-gateway:latest -f ApiGateway/Dockerfile .</code></li><li>Repeat for User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, Meta, Web, and Nginx.</li><li>Verify: <code>docker images | grep terasupport</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-05</span><span className="visual-step-title">Deploy PostgreSQL Stack</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Portainer stack details for prod.postgres.compose.yml</div></div>
-    <div className="visual-step-body"><p>Show all PostgreSQL containers healthy with persistent volumes.</p><ul><li>File: <code>portainer-db-stack.png</code></li><li>Verify: User, Ticket, CRM, CallCenter, Device, Mail DBs exist.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Portainer → Stacks → Add stack → prod.postgres.compose.yml</div></div>
+    <div className="visual-step-body"><p>In Portainer, open <strong>Stacks</strong>, click <strong>Add stack</strong>, name it <code>terasupport-db</code>, paste <code>prod.postgres.compose.yml</code>, replace all sample passwords, and deploy.</p><ul><li>Verify: all PostgreSQL containers are running.</li><li>Verify: persistent volumes exist for each database.</li><li>Do not expose database ports publicly unless explicitly required.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-06</span><span className="visual-step-title">Deploy Kafka Stack</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Portainer Kafka stack and Kafdrop topic list</div></div>
-    <div className="visual-step-body"><p>Show Zookeeper, Kafka, and Kafdrop containers running.</p><ul><li>Files: <code>portainer-kafka-stack.png</code>, <code>kafdrop-topic-list.png</code></li><li>Verify: broker address is <code>kafka:9092</code> for app containers.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Portainer → Stacks → Add stack → prod.kafka.compose.yml</div></div>
+    <div className="visual-step-body"><p>Create a second stack named <code>terasupport-kafka</code> from <code>prod.kafka.compose.yml</code>. The repository stack uses Zookeeper, Kafka, and Kafdrop.</p><ul><li>Verify app containers use broker <code>kafka:9092</code>.</li><li>Verify host tools use <code>&lt;server-ip&gt;:29092</code> if exposed.</li><li>Open Kafdrop at <code>http://&lt;server-ip&gt;:9001</code> if that port is enabled.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-07</span><span className="visual-step-title">Deploy App Stack</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Portainer app stack with all containers running</div></div>
-    <div className="visual-step-body"><p>Show ApiGateway, Web, Nginx, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and optional Meta.</p><ul><li>File: <code>portainer-app-stack.png</code></li><li>Verify: no restart loops.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Portainer → Stacks → Add stack → prod.compose.yml</div></div>
+    <div className="visual-step-body"><p>Create the application stack after database and Kafka stacks are healthy. Paste <code>prod.compose.yml</code>, update image tags, hostnames, secrets, and public URLs, then deploy.</p><ul><li>Verify: ApiGateway, Web, Nginx, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and Meta containers are running.</li><li>Check logs for database connection or Kafka connection errors.</li><li>Restart only the affected container after fixing variables.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-08</span><span className="visual-step-title">Set Stack Variables</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Portainer stack environment values with secrets masked</div></div>
-    <div className="visual-step-body"><p>Show Ocelot variables, DB hosts, Kafka host/port, JWT key, and service URLs.</p><ul><li>File: <code>portainer-env-vars.png</code></li><li>Verify: secrets are masked before documentation sharing.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Set DB, Kafka, JWT, Ocelot, and service URL variables</div></div>
+    <div className="visual-step-body"><p>Use production values for every secret and endpoint. For Docker, downstream service hostnames should normally be container names such as <code>user</code>, <code>ticketing</code>, <code>crm</code>, and <code>mail</code>.</p><ul><li>Set <code>KAFKA_HOST=kafka</code> and <code>KAFKA_PORT=9092</code>.</li><li>Set each <code>CONNECTIONSTRINGS__DBLOCATION</code> to the correct PostgreSQL container and database.</li><li>Do not leave sample JWT, database, SMTP, or Facebook/Meta secrets in production.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-09</span><span className="visual-step-title">Configure Load Balancer</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Nginx route config for /, /ts-api, /files, /swagger</div></div>
-    <div className="visual-step-body"><p>Show the load balancer forwarding public traffic to the Nginx container and API Gateway.</p><ul><li>File: <code>linux-nginx-route-config.png</code></li><li>Verify: upload size and proxy headers are configured.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Configure Nginx routes and public entry point</div></div>
+    <div className="visual-step-body"><p>Use the repository <code>Nginx/default.conf</code> for container routing, or configure host Nginx/external load balancer to point to the published Nginx port.</p><ul><li>Route <code>/</code> to the web container.</li><li>Route <code>/ts-api</code>, <code>/files</code>, and <code>/swagger</code> to API Gateway.</li><li>Verify upload size and proxy headers are configured for attachments.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-10</span><span className="visual-step-title">Verify Public HTTPS</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: HTTPS login page and browser certificate status</div></div>
-    <div className="visual-step-body"><p>Show the final public URL loading over HTTPS.</p><ul><li>Files: <code>linux-public-login.png</code>, <code>linux-ssl-certificate.png</code></li><li>Verify: HTTP redirects to HTTPS.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Open the public URL and verify certificate, login, and routing</div></div>
+    <div className="visual-step-body"><p>Configure DNS to point to the load balancer or server IP. Install the TLS certificate using the chosen proxy/load-balancer method.</p><ul><li>Verify: <code>https://&lt;domain&gt;</code> opens the login page.</li><li>Verify: HTTP redirects to HTTPS if required.</li><li>Verify: browser certificate matches the production domain.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-11</span><span className="visual-step-title">Verify APIs and Reports</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Screenshot: Gateway Swagger, ticket workflow, report export</div></div>
-    <div className="visual-step-body"><p>Show end-to-end function after deployment.</p><ul><li>Files: <code>gateway-swagger.png</code>, <code>ticket-created.png</code>, <code>report-export.png</code></li><li>Verify: Kafka and Mail logs show events.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Run end-to-end application verification</div></div>
+    <div className="visual-step-body"><p>Open Swagger, sign in, create a ticket, assign it, send or receive a message, upload an attachment, and export a report.</p><ul><li>Check <code>docker logs &lt;container&gt;</code> for service startup errors.</li><li>Confirm Kafka and Mail logs show expected events.</li><li>Confirm reports and downloads work through the public URL.</li></ul></div>
   </div>
 </div>
 
@@ -250,38 +203,39 @@ Supporting projects:
 
 Install these on the Windows Server:
 
-| Package | Required Version / Notes |
-| --- | --- |
-| Windows Server | 2019 or later recommended. |
-| IIS | Web Server role with Management Console. |
-| .NET Hosting Bundle | .NET 9 Hosting Bundle for IIS hosting. |
-| .NET SDK | .NET 9 SDK if building on the server. |
-| ASP.NET Core Runtime | Included with Hosting Bundle. |
-| URL Rewrite | IIS URL Rewrite module. |
-| Application Request Routing | IIS ARR module for reverse proxy. |
-| Node.js | Node 20 LTS for building the web app. |
-| Yarn | Required by the `Web/Dockerfile` and web project lockfile. |
-| PostgreSQL | PostgreSQL 17 recommended, or a managed PostgreSQL server. |
-| Kafka | Apache Kafka or Confluent Platform 7.4 compatible broker. |
-| Git | Required if pulling source code directly on the server. |
-| NSSM or Windows Service wrapper | Optional, only if running services outside IIS. |
+| Package | Required Version / Notes | Official Link |
+| --- | --- | --- |
+| Windows Server | 2019 or later recommended. | Vendor-provided OS media/license |
+| IIS | Web Server role with Management Console. | Installed from Server Manager |
+| .NET Hosting Bundle | .NET 9 Hosting Bundle for IIS hosting. | [.NET 9 downloads](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) |
+| .NET SDK | .NET 9 SDK if building on the server. | [.NET 9 downloads](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) |
+| ASP.NET Core Runtime | Included with Hosting Bundle. | [ASP.NET Core IIS hosting guide](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/) |
+| URL Rewrite | IIS URL Rewrite module. | [IIS URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) |
+| Application Request Routing | IIS ARR module for reverse proxy. | [IIS Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) |
+| Node.js | Node LTS for building the web app. | [Node.js downloads](https://nodejs.org/en/download) |
+| Yarn | Required by the `Web/Dockerfile` and web project lockfile. | [Yarn installation](https://classic.yarnpkg.com/lang/en/docs/install/) |
+| PostgreSQL | PostgreSQL 17 recommended, or a managed PostgreSQL server. | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) |
+| pgAdmin | Optional GUI for PostgreSQL administration. | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) |
+| Kafka | Apache Kafka or Confluent Platform 7.4 compatible broker. | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) |
+| Git | Required if pulling source code directly on the server. | [Git for Windows](https://git-scm.com/download/win) |
+| NSSM or Windows Service wrapper | Optional, only if running services outside IIS. | Use only if IIS is not used for service hosting |
 
 ### 1.2.2 Linux Packages
 
 Install these on the Linux host:
 
-| Package | Required Version / Notes |
-| --- | --- |
-| Ubuntu Server | 22.04 LTS or 24.04 LTS recommended. |
-| Docker Engine | Current stable release. |
-| Docker Compose plugin | Required for local compose validation/build. |
-| Portainer CE | Used for stack deployment and visual operations. |
-| Git | Required for pulling source code. |
-| Nginx / Traefik / Cloudflare Tunnel | Public load-balancing or reverse-proxy option. |
-| PostgreSQL container | Existing compose uses `postgres:17.5`. |
-| Kafka/Zookeeper containers | Existing compose uses Confluent Platform `7.4.0`. |
-| Node 20 | Optional on host if building web outside Docker. |
-| .NET 9 SDK | Optional on host if building services outside Docker. |
+| Package | Required Version / Notes | Official Link |
+| --- | --- | --- |
+| Ubuntu Server | 22.04 LTS or 24.04 LTS recommended. | [Ubuntu Server](https://ubuntu.com/download/server) |
+| Docker Engine | Current stable release. | [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) |
+| Docker Compose plugin | Required for local compose validation/build. | Included in Docker package instructions |
+| Portainer CE | Used for stack deployment and visual operations. | [Portainer CE install](https://docs.portainer.io/start/install-ce) |
+| Git | Required for pulling source code. | Install through `apt` |
+| Nginx / Traefik / Cloudflare Tunnel | Public load-balancing or reverse-proxy option. | [Nginx load balancing](https://nginx.org/en/docs/http/load_balancing.html) |
+| PostgreSQL container | Existing compose uses `postgres:17.5`. | [PostgreSQL Docker image](https://hub.docker.com/_/postgres) |
+| Kafka/Zookeeper containers | Existing compose uses Confluent Platform `7.4.0`. | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) |
+| Node.js | Optional on host if building web outside Docker. | [Node.js downloads](https://nodejs.org/en/download) |
+| .NET 9 SDK | Optional on host if building services outside Docker. | [.NET 9 downloads](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) |
 
 ---
 
@@ -424,25 +378,9 @@ Kafka listeners:
 
 ### 1.6.1 Kafka Event Flow Diagram
 
-```mermaid
-sequenceDiagram
-    participant Web as Web App
-    participant Gateway as Ocelot API Gateway
-    participant Ticketing as Ticketing Service
-    participant Kafka as Kafka
-    participant Mail as Mail Service
-    participant User as User Service
-    participant CRM as CRM Service
+<ZoomableImage src="/img/installation/diagrams/kafka-event-flow-diagram.svg" alt="Kafka event flow diagram" maxHeight="560px" />
 
-    Web->>Gateway: Create ticket / send message
-    Gateway->>Ticketing: Route /ticket-api request
-    Ticketing->>Kafka: Publish ticket-create-topic or message-create-topic
-    Kafka->>Mail: Consume notification event
-    Mail->>Kafka: Publish email-send-topic / status events
-    Kafka->>Ticketing: Consume mail conversion/status events
-    Kafka->>User: Consume user-request-update-topic
-    Kafka->>CRM: Consume deal/mail events where applicable
-```
+Editable source: [KafkaEventFlowDiagram.drawio](./images/installation/diagrams/KafkaEventFlowDiagram.drawio)
 
 ### 1.6.2 Kafka Topics
 
@@ -489,23 +427,17 @@ Consumer groups are defined in `Utilities/kafka/KafkaGroups.cs`.
 | `create-mail-deal-group` |
 | `deal-mail-notification-group` |
 
-### 1.6.4 Kafka Screenshot Checklist
+### 1.6.4 Kafka Verification Checklist
 
-Capture these screenshots for the visual installation manual:
+Before connecting TeraSupport services to Kafka, verify:
 
-| Screenshot | File Name |
+| Check | How to Verify |
 | --- | --- |
-| Kafka and Zookeeper containers running | `kafka-containers-running.png` |
-| Kafdrop broker overview | `kafdrop-broker-overview.png` |
-| Topic list in Kafdrop | `kafdrop-topic-list.png` |
-| Consumer groups in Kafdrop | `kafdrop-consumer-groups.png` |
-| Service logs showing Kafka subscription | `service-kafka-subscription-log.png` |
-
-Store screenshots under:
-
-```text
-docs/images/installation/
-```
+| Broker is reachable | Run `kafka-topics --bootstrap-server <host>:<port> --list` or open Kafdrop. |
+| Required topics exist | Confirm the topics listed in section 1.6.2 are present, or confirm auto-topic creation is enabled. |
+| Consumer groups appear | Trigger a test ticket/message event and confirm consumer groups appear in Kafdrop or Kafka CLI output. |
+| Application configuration is correct | Confirm `KAFKA_HOST` and `KAFKA_PORT` are set for User, Ticketing, CRM, and Mail services. |
+| Service logs are clean | Check service logs for successful producer/consumer startup and no repeated broker connection errors. |
 
 ---
 
@@ -515,52 +447,9 @@ docs/images/installation/
 
 This diagram shows the Windows deployment sequence and the main IIS routing relationship.
 
-```mermaid
-flowchart TD
-    A[Install Windows Server Updates] --> B[Enable IIS Web Server Role]
-    B --> C[Install URL Rewrite and ARR]
-    C --> D[Install .NET 9 Hosting Bundle]
-    D --> E[Install Node 20 and Yarn]
-    E --> F[Create PostgreSQL Databases]
-    F --> G[Configure Kafka/Zookeeper]
-    G --> H[Publish .NET Services]
-    H --> I[Build Vite Web App]
-    I --> J[Create IIS App Pools]
-    J --> K[Create IIS Sites / Applications]
-    K --> L[Set Environment Variables]
-    L --> M[Configure Web Site Rewrite Rules]
-    M --> N[Bind HTTPS Certificate]
-    N --> O[Verify Login, Swagger, Ticket, Reports]
-```
+<ZoomableImage src="/img/installation/diagrams/iis-deployment-flow.svg" alt="Windows Server IIS deployment flow diagram" maxHeight="620px" />
 
-```mermaid
-flowchart LR
-    Browser[Browser HTTPS] --> IISWeb[IIS Web Site<br/>React Static Files]
-    IISWeb -->|/ts-api| IISGateway[IIS API Gateway App<br/>Ocelot]
-    IISWeb -->|/files| IISGateway
-    IISWeb -->|/swagger| IISGateway
-
-    IISGateway --> User[User IIS App]
-    IISGateway --> Ticketing[Ticketing IIS App]
-    IISGateway --> CRM[CRM IIS App]
-    IISGateway --> CallCenter[Call Center IIS App]
-    IISGateway --> Device[Device IIS App]
-    IISGateway --> Mail[Mail IIS App]
-    IISGateway --> Meta[Meta IIS App]
-
-    User --> Pg[(PostgreSQL)]
-    Ticketing --> Pg
-    CRM --> Pg
-    CallCenter --> Pg
-    Device --> Pg
-    Mail --> Pg
-    Meta --> Pg
-
-    Ticketing <--> Kafka[Kafka / Zookeeper]
-    User <--> Kafka
-    Mail <--> Kafka
-    CRM <--> Kafka
-```
+Editable source: [IIS Deployment Flow.drawio](./images/installation/diagrams/IIS%20Deployment%20Flow.drawio)
 
 ### 1.7.1 Windows Server Preparation
 
@@ -592,14 +481,14 @@ flowchart LR
    - Enable **Enable proxy**.
    - Apply changes.
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| Server Manager IIS role selection | `windows-server-iis-role.png` |
-| IIS role services selection | `windows-iis-role-services.png` |
-| URL Rewrite installed | `windows-url-rewrite-installed.png` |
-| ARR proxy enabled | `windows-arr-proxy-enabled.png` |
+| IIS Manager opens | Start menu search for `IIS Manager` opens the management console. |
+| URL Rewrite is installed | `URL Rewrite` appears in the IIS feature list. |
+| ARR proxy is enabled | Server node -> Application Request Routing Cache -> Server Proxy Settings has `Enable proxy` checked. |
+| IIS responds locally | Browsing `http://localhost` shows the IIS default page or configured site. |
 
 ### 1.7.2 Install .NET 9 Hosting Bundle
 
@@ -618,12 +507,13 @@ dotnet --list-runtimes
 dotnet --list-sdks
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Command / Expected Result |
 | --- | --- |
-| .NET Hosting Bundle installer completed | `windows-dotnet-hosting-bundle.png` |
-| `dotnet --list-runtimes` output | `windows-dotnet-runtime-list.png` |
+| ASP.NET Core runtime installed | `dotnet --list-runtimes` includes `Microsoft.AspNetCore.App 9.0`. |
+| .NET runtime installed | `dotnet --list-runtimes` includes `Microsoft.NETCore.App 9.0`. |
+| IIS module registered | Apps published with ASP.NET Core `web.config` can start behind IIS after `iisreset`. |
 
 ### 1.7.3 Install Node and Yarn for Web Build
 
@@ -678,13 +568,13 @@ GRANT ALL PRIVILEGES ON DATABASE "TSMailDB" TO terasupport_prod;
 GRANT ALL PRIVILEGES ON DATABASE "TSTicketDb" TO terasupport_prod;
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Command / Expected Result |
 | --- | --- |
-| PostgreSQL service running | `windows-postgres-service.png` |
-| Database list | `windows-postgres-databases.png` |
-| Database user/role | `windows-postgres-user-role.png` |
+| PostgreSQL service is running | Windows Services shows PostgreSQL running, or `pg_isready -h localhost -p 5432` returns accepting connections. |
+| Databases exist | pgAdmin or `psql -l` shows `TSUserDB`, `TSTicketDb`, `TSCRMDb`, `TSCallCenterDb`, `TSDeviceDB`, and `TSMailDB`. |
+| Production user has access | `psql -h localhost -U terasupport_prod -d TSTicketDb` connects successfully. |
 
 ### 1.7.5 Prepare Kafka on Windows
 
@@ -740,13 +630,13 @@ KAFKA_HOST=localhost
 KAFKA_PORT=9092
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Command / Expected Result |
 | --- | --- |
-| Zookeeper running | `windows-zookeeper-running.png` |
-| Kafka running | `windows-kafka-running.png` |
-| Kafka topic list | `windows-kafka-topic-list.png` |
+| Kafka process is running | Kafka console stays open without fatal startup errors. |
+| Topics can be listed | `kafka-topics.bat --bootstrap-server localhost:9092 --list` returns topic names. |
+| TeraSupport topics exist | Required topics such as `ticket-create-topic`, `mail-ticket-topic`, and `email-send-topic` are listed. |
 
 ### 1.7.6 Publish .NET Services
 
@@ -804,12 +694,13 @@ Recommended app pool settings:
 | Recycling | Schedule during maintenance window |
 | Load User Profile | True |
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| Application pool list | `iis-app-pools.png` |
-| App pool advanced settings | `iis-app-pool-advanced-settings.png` |
+| App pools exist | One app pool exists for each TeraSupport service and web app. |
+| Runtime mode is correct | Each pool uses `.NET CLR Version: No Managed Code`. |
+| Startup behavior is correct | Start Mode is `AlwaysRunning` and Idle Time-out is `0`. |
 
 ### 1.7.8 IIS Site and Binding Plan
 
@@ -856,13 +747,14 @@ Example for Ticketing:
 </environmentVariables>
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| IIS environment variables for API Gateway | `iis-apigateway-env-vars.png` |
-| IIS environment variables for Ticketing | `iis-ticketing-env-vars.png` |
-| IIS environment variables for User | `iis-user-env-vars.png` |
+| API Gateway variables are set | Ocelot downstream hosts/ports point to the correct service bindings. |
+| Service database variables are set | Each service points to its own PostgreSQL database. |
+| Security variables are set | JWT, SMTP, DB, and integration secrets use production values, not sample values. |
+| Changes are active | App pools are recycled after updating variables. |
 
 ### 1.7.10 IIS URL Rewrite Rules
 
@@ -921,15 +813,15 @@ Verify in this order:
 13. Attachment upload/download works.
 14. Reports open and export.
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| IIS site bindings | `iis-site-bindings.png` |
-| Web app login page | `iis-web-login.png` |
-| Gateway Swagger | `iis-gateway-swagger.png` |
-| Successful ticket creation | `iis-ticket-created.png` |
-| Windows Event Viewer service log | `iis-event-viewer-service-log.png` |
+| Public web site loads | `https://<host>` opens the TeraSupport login page. |
+| API Gateway loads | `https://<host>/ts-api/swagger` or the configured gateway Swagger URL opens. |
+| Authentication works | A valid user can sign in and load the dashboard. |
+| Ticket workflow works | A ticket can be created, assigned, updated, and resolved. |
+| Logs are clean | IIS logs and Windows Event Viewer do not show repeated startup failures. |
 
 ---
 
@@ -937,78 +829,15 @@ Screenshot required:
 
 ### 1.8.0 Linux / Docker / Portainer Deployment Flow
 
-```mermaid
-flowchart TD
-    A[Prepare Ubuntu Server] --> B[Install Docker Engine]
-    B --> C[Install Portainer]
-    C --> D[Create ts-network]
-    D --> E[Build .NET Service Images]
-    E --> F[Build Web Nginx Image]
-    F --> G[Build Load Balancer Nginx Image]
-    G --> H[Push Images to Registry]
-    H --> I[Deploy PostgreSQL Stack]
-    I --> J[Deploy Kafka Stack]
-    J --> K[Deploy Application Stack]
-    K --> L[Configure Public Load Balancer / HTTPS]
-    L --> M[Verify Web, Swagger, Kafka, Reports]
-```
+<ZoomableImage src="/img/installation/diagrams/linux-deployment-flow.svg" alt="Linux Docker Portainer deployment flow diagram" maxHeight="620px" />
 
-```mermaid
-flowchart LR
-    Internet[Users / Public HTTPS] --> Edge[Host Nginx, Cloudflare Tunnel, or External LB]
-    Edge --> Nginx[Nginx Container<br/>Published 3698:80]
-    Nginx --> Web[web:80<br/>React / Vite]
-    Nginx -->|/ts-api| Gateway[apigateway:8080]
-    Nginx -->|/swagger| Gateway
-    Nginx -->|/files| Gateway
-
-    Gateway --> User[user:8080]
-    Gateway --> Ticketing[ticketing:8080]
-    Gateway --> CRM[crm:8080]
-    Gateway --> CallCenter[callcenter:8080]
-    Gateway --> Device[devicemanagement:8080]
-    Gateway --> Mail[mail:8080]
-
-    User --> UserDb[(postgres_user)]
-    Ticketing --> TicketDb[(postgres_ticket)]
-    CRM --> CrmDb[(postgres_crm)]
-    CallCenter --> CallDb[(postgres_callcenter)]
-    Device --> DeviceDb[(postgres_device)]
-    Mail --> MailDb[(postgres_mail)]
-
-    User <--> Kafka[kafka:9092]
-    Ticketing <--> Kafka
-    CRM <--> Kafka
-    Mail <--> Kafka
-    Kafka --> Kafdrop[Kafdrop<br/>9001]
-```
+Editable source: [LinuxDeploymentFlow.drawio](./images/installation/diagrams/LinuxDeploymentFlow.drawio)
 
 ### 1.8.0.1 Docker Image Build Map
 
-```mermaid
-flowchart LR
-    Root[Solution Root] --> Api[ApiGateway/Dockerfile<br/>terasupport-api-gateway]
-    Root --> User[User/Dockerfile<br/>terasupport-user-service]
-    Root --> Ticket[Ticketing/Dockerfile<br/>terasupport-ticketing-service]
-    Root --> CRM[CRM/Dockerfile<br/>terasupport-crm-service]
-    Root --> Call[CallCenter/Dockerfile<br/>terasupport-callcenter-service]
-    Root --> Device[DeviceManagement/Dockerfile<br/>terasupport-devicemanagement-service]
-    Root --> Mail[Mail/Dockerfile<br/>terasupport-mail-service]
-    Root --> Meta[Meta/Dockerfile<br/>terasupport-meta-service]
-    Root --> Web[Web/Dockerfile<br/>terasupport-web-service]
-    Root --> Nginx[Nginx/Dockerfile<br/>terasupport-nginx-service]
+<ZoomableImage src="/img/installation/diagrams/docker-image-build.svg" alt="Docker image build map diagram" maxHeight="560px" />
 
-    Api --> Registry[Container Registry]
-    User --> Registry
-    Ticket --> Registry
-    CRM --> Registry
-    Call --> Registry
-    Device --> Registry
-    Mail --> Registry
-    Meta --> Registry
-    Web --> Registry
-    Nginx --> Registry
-```
+Editable source: [Docker Image Build.drawio](./images/installation/diagrams/Docker%20Image%20Build.drawio)
 
 ### 1.8.1 Linux Server Preparation
 
@@ -1047,12 +876,14 @@ docker compose version
 docker network create ts-network
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Command / Expected Result |
 | --- | --- |
-| Docker version output | `linux-docker-version.png` |
-| Docker network list | `linux-docker-network.png` |
+| Docker service is running | `sudo systemctl status docker` shows active/running. |
+| Docker works | `sudo docker run hello-world` completes successfully. |
+| Compose plugin works | `docker compose version` prints a version. |
+| Shared network exists | `docker network ls` includes `ts-network`. |
 
 ### 1.8.2 Install Portainer
 
@@ -1076,12 +907,13 @@ https://<server-ip>:9443
 
 Create the initial Portainer admin account and connect to the local Docker environment.
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| Portainer first login | `portainer-first-login.png` |
-| Portainer local environment | `portainer-local-environment.png` |
+| Portainer opens | `https://<server-ip>:9443` loads the Portainer setup page. |
+| Admin user exists | The first admin user has been created and password stored securely. |
+| Local environment is connected | Portainer can list local Docker containers, images, networks, and volumes. |
 
 ### 1.8.3 Build Docker Images
 
@@ -1111,13 +943,13 @@ docker push <registry-host>/terasupport-api-gateway:latest
 
 Repeat tagging and pushing for all images.
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Command / Expected Result |
 | --- | --- |
-| Docker image list | `linux-docker-images.png` |
-| Successful image build output | `linux-image-build-output.png` |
-| Registry repository list | `registry-image-list.png` |
+| Images exist locally | `docker images | grep terasupport` lists API Gateway, services, web, and Nginx images. |
+| Tags match compose files | Image names and tags match `prod.compose.yml`. |
+| Registry push is complete | If using a registry, `docker pull <registry-host>/<image>:<tag>` succeeds from the deployment server. |
 
 ### 1.8.4 Deploy PostgreSQL Stack in Portainer
 
@@ -1149,13 +981,150 @@ Current compose creates separate PostgreSQL containers:
 | `postgres_mail` | 5436 | `TSMailDB` |
 | `postgres_ticket` | 5437 | `TSTicketDb` |
 
-Screenshot required:
+Public-safe Portainer compose template:
 
-| Screen | File Name |
+```yaml
+version: "3.8"
+
+services:
+  postgres_user:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSUserDB
+    volumes:
+      - local_pgdata_user:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_callcenter:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSCallCenterDb
+    volumes:
+      - local_pgdata_callcenter:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_crm:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSCRMDb
+    volumes:
+      - local_pgdata_crm:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_device:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSDeviceDB
+    volumes:
+      - local_pgdata_device:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_mail:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSMailDB
+    volumes:
+      - local_pgdata_mail:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_ticket:
+    image: postgres:17.5
+    restart: always
+    ports:
+      - "5437:5432"
+    environment:
+      POSTGRES_USER: <POSTGRES_USER>
+      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
+      POSTGRES_DB: TSTicketDb
+    volumes:
+      - local_pgdata_ticket:/var/lib/postgresql/data
+    networks:
+      - ts-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  local_pgdata_user:
+  local_pgdata_callcenter:
+  local_pgdata_crm:
+  local_pgdata_device:
+  local_pgdata_mail:
+  local_pgdata_ticket:
+
+networks:
+  ts-network:
+    external: true
+```
+
+Do not paste real database passwords into the public manual. Replace `<POSTGRES_USER>` and `<POSTGRES_PASSWORD>` only inside Portainer or a client-controlled secret vault.
+
+If the production Docker network is named `tera_networks` instead of `ts-network`, replace the network name consistently in all three Portainer stacks. Do not mix both names.
+
+Verification checkpoint:
+
+| Check | Expected Result |
 | --- | --- |
-| Portainer database stack | `portainer-db-stack.png` |
-| PostgreSQL containers healthy | `portainer-postgres-healthy.png` |
-| PostgreSQL volumes | `portainer-postgres-volumes.png` |
+| Stack is running | Portainer shows the `terasupport-db` stack as deployed/running. |
+| PostgreSQL containers are healthy | User, Ticket, CRM, CallCenter, Device, and Mail database containers are running. |
+| Volumes are persistent | Each database container has a named volume mapped for data persistence. |
 
 ### 1.8.5 Deploy Kafka Stack in Portainer
 
@@ -1196,6 +1165,80 @@ KAFKA_HOST=localhost
 KAFKA_PORT=29092
 ```
 
+Public-safe Portainer compose template:
+
+```yaml
+version: "3.8"
+
+networks:
+  ts-network:
+    external: true
+
+volumes:
+  zookeeper_data:
+  zookeeper_log:
+  kafka_data:
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: zookeeper
+    networks:
+      - ts-network
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_log:/var/lib/zookeeper/log
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_DATA_DIR: /var/lib/zookeeper/data
+      ZOOKEEPER_DATA_LOG_DIR: /var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: kafka
+    hostname: kafka
+    networks:
+      - ts-network
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://<SERVER_IP_OR_DNS>:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    networks:
+      - ts-network
+    depends_on:
+      - kafka
+    ports:
+      - "9001:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: terasupport
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+```
+
+Replace `<SERVER_IP_OR_DNS>` with the Linux server IP or internal DNS name used by host-based tools. Do not publish private IP addresses in public documentation.
+
 ### 1.8.6 Deploy Application Stack in Portainer
 
 Use:
@@ -1235,27 +1278,181 @@ Main services in production compose:
 | `web` | `arcapps/terasupport-web-service:latest` |
 | `nginx` | `arcapps/terasupport-nginx-service:latest` |
 
-If Meta service is required in production, add `meta` to `prod.compose.yml` with:
+Public-safe Portainer compose template:
+
+```yaml
+version: "3.8"
+
+services:
+  apigateway:
+    image: <REGISTRY>/terasupport-api-gateway:<TAG>
+    networks:
+      - ts-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - JWT__KEY=<JWT_SIGNING_KEY>
+      - OCELOTVARIABLES__DOWNSTREAMSCHEME=http
+      - OCELOTVARIABLES__USERMANAGEMENTSERVICEHOST=user
+      - OCELOTVARIABLES__USERMANAGEMENTSERVICEPORT=8080
+      - OCELOTVARIABLES__TICKETINGSYSTEMSERVICEHOST=ticketing
+      - OCELOTVARIABLES__TICKETINGSYSTEMSERVICEPORT=8080
+      - OCELOTVARIABLES__CRMSERVICEHOST=crm
+      - OCELOTVARIABLES__CRMSERVICEPORT=8080
+      - OCELOTVARIABLES__CALLCENTERHOST=callcenter
+      - OCELOTVARIABLES__CALLCENTERPORT=8080
+      - OCELOTVARIABLES__DEVICEHOST=devicemanagement
+      - OCELOTVARIABLES__DEVICEPORT=8080
+      - OCELOTVARIABLES__MAILSERVICEHOST=mail
+      - OCELOTVARIABLES__MAILSERVICEPORT=8080
+
+  user:
+    image: <REGISTRY>/terasupport-user-service:<TAG>
+    networks:
+      - ts-network
+    volumes:
+      - user-data:/app/wwwroot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_user;Port=5432;Database=TSUserDB;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
+
+  ticketing:
+    image: <REGISTRY>/terasupport-ticketing-service:<TAG>
+    networks:
+      - ts-network
+    volumes:
+      - ticketing-data:/app/wwwroot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_ticket;Port=5432;Database=TSTicketDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
+      - FILESETTING__FILEBASEURL=<PUBLIC_FILE_BASE_URL>
+      - USERSERVICE__BASEURL=http://user:8080/
+      - APISETTINGS__BASEURL=http://user:8080/
+      - JWT__KEY=<JWT_SIGNING_KEY>
+      - KAFKA_HOST=kafka
+      - KAFKA_PORT=9092
+
+  crm:
+    image: <REGISTRY>/terasupport-crm-service:<TAG>
+    networks:
+      - ts-network
+    volumes:
+      - crm-data:/app/wwwroot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_crm;Port=5432;Database=TSCRMDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
+      - BASEAPISETTINGS__USERSERVICE=http://user:8080/user-api/
+      - FILESETTING__FILEBASEURL=<PUBLIC_FILE_BASE_URL>
+      - KAFKA_HOST=kafka
+      - KAFKA_PORT=9092
+
+  callcenter:
+    image: <REGISTRY>/terasupport-callcenter-service:<TAG>
+    networks:
+      - ts-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_callcenter;Port=5432;Database=TSCallCenterDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
+      - APISETTINGS__BASEURL=http://user:8080/
+
+  devicemanagement:
+    image: <REGISTRY>/terasupport-devicemanagement-service:<TAG>
+    networks:
+      - ts-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_device;Port=5432;Database=TSDeviceDB;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
+      - APISETTINGS__BASEURL=http://user:8080/
+      - APISETTINGS__TICKETAPIURL=http://ticketing:8080/
+
+  mail:
+    image: <REGISTRY>/terasupport-mail-service:<TAG>
+    networks:
+      - ts-network
+    volumes:
+      - mail-data:/app/wwwroot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
+      - DB_HOST=postgres_mail
+      - DB_PORT=5432
+      - DB_NAME=TSMailDB
+      - DB_USER=<POSTGRES_USER>
+      - DB_PASSWORD=<POSTGRES_PASSWORD>
+      - KAFKA_HOST=kafka
+      - KAFKA_PORT=9092
+      - TicketHTTP_HOST=<PUBLIC_TICKET_VIEW_URL>
+
+  web:
+    image: <REGISTRY>/terasupport-web-service:<TAG>
+    networks:
+      - ts-network
+    environment:
+      - VITE_API_URL=/ts-api
+
+  nginx:
+    image: <REGISTRY>/terasupport-nginx-service:<TAG>
+    networks:
+      - ts-network
+    ports:
+      - "<PUBLIC_HTTP_PORT>:80"
+    depends_on:
+      - apigateway
+      - web
+      - callcenter
+      - crm
+      - devicemanagement
+      - mail
+      - ticketing
+      - user
+
+networks:
+  ts-network:
+    external: true
+
+volumes:
+  user-data:
+  mail-data:
+  crm-data:
+  ticketing-data:
+```
+
+The public template intentionally removes optional parts. Do not include these in the public compose example unless the client explicitly enables them and provides values through a private channel:
+
+| Optional Part | Public Manual Guidance |
+| --- | --- |
+| Cloudflare Tunnel | Remove from the public template. Add only in private deployment notes with `<CLOUDFLARE_TUNNEL_TOKEN>`. |
+| Meta/Facebook/Instagram service | Remove unless the integration is part of the production scope. Use placeholders only. |
+| Remote device integration token | Remove unless the module is enabled. Use `<REMOTE_DEVICE_AUTH_TOKEN>` only in private deployment values. |
+| Ollama or AI endpoint | Remove unless the AI service is deployed and approved for production. |
+| Real public domain, IP, JWT key, DB password, SMTP credential | Never publish. Use placeholders in documentation and store real values in the client vault. |
+
+If Meta service is required in production, add it privately with placeholders only:
 
 ```yaml
 meta:
-  image: arcapps/terasupport-meta-service:latest
+  image: <REGISTRY>/terasupport-meta-service:<TAG>
   networks:
     - ts-network
   environment:
     - ASPNETCORE_ENVIRONMENT=Production
-    - CONNECTIONSTRINGS__DBLOCATION=Host=<meta-db-host>;Port=5432;Database=TSMetaDb;Username=<user>;Password=<password>
+    - CONNECTIONSTRINGS__DBLOCATION=Host=<META_DB_HOST>;Port=5432;Database=TSMetaDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
     - BASEAPISETTINGS__USERSERVICE=http://user:8080/user-api/
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| Portainer application stack | `portainer-app-stack.png` |
-| Running application containers | `portainer-app-containers.png` |
-| Application container logs | `portainer-service-logs.png` |
-| Application stack environment variables | `portainer-env-vars.png` |
+| Application stack is running | Portainer shows the application stack as deployed/running. |
+| Containers are stable | API Gateway, services, web, and Nginx containers do not restart repeatedly. |
+| Service logs are clean | `docker logs <container>` does not show repeated database, Kafka, JWT, or routing errors. |
+| Environment values are production-ready | Sample secrets and placeholder URLs are replaced before go-live. |
 
 ### 1.8.7 Nginx Load Balancer Configuration
 
@@ -1315,7 +1512,7 @@ Choose one production entry option:
 | --- | --- |
 | Host Nginx | Install Nginx on Linux host and proxy to container port `3698`. |
 | Container Nginx | Use included `nginx` container and publish `80/443`. |
-| Cloudflare Tunnel | Current `prod.compose.yml` includes `cloudflared`; replace the sample token. |
+| Cloudflare Tunnel | Optional. Remove from the public compose template. Add only in private deployment notes using `<CLOUDFLARE_TUNNEL_TOKEN>`. |
 | External Load Balancer | Point external LB to Linux host and published Nginx port. |
 
 For host Nginx:
@@ -1346,13 +1543,14 @@ server {
 }
 ```
 
-Screenshot required:
+Verification checkpoint:
 
-| Screen | File Name |
+| Check | Expected Result |
 | --- | --- |
-| Nginx route configuration | `linux-nginx-route-config.png` |
-| SSL certificate status | `linux-ssl-certificate.png` |
-| Public HTTPS login page | `linux-public-login.png` |
+| Nginx config is valid | `nginx -t` succeeds if using host Nginx; container logs are clean if using container Nginx. |
+| Public URL loads | `https://<domain>` opens the web login page. |
+| API routes work | `https://<domain>/ts-api/swagger` reaches API Gateway. |
+| TLS is correct | Browser certificate matches the public domain and is not expired. |
 
 ### 1.8.9 Linux Verification
 
@@ -1454,37 +1652,43 @@ Back up volumes used by:
 | File Uploads | `client_max_body_size` and attachment storage verified. |
 | Reports | Ticketing report endpoints and UI reports verified. |
 | Notifications | Mail service, Kafka events, and SMTP delivery verified. |
-| Screenshots | Windows, IIS, Kafka, Portainer, Docker, Nginx, and app screenshots captured. |
+| Documentation | Download links, environment values, and verification results are recorded. |
 
 ---
 
-## 1.12 Required Screenshot Index
+## 1.12 Installer and Reference Link Index
 
-Add the final screenshots under:
+Use these links during deployment. Prefer official vendor pages so installers receive current security updates.
 
-```text
-docs/images/installation/
-```
+| Area | Link | Purpose |
+| --- | --- | --- |
+| .NET 9 | [.NET 9 downloads](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) | Download SDK and ASP.NET Core Hosting Bundle. |
+| ASP.NET Core on IIS | [Microsoft IIS hosting guide](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/) | Confirm IIS role services and Hosting Bundle behavior. |
+| IIS URL Rewrite | [IIS URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) | Install rewrite rules support for proxy and SPA fallback. |
+| IIS ARR | [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) | Enable IIS reverse proxy support. |
+| Node.js | [Node.js downloads](https://nodejs.org/en/download) | Install Node LTS for building the React/Vite web app. |
+| Yarn | [Yarn installation](https://classic.yarnpkg.com/lang/en/docs/install/) | Install Yarn for web dependencies. |
+| PostgreSQL Windows | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) | Install PostgreSQL server and optional pgAdmin. |
+| pgAdmin | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) | Manage PostgreSQL databases visually. |
+| Kafka | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) | Download Kafka and review broker/topic commands. |
+| Docker Engine | [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) | Install Docker Engine and Compose plugin. |
+| Portainer CE | [Portainer CE install](https://docs.portainer.io/start/install-ce) | Install Portainer for stack deployment. |
+| Nginx | [Nginx load balancing](https://nginx.org/en/docs/http/load_balancing.html) | Configure upstreams and reverse proxy routing. |
 
-Use this format when adding each screenshot to the manual:
+For diagrams that should remain editable, keep the `.drawio` source files under `docs/images/installation/diagrams/` and publish an exported SVG beside each source file for the documentation page.
 
-```md
-![IIS Application Pools](./images/installation/iis-app-pools.png)
-```
+---
 
-For diagrams that should remain editable in the documentation, keep Mermaid blocks in the page instead of exporting static images. For environment proof, use real screenshots from the deployed Windows Server, IIS Manager, Portainer, Kafdrop, Nginx, Swagger, and application pages.
+## 1.13 Final Operator Notes
 
-Recommended screenshot file list:
+Before handover, record the following operational values in the client-controlled password vault or deployment register. Do not store secrets directly in this documentation.
 
-| Area | Screenshots |
+| Item | What to Record |
 | --- | --- |
-| Windows Server | `windows-server-iis-role.png`, `windows-iis-role-services.png`, `windows-dotnet-runtime-list.png` |
-| IIS | `iis-app-pools.png`, `iis-site-bindings.png`, `iis-apigateway-env-vars.png`, `iis-url-rewrite-rules.png` |
-| PostgreSQL | `windows-postgres-databases.png`, `portainer-postgres-healthy.png` |
-| Kafka | `windows-kafka-topic-list.png`, `kafdrop-topic-list.png`, `kafdrop-consumer-groups.png` |
-| Docker | `linux-docker-version.png`, `linux-docker-network.png`, `linux-docker-images.png` |
-| Portainer | `portainer-db-stack.png`, `portainer-kafka-stack.png`, `portainer-app-stack.png`, `portainer-app-containers.png` |
-| Nginx / Load Balancer | `linux-nginx-route-config.png`, `linux-ssl-certificate.png` |
-| Application | `iis-web-login.png`, `linux-public-login.png`, `gateway-swagger.png`, `ticket-created.png`, `report-export.png` |
-
-After screenshots are captured, embed them under the relevant sections of this document.
+| Public URL | Production domain, DNS owner, TLS certificate owner, expiry date. |
+| Windows/IIS path | IIS site names, app pool names, physical paths, private service ports. |
+| Linux/Portainer path | Server IP, Portainer URL, stack names, registry host, image tags. |
+| Database access | Hostnames, database names, admin owner, backup schedule, restore contact. |
+| Kafka access | Broker host/port, Kafdrop URL if enabled, topic management owner. |
+| Secrets | JWT key, DB passwords, SMTP secrets, integration tokens, certificate private key location. |
+| Verification result | Date/time of successful login, ticket creation, assignment, attachment upload, mail event, and report export. |

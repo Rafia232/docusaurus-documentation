@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">IIS Deployment Flow</title>
+  <desc id="desc">Windows Server IIS deployment flow for TeraSupport and the IIS reverse proxy routing relationship.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
+    <style>.bg{fill:#f8fafc}.box{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:8}.prep{fill:#ecfeff;stroke:#0891b2}.iis{fill:#eef2ff;stroke:#4f46e5}.svc{fill:#f0fdf4;stroke:#16a34a}.verify{fill:#fff7ed;stroke:#ea580c}.line{stroke:#334155;stroke-width:2.2;fill:none;marker-end:url(#arrow)}.title{font:700 26px Arial,sans-serif;fill:#0f172a}.label{font:700 13px Arial,sans-serif;fill:#0f172a}.small{font:12px Arial,sans-serif;fill:#475569}</style>
+  </defs>
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="38" y="46">Windows Server / IIS Deployment Flow</text>
+  <text class="small" x="40" y="70">Recommended order for installing prerequisites, publishing services, configuring IIS, and verifying production access.</text>
+  <g>
+    <rect class="box prep" x="40" y="110" width="180" height="64"/><text class="label" x="70" y="138">Install Windows</text><text class="small" x="76" y="158">updates and roles</text>
+    <rect class="box prep" x="260" y="110" width="180" height="64"/><text class="label" x="303" y="138">Enable IIS</text><text class="small" x="302" y="158">Web Server role</text>
+    <rect class="box iis" x="480" y="110" width="180" height="64"/><text class="label" x="520" y="138">Install Rewrite</text><text class="small" x="513" y="158">and ARR proxy</text>
+    <rect class="box prep" x="700" y="110" width="180" height="64"/><text class="label" x="736" y="138">Install .NET 9</text><text class="small" x="720" y="158">Hosting Bundle/runtime</text>
+    <rect class="box prep" x="920" y="110" width="180" height="64"/><text class="label" x="959" y="138">Install Node</text><text class="small" x="967" y="158">and Yarn</text>
+    <path class="line" d="M220 142 H260"/><path class="line" d="M440 142 H480"/><path class="line" d="M660 142 H700"/><path class="line" d="M880 142 H920"/>
+  </g>
+  <g>
+    <rect class="box prep" x="920" y="240" width="180" height="64"/><text class="label" x="956" y="268">Create DBs</text><text class="small" x="946" y="288">PostgreSQL schemas</text>
+    <rect class="box prep" x="700" y="240" width="180" height="64"/><text class="label" x="742" y="268">Configure Kafka</text><text class="small" x="733" y="288">broker and topics</text>
+    <rect class="box svc" x="480" y="240" width="180" height="64"/><text class="label" x="526" y="268">Publish APIs</text><text class="small" x="510" y="288">Gateway and services</text>
+    <rect class="box svc" x="260" y="240" width="180" height="64"/><text class="label" x="303" y="268">Build Web App</text><text class="small" x="303" y="288">Vite static files</text>
+    <rect class="box iis" x="40" y="240" width="180" height="64"/><text class="label" x="77" y="268">Create App Pools</text><text class="small" x="77" y="288">No managed code</text>
+    <path class="line" d="M1010 174 V240"/><path class="line" d="M920 272 H880"/><path class="line" d="M700 272 H660"/><path class="line" d="M480 272 H440"/><path class="line" d="M260 272 H220"/>
+  </g>
+  <g>
+    <rect class="box iis" x="40" y="370" width="180" height="64"/><text class="label" x="69" y="398">Create IIS Sites</text><text class="small" x="76" y="418">apps and paths</text>
+    <rect class="box iis" x="260" y="370" width="180" height="64"/><text class="label" x="298" y="398">Set Variables</text><text class="small" x="297" y="418">DB, JWT, Kafka</text>
+    <rect class="box iis" x="480" y="370" width="180" height="64"/><text class="label" x="513" y="398">Rewrite Rules</text><text class="small" x="506" y="418">/ts-api, /files, SPA</text>
+    <rect class="box iis" x="700" y="370" width="180" height="64"/><text class="label" x="742" y="398">Bind HTTPS</text><text class="small" x="733" y="418">certificate and host</text>
+    <rect class="box verify" x="920" y="370" width="180" height="64"/><text class="label" x="966" y="398">Verify</text><text class="small" x="944" y="418">login, Swagger, reports</text>
+    <path class="line" d="M130 304 V370"/><path class="line" d="M220 402 H260"/><path class="line" d="M440 402 H480"/><path class="line" d="M660 402 H700"/><path class="line" d="M880 402 H920"/>
+  </g>
+  <rect class="box iis" x="210" y="545" width="230" height="70"/><text class="label" x="269" y="575">IIS Web Site</text><text class="small" x="270" y="595">React static files</text>
+  <rect class="box verify" x="525" y="545" width="230" height="70"/><text class="label" x="570" y="575">API Gateway App</text><text class="small" x="578" y="595">Ocelot downstream routes</text>
+  <rect class="box svc" x="840" y="545" width="230" height="70"/><text class="label" x="887" y="575">Service IIS Apps</text><text class="small" x="879" y="595">User, Ticketing, CRM, Mail, Meta</text>
+  <path class="line" d="M440 580 H525"/><path class="line" d="M755 580 H840"/>
+  <text class="small" x="448" y="563">/ts-api, /files, /swagger</text>
+</svg>

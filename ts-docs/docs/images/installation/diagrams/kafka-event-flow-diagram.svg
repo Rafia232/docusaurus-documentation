@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="520" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">Kafka Event Flow Diagram</title>
+  <desc id="desc">Sequence-style Kafka event flow from web app to gateway, ticketing service, Kafka, mail, user, and CRM services.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
+    <style>
+      .bg{fill:#f8fafc}.lane{stroke:#cbd5e1;stroke-width:2;stroke-dasharray:7 7}.head{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:8}.kafka{fill:#fdf2f8;stroke:#db2777}.svc{fill:#f0fdf4;stroke:#16a34a}.web{fill:#eef2ff;stroke:#4f46e5}.gateway{fill:#fff7ed;stroke:#ea580c}.msg{stroke:#334155;stroke-width:2;marker-end:url(#arrow)}.evt{stroke:#db2777;stroke-width:2;marker-end:url(#arrow);stroke-dasharray:8 5}.title{font:700 26px Arial,sans-serif;fill:#0f172a}.label{font:700 14px Arial,sans-serif;fill:#0f172a}.small{font:12px Arial,sans-serif;fill:#475569}
+    </style>
+  </defs>
+  <rect class="bg" width="1180" height="520"/>
+  <text class="title" x="36" y="46">Kafka Event Flow</text>
+  <text class="small" x="38" y="70">Ticket, message, email, user request, and CRM/deal events move asynchronously through Kafka topics.</text>
+  <g>
+    <rect class="head web" x="40" y="105" width="125" height="48"/><text class="label" x="75" y="134">Web App</text><line class="lane" x1="102" y1="153" x2="102" y2="470"/>
+    <rect class="head gateway" x="205" y="105" width="125" height="48"/><text class="label" x="229" y="134">Gateway</text><line class="lane" x1="267" y1="153" x2="267" y2="470"/>
+    <rect class="head svc" x="370" y="105" width="125" height="48"/><text class="label" x="396" y="134">Ticketing</text><line class="lane" x1="432" y1="153" x2="432" y2="470"/>
+    <rect class="head kafka" x="535" y="105" width="125" height="48"/><text class="label" x="577" y="134">Kafka</text><line class="lane" x1="597" y1="153" x2="597" y2="470"/>
+    <rect class="head svc" x="700" y="105" width="125" height="48"/><text class="label" x="734" y="134">Mail</text><line class="lane" x1="762" y1="153" x2="762" y2="470"/>
+    <rect class="head svc" x="865" y="105" width="125" height="48"/><text class="label" x="898" y="134">User</text><line class="lane" x1="927" y1="153" x2="927" y2="470"/>
+    <rect class="head svc" x="1030" y="105" width="110" height="48"/><text class="label" x="1054" y="134">CRM</text><line class="lane" x1="1085" y1="153" x2="1085" y2="470"/>
+  </g>
+  <line class="msg" x1="102" y1="190" x2="267" y2="190"/><text class="small" x="120" y="181">Create ticket / send message</text>
+  <line class="msg" x1="267" y1="235" x2="432" y2="235"/><text class="small" x="288" y="226">Route /ticket-api request</text>
+  <line class="evt" x1="432" y1="280" x2="597" y2="280"/><text class="small" x="448" y="271">ticket-create-topic</text>
+  <line class="evt" x1="597" y1="325" x2="762" y2="325"/><text class="small" x="620" y="316">mail/message event</text>
+  <line class="evt" x1="762" y1="370" x2="597" y2="370"/><text class="small" x="620" y="361">email-send-topic / status</text>
+  <line class="evt" x1="597" y1="415" x2="432" y2="415"/><text class="small" x="444" y="406">mail conversion/status</text>
+  <line class="evt" x1="597" y1="235" x2="927" y2="235"/><text class="small" x="708" y="226">user-request-update-topic</text>
+  <line class="evt" x1="597" y1="460" x2="1085" y2="460"/><text class="small" x="768" y="451">deal/mail events</text>
+</svg>

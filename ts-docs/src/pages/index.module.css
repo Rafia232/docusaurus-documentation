@@ -1,23 +1,348 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.page {
+  background: #f6f8fb;
+  color: #111827;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+  gap: 2rem;
+  align-items: stretch;
+  min-height: 560px;
+  padding: 4rem max(1.5rem, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(135deg, rgba(99, 91, 255, 0.08), rgba(6, 182, 212, 0.08)),
+    #f8fafc;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 760px;
+}
+
+.eyebrow {
+  width: fit-content;
+  margin-bottom: 1rem;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid #d7dafe;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #4f46e5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(2.25rem, 5vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.subtitle {
+  max-width: 680px;
+  margin: 1.25rem 0 0;
+  color: #4b5563;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.74rem 1rem;
+  border-radius: 9px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background: #635bff;
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  color: #ffffff;
+  background: #5147f0;
+  text-decoration: none;
+}
+
+.secondaryButton {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+}
+
+.secondaryButton:hover {
+  color: #111827;
+  border-color: #9ca3af;
+  text-decoration: none;
+}
+
+.signInInspiredPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 430px;
+  padding: 2rem;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.86), rgba(49, 46, 129, 0.9)),
+    linear-gradient(45deg, #0f172a, #312e81);
+  color: #ffffff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+}
+
+.panelTopline {
+  margin-bottom: 0.35rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 700;
+}
+
+.panelTitle {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.panelText {
+  max-width: 390px;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
+}
+
+.panelMetricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.panelMetricGrid div {
+  min-height: 90px;
+  padding: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.panelMetricGrid strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.panelMetricGrid span {
+  display: block;
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.docsSection {
+  padding: 3.25rem max(1.5rem, calc((100vw - 1180px) / 2));
+  background: #ffffff;
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+}
+
+.sectionHeader p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+.docGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.docCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.docCard:hover {
+  border-color: #bfc4ff;
+  color: #111827;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
+}
+
+.docNumber {
+  color: #635bff;
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.docMeta {
+  width: fit-content;
+  margin: 0.75rem 0 1rem;
+  padding: 0.28rem 0.48rem;
+  border-radius: 6px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.docCard h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.docCard p {
+  margin: 0.7rem 0 0;
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.readiness {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.6fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 2.5rem max(1.5rem, calc((100vw - 1180px) / 2)) 4rem;
+  background: #f6f8fb;
+}
+
+.readiness h2 {
+  margin: 0;
+  color: #111827;
+}
+
+.readiness p {
+  max-width: 720px;
+  margin: 0.8rem 0 0;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.readiness ul {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.readiness li {
+  padding: 0.82rem 0.95rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 650;
+}
+
+[data-theme='dark'] .page,
+[data-theme='dark'] .hero,
+[data-theme='dark'] .docsSection,
+[data-theme='dark'] .readiness {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .title,
+[data-theme='dark'] .sectionHeader h2,
+[data-theme='dark'] .docCard,
+[data-theme='dark'] .docCard h3,
+[data-theme='dark'] .readiness h2 {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .subtitle,
+[data-theme='dark'] .sectionHeader p,
+[data-theme='dark'] .docCard p,
+[data-theme='dark'] .readiness p {
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .docCard,
+[data-theme='dark'] .readiness li,
+[data-theme='dark'] .secondaryButton,
+[data-theme='dark'] .eyebrow {
+  border-color: #334155;
+  background: #111827;
+}
+
+[data-theme='dark'] .secondaryButton {
+  color: #f8fafc;
+}
+
+@media screen and (max-width: 1080px) {
+  .hero,
+  .sectionHeader,
+  .readiness {
+    grid-template-columns: 1fr;
+  }
+
+  .docGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 640px) {
+  .hero {
+    min-height: auto;
+    padding-top: 2.2rem;
+  }
+
+  .heroActions,
+  .panelMetricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .docGrid {
+    grid-template-columns: 1fr;
+  }
 }

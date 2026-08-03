@@ -5,7 +5,6 @@ title: Architecture / Technical Design
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 import erdImage from './images/erd.png';
-import deploymentTopology from './images/deployment_topology.png';
 
 # Architecture / Technical Design
 
@@ -44,7 +43,19 @@ Core capabilities include:
 
 ## 3. Deployment Architecture
 
-<ZoomableImage src={deploymentTopology} alt="Deployment Topology" />
+<ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport deployment architecture diagram" maxHeight="640px" />
+
+This diagram uses the same Docusaurus zoomable format as the Installation Manual so technical reviewers can inspect the service boundaries and infrastructure routing.
+
+| Area | Architecture Detail |
+| --- | --- |
+| Entry Point | Users access the platform through public HTTPS, terminated by IIS, Nginx, or an external load balancer. |
+| Frontend | React/Vite web app serves the user interface and calls backend APIs through the gateway route. |
+| API Gateway | Ocelot API Gateway exposes stable public API routes and forwards requests to internal microservices. |
+| Services | User, Ticketing, CRM, Call Center, Device Management, Mail, and Meta services run as .NET 9 CQRS/MediatR services. |
+| Data | PostgreSQL databases are separated by service domain to reduce coupling and simplify ownership. |
+| Events | Kafka handles asynchronous ticket, mail, user request, notification, and CRM/deal events. |
+| Operations | Kafdrop, logs, IIS/Portainer, and database tools are used for deployment verification and support. |
 
 Supported deployment models:
 
