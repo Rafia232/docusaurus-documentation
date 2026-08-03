@@ -3,6 +3,11 @@ sidebar_position: 4
 title: 4. Dashboard
 ---
 
+# 4. Dashboard
+The platform provides four role-based dashboards, each designed to support a specific level of operational oversight. The Technician Dashboard enables Regional Users to manage assigned tickets and monitor individual workload and performance. The Regional Dashboard provides Regional Users with a consolidated view of ticket activity, facility performance, and technician workload within their assigned region. The Management Dashboard supports National Users by presenting organization-wide trends, SLA achievement, recurring issues, and technician productivity across all regions. The Executive Dashboard gives Administrators a comprehensive system-wide overview of ticket volumes, priorities, regions, locations, applications, SLA compliance, and technician workload for strategic monitoring and decision-making.
+
+---
+
 ## 4.1 Technician Dashboard- Regional User
 
 The **Technician Dashboard** provides regional users with a personalized overview of the tickets assigned to their account.

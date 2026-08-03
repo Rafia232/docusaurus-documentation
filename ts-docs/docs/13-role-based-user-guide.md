@@ -1118,3 +1118,520 @@ Delete an attachment only when it is incorrect, duplicated, or no longer require
 :::
 
 
+---
+
+## 3.3 National User
+
+National users can sign in to the platform using the account credentials created by the administrator. Unlike regional users, national users are not restricted to a single region and can view and manage tickets across the entire organization.
+
+National users can perform the same ticket-management activities available to regional users, including:
+
+- View all tickets across the organization
+- Create new tickets
+- Edit ticket information
+- Review complete ticket details
+- Communicate with facility users and support staff through ticket threads
+- Post internal notes, staff replies, and resolutions
+- Assign and reassign tickets
+- Review ticket activity history
+- View and manage ticket attachments
+- Resolve and close tickets
+- Use advanced filters to locate tickets across regions, locations, applications, categories, and subcategories
+
+When additional permissions are assigned, national users may also configure users and other required platform settings.
+
+:::note
+A national user’s available actions depend on the roles and permissions assigned by the administrator.
+:::
+
+---
+
+## 3.3.1 Accessing the Platform
+
+National users can log in using the email address and password created by the administrator.
+
+To access the platform:
+
+1. Open the platform login page.
+2. Enter the email address assigned to the national user account.
+3. Enter the account password.
+4. Click the login option.
+5. Wait for the platform dashboard or ticket page to load.
+
+After logging in, the national user can access organization-wide Service Desk features according to their assigned role and permissions.
+
+---
+
+## 3.3.2 Tickets
+
+The **Tickets** page allows national users to view, search, filter, create, assign, and manage tickets across the entire organization.
+
+Unlike the Regional User ticket page, the National User ticket page does not contain separate **All**, **My Tickets**, or **Unassigned** tabs. National users can view all tickets from all regions and facilities in a single ticket list.
+
+The page may contain:
+
+- Ticket summary cards
+- A **Create Ticket** button
+- Standard search and date filters
+- Advanced Filters
+- A complete organization-wide ticket list
+- Ticket assignment and action controls
+
+### 3.3.2.1 Organization-Wide Ticket Access
+
+National users can view all tickets created across:
+
+- All regions
+- All locations and facilities
+- All configured applications
+- All categories and subcategories
+- All assigned and unassigned ticket states
+
+This organization-wide access allows national users to monitor and manage ticket activity without being restricted to a specific region.
+
+:::note
+There are no separate ticket tabs for national users because all organization tickets are displayed in the same ticket list.
+:::
+
+### 3.3.2.2 Ticket Summary Cards
+
+Ticket summary cards appear near the top of the Tickets page.
+
+They provide a quick overview of organization-wide ticket activity and may include:
+
+- Total Tickets
+- Open Tickets
+- In Progress Tickets
+- Overdue Tickets
+- Closed Tickets
+
+| Summary Card | Description |
+|---|---|
+| Total Tickets | Shows the total number of tickets across the organization. |
+| Open Tickets | Shows tickets that have been created and are awaiting action. |
+| In Progress Tickets | Shows tickets currently being handled. |
+| Overdue Tickets | Shows tickets that have passed their configured SLA deadline. |
+| Closed Tickets | Shows tickets that have been completed or resolved. |
+
+The summary cards allow national users to understand the overall ticket workload and service status at a glance.
+
+### 3.3.2.3 Standard Search and Date Filters
+
+National users can search and filter the ticket list to locate specific tickets.
+
+The available controls may include:
+
+- Search by Ticket Number
+- Search by Ticket Title
+- Start Date
+- End Date
+- Refresh or reset option
+
+To find a ticket:
+
+1. Enter the Ticket Number or Ticket Title in the search field.
+2. Select a Start Date when required.
+3. Select an End Date when required.
+4. Apply or refresh the search.
+5. Review the filtered results.
+
+:::tip
+Use the Ticket Number when searching for a specific request because each Ticket Number uniquely identifies a ticket.
+:::
+
+### 3.3.2.4 Advanced Filters
+
+National users have access to **Advanced Filters** for narrowing the organization-wide ticket list.
+
+Available Advanced Filters include:
+
+- Region
+- Location
+- Application
+- Category
+- Subcategory
+
+| Filter | Description |
+|---|---|
+| Region | Filters tickets by the selected region. |
+| Location | Filters tickets by a facility or location under the selected region. |
+| Application | Filters tickets by the related application or system. |
+| Category | Filters tickets by the selected issue category. |
+| Subcategory | Filters tickets by a subcategory under the selected category. |
+
+
+### 3.3.2.5 Ticket List
+
+The ticket list displays all tickets available across the organization.
+
+The list may include:
+
+| Column | Description |
+|---|---|
+| Ticket No. | The unique ticket reference number. |
+| Title | The title of the ticket. |
+| Created Date | The date on which the ticket was created. |
+| Assign To | The user currently assigned to the ticket. |
+| Region | The region associated with the ticket. |
+| Location | The facility or location associated with the ticket. |
+| Priority Level | The urgency level of the ticket. |
+| Status | The current ticket status. |
+| Action | Provides available ticket actions. |
+
+National users can select a Ticket Number or use the Action menu to open and manage a ticket.
+
+---
+
+## 3.3.3 Create Ticket
+
+National users can create a new ticket from the Tickets page by selecting **Create Ticket**.
+
+The ticket creation form may contain:
+
+1. Ticket Details
+2. Facility User Information
+3. Attachments
+
+### 3.3.3.1 Ticket Details
+
+The Ticket Details section may include:
+
+| Field | Requirement | Description |
+|---|---|---|
+| Title | Required | A short and clear title describing the issue. |
+| Ticket Summary | Required | A detailed description of the reported issue. |
+| Category | Required | The main classification of the ticket. |
+| Subcategory | Based on category | A more specific classification under the selected category. |
+| Application | Optional or configuration-based | The application associated with the issue. |
+| Region | Required or configuration-based | The region associated with the ticket. |
+| Location | Required | The facility or location associated with the ticket. |
+| Ticket Source | Required | Identifies how the ticket was received or created. |
+| Priority Level | Required | The urgency level assigned to the ticket. |
+| User Type | Optional or configuration-based | The type of user connected to the ticket. |
+| Assign To | Optional | The user to whom the ticket will be assigned during creation. |
+
+:::note
+The Location options should correspond to the selected Region, and the Subcategory options should correspond to the selected Category.
+:::
+
+### 3.3.3.2 Facility User Information
+
+The **Facility User Information** section allows the national user to associate the ticket with a facility user.
+
+National users can:
+
+- Search for an existing facility user by phone number or email address
+- Select an existing facility user
+- Choose **Add a new Facility User** when the required user does not already exist
+
+The selected facility user information connects the ticket to the correct requester and facility.
+
+### 3.3.3.3 Attachments
+
+National users can add supporting files while creating the ticket.
+
+Supported file formats shown by the platform may include:
+
+- PDF
+- DOC
+- DOCX
+- TXT
+- JPG
+- PNG
+
+The maximum supported size is **5 MB per file**.
+
+To create the ticket:
+
+1. Click **Create Ticket**.
+2. Enter the Title and Ticket Summary.
+3. Select the Category and Subcategory.
+4. Select the Application when applicable.
+5. Select the Region and Location.
+6. Select the Ticket Source.
+7. Select the Priority Level.
+8. Select the User Type when required.
+9. Select an assignee when appropriate.
+10. Search for or add the Facility User.
+11. Attach supporting files when required.
+12. Click **Save**.
+
+Click **Cancel** to leave the form without creating the ticket.
+
+---
+
+## 3.3.4 Edit Ticket
+
+National users can edit an existing ticket when their assigned permissions allow it.
+
+The Edit Ticket option can be used to update ticket information such as:
+
+- Title
+- Description or Ticket Summary
+- Category
+- Subcategory
+- Application
+- Region
+- Location
+- Ticket Source
+- Priority Level
+- Facility user information
+- Other editable ticket fields
+
+:::caution
+A user cannot be assigned from the Edit Ticket page. Ticket assignment must be completed from the **Assign** tab on the Ticket Details page.
+:::
+
+To edit a ticket:
+
+1. Open the required ticket.
+2. Select the edit option.
+3. Update the required ticket information.
+4. Review the changes.
+5. Save the updated ticket.
+
+---
+
+## 3.3.5 Ticket Details
+
+The **Ticket Details** page displays the complete information and management options for a selected ticket.
+
+The page may show:
+
+| Information | Description |
+|---|---|
+| Status | The current progress of the ticket. |
+| Priority | The urgency level of the ticket. |
+| Title | The ticket title. |
+| Description | The complete description of the issue. |
+| Assigned To | The user currently assigned to the ticket. |
+| Category | The selected ticket category. |
+| Subcategory | The selected ticket subcategory. |
+| Application | The application associated with the issue. |
+| Region | The region associated with the ticket. |
+| Location | The facility or location associated with the ticket. |
+| Name | The requester or facility user name. |
+| Email | The requester’s email address. |
+| Phone | The requester’s phone number. |
+| Ticket Source | The source through which the ticket was created. |
+| Due Date | The expected completion deadline. |
+| Created | The date and time the ticket was created. |
+| Last Updated | The most recent ticket update time. |
+
+The Ticket Details page also contains the following tabs:
+
+1. Threads
+2. Assign
+3. Activity
+4. Attachments
+
+---
+
+## 3.3.6 Threads
+
+The **Threads** tab displays the complete ticket conversation and allows national users to post replies.
+
+The conversation may contain:
+
+- Internal Notes
+- Staff Posts
+- Client Posts
+- Resolutions
+
+### 3.3.6.1 Thread Filters
+
+National users can filter the conversation by selecting one or more of the following options:
+
+| Filter | Description |
+|---|---|
+| Internal Notes | Displays internal messages shared only among technicians and support staff. |
+| Staff Posts | Displays standard replies posted by technicians or support staff and sent to the client. |
+| Client Posts | Displays messages sent by the facility user. |
+| Resolutions | Displays replies posted as the final resolution of the ticket. |
+
+The filters help users isolate specific types of communication within a long ticket conversation.
+
+### 3.3.6.2 Post a Reply
+
+To post a reply:
+
+1. Open the required ticket.
+2. Select the **Threads** tab.
+3. Click **Post Reply**.
+4. Enter the response.
+5. Select the required posting option.
+6. Attach a file when required.
+7. Click **Post**.
+
+The reply type depends on the selected option.
+
+### 3.3.6.3 Reply Options
+
+| Reply Option | Audience and Result |
+|---|---|
+| No option selected | Posts the message as a **Staff Post**. The message is visible to the client. |
+| Post as Internal note | Posts an internal note visible only to technicians and support staff. It is not sent to the facility user. |
+| Post as Resolution | Posts the message to the client as the ticket resolution and closes the ticket. |
+| Close ticket on reply | Posts the message to the client as a Staff Post and closes the ticket. |
+
+#### Internal Note
+
+Select **Post as Internal note** when the message is intended only for technicians or internal support staff.
+
+Examples include:
+
+- Technical observations
+- Troubleshooting notes
+- Internal handover information
+- Instructions for another technician
+
+#### Staff Post
+
+When no checkbox is selected, the response is posted as a **Staff Post**.
+
+A Staff Post is visible to the facility user and is used for normal communication, such as:
+
+- Requesting additional information
+- Providing an update
+- Sharing troubleshooting steps
+- Confirming progress
+
+#### Resolution
+
+Select **Post as Resolution** when the response contains the final solution.
+
+The resolution:
+
+- Is visible to the client
+- Is identified as a resolution
+- Closes the ticket
+
+#### Close Ticket on Reply
+
+Select **Close ticket on reply** when the message should be sent as a normal Staff Post and the ticket should close immediately after posting.
+
+:::caution
+Review the message and selected reply option carefully before posting. Internal Notes are not visible to facility users, while Staff Posts and Resolutions are visible to them.
+:::
+
+### 3.3.6.4 Client Posts
+
+Client Posts are messages submitted by the facility user.
+
+National users can review Client Posts to:
+
+- Understand the original request
+- Read additional information from the facility user
+- Review responses to technician questions
+- Confirm whether suggested troubleshooting steps worked
+- Identify whether the issue remains unresolved
+
+### 3.3.6.5 Thread Attachments
+
+National users can attach a supporting file while posting a reply.
+
+To attach a file:
+
+1. Open the Post Reply form.
+2. Click **Choose File**.
+3. Select the required file.
+4. Confirm that the file is attached.
+5. Post the reply.
+
+---
+
+## 3.3.7 Assign
+
+The **Assign** tab allows a national user to assign or reassign a ticket to an eligible user across the organization.
+
+Depending on available permissions, a national user may assign a ticket to:
+
+- Themselves
+- A regional user
+- Another national user
+- An administrator
+- Another eligible technician or support user
+
+### 3.3.7.1 Assign a Ticket
+
+To assign a ticket:
+
+1. Open the required ticket.
+2. Select the **Assign** tab.
+3. Click **Assign**.
+4. Select the required user.
+5. Confirm the assignment.
+
+The most recently assigned user is displayed as the **Ticket Owner**.
+
+### 3.3.7.2 Ticket Ownership
+
+The current Ticket Owner is the most recently assigned user.
+
+When a user is assigned as the Ticket Owner:
+
+- The ticket becomes the responsibility of that user.
+- The user can access and manage the ticket according to their permissions.
+- A later reassignment changes the Ticket Owner to the newly assigned user.
+
+:::note
+Ticket assignment should be completed from the Assign tab. Assignment is not available from the Edit Ticket page.
+:::
+
+---
+
+## 3.3.8 Activity
+
+The **Activity** tab displays a chronological record of significant actions performed on the ticket.
+
+The Activity Timeline may include:
+
+- Ticket Created
+- Ticket Assigned
+- Ticket Updated
+- Status changes
+- Assignee changes
+- Priority changes
+- Other recorded ticket actions
+
+The Activity Timeline helps national users understand how the ticket has progressed and who performed each action.
+
+---
+
+## 3.3.9 Attachments
+
+The **Attachments** tab displays files associated with the selected ticket.
+
+National users may be able to:
+
+- View an attachment
+- Download or open an attachment
+- Delete an attachment when permitted
+
+:::caution
+Delete an attachment only when it is incorrect, duplicated, or no longer required, and only when the user’s permissions allow deletion.
+:::
+
+---
+
+## 3.4 Administrator
+
+Administrators have the highest level of access in the platform. They are responsible for managing system configuration, users, access control, reporting, dashboards, and organization-wide Service Desk operations.
+
+Administrators can:
+
+- Access and manage all tickets across the organization
+- Create, edit, assign, reassign, resolve, and close tickets
+- Manage organization, user, and service configurations
+- Create and manage users
+- Assign service-wise roles to users
+- Configure feature-wise permissions for roles
+- Manage regions, locations, categories, subcategories, applications, and priorities
+- Configure email accounts, mail mappings, and email templates
+- Configure automation and notification rules
+- Access all available reports
+- Access the Executive Dashboard
+- Monitor organization-wide ticket activity, SLA performance, recurring issues, and technician workload
+
+
+

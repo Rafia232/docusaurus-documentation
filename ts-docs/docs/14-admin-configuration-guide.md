@@ -485,16 +485,6 @@ The rich-text editor may provide formatting options such as:
 ### 2.7.8 Dynamic Variables
 
 Dynamic Variables are placeholders that are automatically replaced with real platform data when an email is sent.
-
-Example variables include:
-
-```text
-${customerName}
-${organizationName}
-${sentUrl}
-${senderName}
-```
-
 The actual variables available may depend on the selected template type and notification event.
 
 ### 2.7.9 Email Preview
