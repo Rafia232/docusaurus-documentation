@@ -122,21 +122,6 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
-          id: 'moh-helpdesk-administrator-guide',
-          label: 'Administrator Guide',
-        },
-        {
-          type: 'doc',
-          id: 'service-desk',
-          label: 'Service Desk',
-        },
-        {
-          type: 'doc',
-          id: 'facility-user',
-          label: 'Facility User',
-        },
-        {
-          type: 'doc',
           id: 'ticket-lifecycle-and-journey',
           label: 'Ticket Lifecycle and Journey',
         },
