@@ -7,6 +7,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 type DocCard = {
+  number: string;
   title: string;
   description: string;
   to: string;
@@ -15,60 +16,132 @@ type DocCard = {
 
 const handoverDocs: DocCard[] = [
   {
-    title: 'Installation Manual',
+    number: '01',
+    title: 'Installation Guide',
     description:
-      'Windows Server with IIS, Linux with Docker and Portainer, Kafka, PostgreSQL, services, Nginx, and verification steps.',
+      'Windows Server with IIS, Linux with Docker and Portainer, Kafka, PostgreSQL, services, NGINX, and verification steps.',
     to: '/docs/installation-manual',
-    meta: 'Deployment',
+    meta: 'Getting Started',
   },
   {
-    title: 'Admin & Configuration Guide',
+    number: '02',
+    title: 'Administration & Configuration Guide',
     description:
-      'Categories, SLA rules, regions, lookups, team mapping, permissions, and user management configuration.',
+      'Organization setup, regions, locations, users, roles, permissions, email configuration, automation rules, categories, applications, and priorities.',
     to: '/docs/admin-configuration-guide',
-    meta: 'Administration',
+    meta: 'Getting Started',
   },
   {
-    title: 'Role-Based User Guide',
+    number: '03',
+    title: 'Role-Based User Guides',
     description:
       'Facility, Regional, National, and Administrator workflows for everyday support operations.',
     to: '/docs/role-based-user-guide',
-    meta: 'Users',
+    meta: 'User Operations',
   },
   {
+    number: '04',
+    title: 'Dashboards',
+    description:
+      'Technician, Regional, Management, and Executive dashboards with role-specific monitoring information.',
+    to: '/docs/dashboard',
+    meta: 'User Operations',
+  },
+  {
+    number: '05',
     title: 'Reports',
     description:
-      'Ticket dashboards, exports, monitoring views, SLA reporting, and reporting security expectations.',
+      'Ticket Log, Incident Reports, Technician Reports, Facility Reports, SLA monitoring, filters, and exports.',
     to: '/docs/reports',
-    meta: 'Operations',
+    meta: 'User Operations',
   },
   {
-    title: 'Architecture / Technical Design',
+    number: '06',
+    title: 'Security Architecture',
     description:
-      'Deployment architecture, CQRS/MediatR services, gateway routing, database ownership, Kafka events, and integrations.',
+      'Authentication, authorization, API gateway security, inter-service communication, event protection, audit integrity, and secure attachment access.',
+    to: '/docs/security-architecture',
+    meta: 'Technical',
+  },
+  {
+    number: '07',
+    title: 'System Architecture & Technical Design',
+    description:
+      'Deployment architecture, CQRS and MediatR services, gateway routing, database ownership, Kafka events, and application structure.',
     to: '/docs/system-architecture-technical-design',
     meta: 'Technical',
   },
   {
+    number: '08',
     title: 'REST API Specifications',
     description:
-      'Ticketing API and User API endpoint reference generated from the provided OpenAPI specifications.',
+      'Ticketing and user API endpoints, request parameters, response structures, authentication requirements, and error handling.',
     to: '/docs/api-specifications',
-    meta: 'API',
+    meta: 'Technical',
   },
   {
+    number: '09',
     title: 'API / Integration Documentation',
     description:
-      'External integration notes for Kafka, mail, file access, API gateway routes, and optional integration points.',
+      'Integration details for Kafka, email, file access, API gateway routes, service communication, event exchange, and external services.',
     to: '/docs/integrations',
-    meta: 'Integration',
+    meta: 'Technical',
   },
   {
-    title: 'Code Transfer Readiness',
+    number: '10',
+    title: 'Source Code Handover & Readiness',
     description:
-      'Transfer checklist for source handover, sanitized configuration, build verification, and ownership readiness.',
+      'Repository transfer, sanitized configuration, environment requirements, dependencies, build verification, and ownership readiness.',
     to: '/docs/code-transfer-readiness',
     meta: 'Handover',
+  },
+  {
+    number: '11.1',
+    title: 'Ticket Lifecycle',
+    description:
+      'The complete ticket journey from creation and assignment through investigation, customer response, resolution, closure, and reporting.',
+    to: '/docs/ticket-lifecycle-and-journey',
+    meta: 'Operations',
+  },
+  {
+    number: '11.2',
+    title: 'Process Workflows',
+    description:
+      'Operational workflows for ticket creation, assignment, reassignment, resolution, notifications, and support procedures.',
+    to: '/docs/process-workflows',
+    meta: 'Operations',
+  },
+  {
+    number: '12.1',
+    title: 'Data Architecture',
+    description:
+      'Platform data models, PostgreSQL databases, entity relationships, service ownership boundaries, storage, and data flow.',
+    to: '/docs/data-architecture',
+    meta: 'Reference',
+  },
+  {
+    number: '12.2',
+    title: 'Deployment & Testing',
+    description:
+      'Deployment topology, Kubernetes infrastructure, environments, testing approaches, validation activities, and release readiness.',
+    to: '/docs/deployment-and-testing',
+    meta: 'Reference',
+  },
+  {
+    number: '12.3',
+    title: 'Risk Matrix & Future Roadmap',
+    description:
+      'Operational and technical risks, mitigation strategies, planned enhancements, and future product roadmap items.',
+    to: '/docs/acceptance-criteria-and-future',
+    meta: 'Reference',
+  },
+  {
+    number: '12.4',
+    title: 'Technical Appendix & Glossary',
+    description:
+      'Technical terminology, attachment formats, Kafka topics, event payload schemas, and Kubernetes manifest structures.',
+    to: '/docs/technical-appendix-and-glossary',
+    meta: 'Reference',
   },
 ];
 
@@ -83,43 +156,58 @@ function HomeHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
-        <div className={styles.eyebrow}>MoH Helpdesk Documentation Portal</div>
+        <div className={styles.eyebrow}>
+          MoH Helpdesk Documentation Portal
+        </div>
+
         <Heading as="h1" className={styles.title}>
           Project handover, deployment, and operations knowledge base
         </Heading>
+
         <p className={styles.subtitle}>
           Access the full documentation package for installing, configuring,
           operating, integrating, and transferring the TeraSupport helpdesk
           platform.
         </p>
+
         <div className={styles.heroActions}>
-          <Link className={styles.primaryButton} to="/docs/installation-manual">
+          <Link
+            className={styles.primaryButton}
+            to="/docs/installation-manual">
             Open Installation Manual
           </Link>
+
           <Link className={styles.secondaryButton} to="/docs/intro">
             View Documentation Index
           </Link>
         </div>
       </div>
 
-      <aside className={styles.signInInspiredPanel} aria-label="Documentation status">
+      <aside
+        className={styles.signInInspiredPanel}
+        aria-label="Documentation status">
         <div className={styles.panelTopline}>Welcome to</div>
+
         <Heading as="h2" className={styles.panelTitle}>
           MoH Helpdesk
         </Heading>
+
         <p className={styles.panelText}>
-          A structured documentation dashboard for seamless support, deployment,
-          and IT service management handover.
+          A structured documentation dashboard for seamless support,
+          deployment, and IT service management handover.
         </p>
+
         <div className={styles.panelMetricGrid}>
           <div>
-            <strong>8</strong>
-            <span>Core documents</span>
+            <strong>16</strong>
+            <span>Document pages</span>
           </div>
+
           <div>
             <strong>4</strong>
             <span>User roles</span>
           </div>
+
           <div>
             <strong>2</strong>
             <span>Deployment paths</span>
@@ -135,17 +223,16 @@ function HandoverCards() {
     <section className={styles.docsSection}>
       <div className={styles.sectionHeader}>
         <Heading as="h2">Handover Documents</Heading>
-        <p>
-          Start with installation for deployment work, or open the role,
-          administration, architecture, API, and transfer guides directly.
-        </p>
       </div>
+
       <div className={styles.docGrid}>
-        {handoverDocs.map((doc, index) => (
-          <Link className={styles.docCard} to={doc.to} key={doc.title}>
-            <span className={styles.docNumber}>{String(index + 1).padStart(2, '0')}</span>
+        {handoverDocs.map((doc) => (
+          <Link className={styles.docCard} to={doc.to} key={doc.to}>
+            <span className={styles.docNumber}>{doc.number}</span>
             <span className={styles.docMeta}>{doc.meta}</span>
+
             <Heading as="h3">{doc.title}</Heading>
+
             <p>{doc.description}</p>
           </Link>
         ))}
@@ -159,12 +246,14 @@ function ReadinessPanel() {
     <section className={styles.readiness}>
       <div>
         <Heading as="h2">Ready For Review</Heading>
+
         <p>
           The portal is arranged for client handover review: deployment first,
           then administration, role operations, reports, architecture, APIs,
           integrations, and code transfer.
         </p>
       </div>
+
       <ul>
         {checkpoints.map((checkpoint) => (
           <li key={checkpoint}>{checkpoint}</li>
@@ -176,6 +265,7 @@ function ReadinessPanel() {
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
+
   return (
     <Layout
       title="MoH Helpdesk Documentation Portal"

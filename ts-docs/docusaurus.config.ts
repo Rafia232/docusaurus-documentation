@@ -59,9 +59,17 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
+
     colorMode: {
       respectPrefersColorScheme: true,
     },
+
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
+
     navbar: {
       title: 'MoH Service Desk',
       logo: {
@@ -77,6 +85,7 @@ const config: Config = {
         },
       ],
     },
+
     footer: {
       style: 'dark',
       links: [
@@ -92,6 +101,7 @@ const config: Config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Ministry of Health (MoH). Built with Docusaurus.`,
     },
+
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,

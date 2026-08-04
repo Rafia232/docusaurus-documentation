@@ -1,15 +1,15 @@
 ---
-sidebar_position: 7
-title: API / Integration Documentation
+sidebar_position: 9
+title: 9. API / Integration Documentation
 ---
 
-# API / Integration Documentation
+# 9. API / Integration Documentation
 
 This page documents external and cross-service integrations used by the MoH Helpdesk platform. Detailed REST endpoint definitions are maintained in [REST API Specifications](./8-api-specifications.md).
 
 ---
 
-## 1. Integration Inventory
+## 9.1 Integration Inventory
 
 | Integration | Type | Purpose | Required |
 | --- | --- | --- | :---: |
@@ -18,13 +18,12 @@ This page documents external and cross-service integrations used by the MoH Help
 | Kafka | Event streaming | Ticket, notification, and service synchronization events. | Recommended |
 | SMTP / MoH Mail Gateway | Email | Sends platform notifications. | Yes |
 | Object Storage / MinIO / S3 | File storage | Stores ticket attachments. | Yes |
-| Twilio WhatsApp Gateway | Messaging | Optional WhatsApp notification dispatch. | Optional |
 | JWT/OAuth provider | Identity/security | Token authentication and authorization. | Yes |
 | External device/facility systems | Data sync | Optional synchronization with external registries. | Optional |
 
 ---
 
-## 2. REST API Integration
+## 9.2 REST API Integration
 
 REST APIs use HTTP and JSON payloads. The primary ticket endpoints are routed with the `/ticket-api/` prefix.
 
@@ -49,7 +48,7 @@ See [REST API Specifications](./8-api-specifications.md) for endpoint-level deta
 
 ---
 
-## 3. Kafka Event Integration
+## 9.3 Kafka Event Integration
 
 Kafka supports asynchronous communication between services and notification workers.
 
@@ -75,7 +74,7 @@ Kafka payload examples are available in [Technical Appendix & Glossary](./16-tec
 
 ---
 
-## 4. Email / SMTP Integration
+## 9.4 Email / SMTP Integration
 
 The platform uses SMTP or the MoH Mail Gateway to send email notifications.
 
@@ -101,7 +100,7 @@ Notification templates should be configured for:
 
 ---
 
-## 5. Object Storage Integration
+## 9.5 Object Storage Integration
 
 Ticket attachments should be stored outside the application server filesystem in object storage.
 
@@ -124,29 +123,7 @@ Production requirements:
 
 ---
 
-## 6. WhatsApp / SMS Gateway Integration
-
-If Twilio WhatsApp or another messaging gateway is enabled, it should be treated as an optional notification channel.
-
-Required configuration:
-
-| Setting | Description |
-| --- | --- |
-| Account SID / API key | Provider credential. |
-| Auth token / secret | Provider credential secret. |
-| Sender ID / WhatsApp number | Approved sending identity. |
-| Recipient format | Standardized phone number format. |
-| Template approval | Required if provider enforces message templates. |
-
-Operational notes:
-
-- Email should remain the default notification channel unless messaging is approved.
-- Failed WhatsApp notifications should not block ticket creation or assignment.
-- Message content must avoid sensitive information unless approved by policy.
-
----
-
-## 7. External Synchronization
+## 9.6 External Synchronization
 
 The data model includes sync-related flags such as `IsSynced` and `IsTPSynced`, indicating that some records may synchronize with external or third-party systems.
 
@@ -166,7 +143,7 @@ If no external synchronization is active in the production environment, record i
 
 ---
 
-## 8. Integration Verification Checklist
+## 9.7 Integration Verification Checklist
 
 | Test | Expected Result |
 | --- | --- |
@@ -176,5 +153,4 @@ If no external synchronization is active in the production environment, record i
 | SMTP | Test notification is received by configured recipient. |
 | Attachment upload | File uploads successfully and appears on ticket details. |
 | Attachment download | Authorized user can download file. |
-| Optional WhatsApp | Test message is sent only if channel is enabled. |
 | External sync | Sync status updates correctly, if integration is enabled. |

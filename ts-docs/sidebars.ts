@@ -109,27 +109,27 @@ const sidebars: SidebarsConfig = {
             {
               type: 'link',
               label: '5.1 Ticket Log',
-              href: '/docs/reports#tickets-log',
+              href: '/docs/reports#51-tickets-log',
             },
             {
               type: 'link',
               label: '5.2 Incident Reports',
-              href: '/docs/reports#incident-reports',
+              href: '/docs/reports#52-incident-reports',
             },
             {
               type: 'link',
               label: '5.3 Technician Reports',
-              href: '/docs/reports#technician-reports',
+              href: '/docs/reports#53-technician-reports',
             },
             {
               type: 'link',
               label: '5.4 Facility Reports',
-              href: '/docs/reports#facility-reports',
+              href: '/docs/reports#54-facility-reports',
             },
             {
               type: 'link',
               label: '5.5 SLA Reports',
-              href: '/docs/reports#sla-reports',
+              href: '/docs/reports#55-sla-reports',
             },
           ],
         },

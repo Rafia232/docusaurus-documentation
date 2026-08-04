@@ -1,18 +1,18 @@
 ---
-sidebar_position: 5
-title: Architecture / Technical Design
+sidebar_position: 7
+title: 7. Architecture / Technical Design
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 import erdImage from './images/erd.png';
 
-# Architecture / Technical Design
+# 7. Architecture / Technical Design
 
 This document summarizes the technical design of the MoH Helpdesk platform for handover, maintenance, and future enhancement.
 
 ---
 
-## 1. System Context
+## 7.1 System Context
 
 The MoH Helpdesk is a centralized support and ticket management platform used by facility users, regional users, national users, service desk teams, and administrators.
 
@@ -27,7 +27,7 @@ Core capabilities include:
 
 ---
 
-## 2. Logical Architecture
+## 7.2 Logical Architecture
 
 | Layer | Responsibility |
 | --- | --- |
@@ -41,7 +41,7 @@ Core capabilities include:
 
 ---
 
-## 3. Deployment Architecture
+## 7.3 Deployment Architecture
 
 <ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport deployment architecture diagram" maxHeight="640px" />
 
@@ -66,7 +66,7 @@ Supported deployment models:
 
 ---
 
-## 4. Application Components
+## 7.4 Application Components
 
 | Component | Description |
 | --- | --- |
@@ -79,7 +79,7 @@ Supported deployment models:
 
 ---
 
-## 5. Data Architecture
+## 7.5 Data Architecture
 
 <ZoomableImage src={erdImage} alt="Entity Relationship Diagram" maxHeight="600px" />
 
@@ -95,24 +95,23 @@ See [Data Architecture](./12-data-architecture.md) for detailed table definition
 
 ---
 
-## 6. Ticket Lifecycle Design
+## 7.6 Ticket Lifecycle Design
 
 The main ticket workflow is:
 
 1. Ticket is created from portal, email, or internal form.
 2. Ticket category is selected or identified.
-3. Category-to-team mapping determines routing.
-4. Service Desk assigns the ticket to an expert or responsible person.
-5. Users communicate through ticket messages and attachments.
-6. SLA and overdue rules are monitored.
-7. Ticket is closed after resolution.
-8. Notifications and audit history are retained.
+3. Service Desk assigns the ticket to an expert or responsible person.
+4. Users communicate through ticket messages and attachments.
+5. SLA and overdue rules are monitored.
+6. Ticket is closed after resolution.
+7. Notifications and audit history are retained.
 
 See [Ticket Lifecycle and Journey](./17-ticket-lifecycle-and-journey.md) and [Process Workflows](./11-process-workflows.md) for visual flows.
 
 ---
 
-## 7. Security Design
+## 7.7 Security Design
 
 | Security Area | Design |
 | --- | --- |
@@ -128,7 +127,7 @@ See [Security Architecture](./7-security-architecture.md) for additional securit
 
 ---
 
-## 8. Integration Design
+## 7.8 Integration Design
 
 The platform can integrate with:
 
@@ -142,7 +141,7 @@ See [Integration Documentation](./9-integrations.md).
 
 ---
 
-## 9. Operational Design
+## 7.9 Operational Design
 
 | Concern | Design Guidance |
 | --- | --- |
@@ -155,7 +154,7 @@ See [Integration Documentation](./9-integrations.md).
 
 ---
 
-## 10. Key Technical Risks
+## 7.10 Key Technical Risks
 
 | Risk | Mitigation |
 | --- | --- |

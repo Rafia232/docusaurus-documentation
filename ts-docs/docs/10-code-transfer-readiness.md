@@ -1,9 +1,9 @@
 ---
-sidebar_position: 8
-title: Code Transfer Readiness
+sidebar_position: 10
+title: 10. Code Transfer Readiness
 ---
 
-# Code Transfer Readiness
+# 10. Code Transfer Readiness
 
 This checklist defines what must be ready before transferring the MoH Helpdesk codebase and documentation to another team.
 
@@ -11,7 +11,7 @@ The current repository is the documentation site. The actual application codebas
 
 ---
 
-## 1. Documentation Repository Readiness
+## 10.1 Documentation Repository Readiness
 
 | Item | Status / Action |
 | --- | --- |
@@ -21,12 +21,12 @@ The current repository is the documentation site. The actual application codebas
 | Admin configuration guide | Added for categories, SLA, regions, lookups, and user management. |
 | Technical design document | Added as consolidated architecture reference. |
 | API documentation | Existing REST API document retained. |
-| Integration documentation | Added for REST, Kafka, SMTP, object storage, WhatsApp, and external sync. |
+| Integration documentation | Added for REST, Kafka, SMTP, object storage, and external sync. |
 | Screenshots | Existing screenshots are present; installation screenshots still need to be captured from real environments. |
 
 ---
 
-## 2. Application Codebase Readiness
+## 10.2 Application Codebase Readiness
 
 The application source repository should include:
 
@@ -45,7 +45,7 @@ The application source repository should include:
 
 ---
 
-## 3. Code Commenting Standard
+## 10.3 Code Commenting Standard
 
 Code should be well-commented where business rules are complex, but not cluttered with comments that repeat obvious syntax.
 
@@ -70,7 +70,7 @@ Avoid comments for:
 
 ---
 
-## 4. Transfer Package Checklist
+## 10.4 Transfer Package Checklist
 
 | Deliverable | Required |
 | --- | :---: |
@@ -93,7 +93,7 @@ Avoid comments for:
 
 ---
 
-## 5. Final Handover Acceptance
+## 10.5 Final Handover Acceptance
 
 Before sign-off, confirm:
 

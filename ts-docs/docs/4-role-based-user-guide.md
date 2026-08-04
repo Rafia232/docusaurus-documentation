@@ -15,11 +15,10 @@ The guide is organized into the following user roles:
 
 | User Type | Responsibilities | Access Scope |
 |---|---|---|
-| Facility User | Create tickets, view ticket history, and reply to technicians. | Tickets created within the assigned facility/location. |
-| Regional User | Create and view regional tickets, self-assign, assign colleagues, resolve and escalate tickets, and access the technician dashboard. | Facilities within the assigned region. |
-| National User | Monitor all regions, reassign tickets, manage escalations, and access national reporting. | All tickets. |
-| Administrator | Manage users, lookup tables, reports, dashboards, and system configuration. | Entire system. |
-
+| [Facility User](/docs/role-based-user-guide#31-facility-user) | Create tickets, view ticket history, and reply to technicians. | Tickets created within the assigned facility/location. |
+| [Regional User](/docs/role-based-user-guide#32-regional-user) | Create and view regional tickets, self-assign, assign colleagues, resolve and escalate tickets, and access the technician dashboard. | Facilities within the assigned region. |
+| [National User](/docs/role-based-user-guide#33-national-user) | Monitor all regions, reassign tickets, manage escalations, and access national reporting. | All tickets. |
+| [Administrator](/docs/role-based-user-guide#34-administrator) | Manage users, lookup tables, reports, dashboards, and system configuration. | Entire system. |
 ---
 
 ## 3.1 Facility User
