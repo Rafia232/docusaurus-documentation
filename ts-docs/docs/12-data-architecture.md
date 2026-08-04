@@ -1,26 +1,26 @@
 ---
-sidebar_position: 7
-title: 6. Data Architecture
+sidebar_position: 1
+title: 12.1 Data Architecture
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 import erdImage from './images/erd.png';
 
-# 6. Data Architecture
+# 12.1 Data Architecture
 
 This section details the **Data Model** and **Database Design** of the MoH Helpdesk Management System. The databases are partitioned into three PostgreSQL databases: **User DB**, **Ticket DB**, and **Device DB**.
 
 ---
 
-## 6.1 Entity Definitions
+## 12.1.1 Entity Definitions
 
-### 6.1.1 User Database
+### 12.1.1.1 User Database
 1. **Users**: System operators (Admins, Agents, Experts) with role classifications, referenced logically by GUID across other services.
 
-### 6.1.2 Device Database
+### 12.1.1.2 Device Database
 2. **Devices**: Asset tracking records for hardware devices (model, serial number, facility code, warranty status).
 
-### 6.1.3 Ticket Database (Ticket Service)
+### 12.1.1.3 Ticket Database (Ticket Service)
 All Ticket Service entities inherit from a common **BaseModel** and represent the core schema of the Ticketing system:
 
 3. **BaseModel**: Abstract base entity containing common audit and status fields:
@@ -48,15 +48,15 @@ All Ticket Service entities inherit from a common **BaseModel** and represent th
 
 ---
 
-## 6.2 Entity Relationship Diagram (ERD)
+## 12.1.2 Entity Relationship Diagram (ERD)
 
 <ZoomableImage src={erdImage} alt="Entity Relationship Diagram" maxHeight="600px" />
 
 ---
 
-## 6.3 PostgreSQL DDL Schemas
+## 12.1.3 PostgreSQL DDL Schemas
 
-### 6.3.1 User Database Schema
+### 12.1.3.1 User Database Schema
 ```sql
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -72,7 +72,7 @@ CREATE TABLE users (
 
 ---
 
-### 6.3.2 Ticket Database Schema
+### 12.1.3.2 Ticket Database Schema
 
 ```sql
 -- Helper function to generate audit fields in tables
@@ -367,7 +367,7 @@ CREATE TABLE message_attachments (
 
 ---
 
-### 6.3.3 Device Database Schema
+### 12.1.3.3 Device Database Schema
 ```sql
 CREATE TABLE devices (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

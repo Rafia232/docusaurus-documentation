@@ -1,15 +1,15 @@
 ---
-sidebar_position: 8
-title: Ticket Lifecycle Process
+sidebar_position: 1
+title: 11.1 Ticket Lifecycle Process
 ---
 
-# Ticket Lifecycle Process
+# 11.1 Ticket Lifecycle Process
 
 The following flow explains the complete journey of a support ticket, starting from ticket creation by a Facility User and ending with resolution, closure, and reporting.
 
 ---
 
-## Complete Ticket Lifecycle Flow
+## 11.1.1 Complete Ticket Lifecycle Flow
 
 **1. Facility User Logs In**  
 The Facility User opens the configured **Public Portal URL** and logs in using the email address and password created by the administrator.  
@@ -244,7 +244,7 @@ The completed ticket contributes to:
 
 ---
 
-## Simplified Ticket Lifecycle
+## 11.1.2 Simplified Ticket Lifecycle
 
 **Facility User Logs In**  
 ↓  

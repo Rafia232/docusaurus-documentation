@@ -90,45 +90,80 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: 'doc',
-          id: 'reporting-and-security',
+          type: 'category',
           label: '5. Reports',
+          link: {
+            type: 'doc',
+            id: 'reports',
+          },
+          items: [
+            {
+              type: 'link',
+              label: '5.1 Tickets Log',
+              href: '/docs/reports#tickets-log',
+            },
+            {
+              type: 'link',
+              label: '5.2 Incident Reports',
+              href: '/docs/reports#incident-reports',
+            },
+            {
+              type: 'link',
+              label: '5.3 Technician Reports',
+              href: '/docs/reports#technician-reports',
+            },
+            {
+              type: 'link',
+              label: '5.4 Facility Reports',
+              href: '/docs/reports#facility-reports',
+            },
+            {
+              type: 'link',
+              label: '5.5 SLA Reports',
+              href: '/docs/reports#sla-reports',
+            },
+          ],
         },
         {
           type: 'doc',
-          id: 'architecture-technical-design',
-          label: '6. Architecture / Technical Design',
+          id: 'security-architecture',
+          label: '6. Security Architecture',
+        },
+        {
+          type: 'doc',
+          id: 'system-architecture-technical-design',
+          label: '7. System Architecture & Technical Design',
         },
         {
           type: 'doc',
           id: 'api-specifications',
-          label: '7. REST API Specifications',
+          label: '8. REST API Specifications',
         },
         {
           type: 'doc',
           id: 'integrations',
-          label: '8. API / Integration Documentation',
+          label: '9. API / Integration Documentation',
         },
         {
           type: 'doc',
           id: 'code-transfer-readiness',
-          label: '9. Code Transfer Readiness',
+          label: '10. Source Code Handover & Readiness',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Operational Guides',
+      label: 'Operations & Support Guides',
       items: [
         {
           type: 'doc',
           id: 'ticket-lifecycle-and-journey',
-          label: 'Ticket Lifecycle and Journey',
+          label: '11.1 Ticket Lifecycle',
         },
         {
           type: 'doc',
           id: 'process-workflows',
-          label: 'Process Workflows',
+          label: '11.2 Process Workflows',
         },
       ],
     },
@@ -139,22 +174,22 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'data-architecture',
-          label: 'Data Architecture',
+          label: '12.1 Data Architecture',
         },
         {
           type: 'doc',
           id: 'deployment-and-testing',
-          label: 'Deployment & Testing',
+          label: '12.2 Deployment & Testing',
         },
         {
           type: 'doc',
           id: 'acceptance-criteria-and-future',
-          label: 'Acceptance Criteria & Future Roadmap',
+          label: '12.3 Operational & Technical Risk Matrix & Future Roadmap',
         },
         {
           type: 'doc',
           id: 'technical-appendix-and-glossary',
-          label: 'Technical Appendix & Glossary',
+          label: '12.4 Technical Appendix & Glossary',
         },
       ],
     },
