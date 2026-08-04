@@ -5,7 +5,7 @@ title: API / Integration Documentation
 
 # API / Integration Documentation
 
-This page documents external and cross-service integrations used by the MoH Helpdesk platform. Detailed REST endpoint definitions are maintained in [REST API Specifications](./7-api-specifications.md).
+This page documents external and cross-service integrations used by the MoH Helpdesk platform. Detailed REST endpoint definitions are maintained in [REST API Specifications](./8-api-specifications.md).
 
 ---
 
@@ -45,7 +45,7 @@ Common headers:
 | `Content-Type: application/json` | Used for JSON request bodies. |
 | `Accept: application/json` | Requests JSON responses. |
 
-See [REST API Specifications](./7-api-specifications.md) for endpoint-level details.
+See [REST API Specifications](./8-api-specifications.md) for endpoint-level details.
 
 ---
 
@@ -71,7 +71,7 @@ Implementation guidance:
 - Enable TLS/SASL for production Kafka clusters.
 - Retain failed notification events for retry where supported.
 
-Kafka payload examples are available in [Technical Appendix & Glossary](./11-technical-appendix-and-glossary.md).
+Kafka payload examples are available in [Technical Appendix & Glossary](./16-technical-appendix-and-glossary.md).
 
 ---
 

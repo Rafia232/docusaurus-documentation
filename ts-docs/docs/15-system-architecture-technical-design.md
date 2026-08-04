@@ -91,7 +91,7 @@ The platform uses PostgreSQL with service-oriented database ownership.
 | Ticket database | Tickets, categories, assignments, messages, attachments, audit activity. |
 | Device database | Devices, facilities, external sync flags, device metadata. |
 
-See [Data Architecture](./6-data-architecture.md) for detailed table definitions and schema references.
+See [Data Architecture](./12-data-architecture.md) for detailed table definitions and schema references.
 
 ---
 
@@ -108,7 +108,7 @@ The main ticket workflow is:
 7. Ticket is closed after resolution.
 8. Notifications and audit history are retained.
 
-See [Ticket Lifecycle and Journey](./4-ticket-lifecycle-and-journey.md) and [Process Workflows](./5-process-workflows.md) for visual flows.
+See [Ticket Lifecycle and Journey](./17-ticket-lifecycle-and-journey.md) and [Process Workflows](./11-process-workflows.md) for visual flows.
 
 ---
 
@@ -124,7 +124,7 @@ See [Ticket Lifecycle and Journey](./4-ticket-lifecycle-and-journey.md) and [Pro
 | Attachment security | Object storage with time-limited download links. |
 | Audit integrity | Activity records retained for accountability. |
 
-See [Reporting & Security](./8-reporting-and-security.md) for additional security notes.
+See [Security Architecture](./7-security-architecture.md) for additional security notes.
 
 ---
 
@@ -138,7 +138,7 @@ The platform can integrate with:
 - Twilio WhatsApp Gateway if enabled in the deployed environment.
 - External device or facility systems if synchronization is configured.
 
-See [Integration Documentation](./16-integrations.md).
+See [Integration Documentation](./9-integrations.md).
 
 ---
 

@@ -4,172 +4,79 @@ title: 11.2 Process Workflows
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
-import ticketCreationFlow from './images/ticket_creation_flow.png';
-import ticketAssignmentFlow from './images/ticket_assignment_flow.png';
-import ticketReassignmentFlow from './images/ticket_reassignment_flow.png';
-import ticketResolutionFlow from './images/ticket_resolution_flow.png';
-import notificationEngineFlow from './images/notification_engine_flow.png';
 
 # 11.2 Process Workflows
 
-This section visualizes the key operational workflows of the MoH Helpdesk Management System using **Mermaid diagrams**.
-
----
+This section shows the main operational workflows used by the MoH Helpdesk platform. The diagrams focus on the business flow and handover understanding rather than implementation code.
 
 ## 11.2.1 Facility User Ticket Creation Flow
 
-Visualizes how Dr. Mary submits a ticket, associates a device, and triggers team mapping.
+<ZoomableImage src="/img/process-workflows/ticket-creation-flow.svg" alt="Facility user ticket creation flow" maxHeight="620px" />
 
-<ZoomableImage src={ticketCreationFlow} alt="Facility User Ticket Creation Flow" />
+A Facility User creates a ticket from the self-service portal by entering the issue title, description, category, facility/device context, and optional attachments. The system validates the input, stores the ticket, generates the ticket number, applies category-to-team routing, assigns the ticket when possible, and publishes the creation event for notification handling.
 
-```mermaid
-graph TD
-    A[Dr. Mary logs into Self-Service Portal] --> B[Click Open New Ticket]
-    B --> C[Enter Title & Detailed Description]
-    C --> D[Select Category & choose Facility Device]
-    D --> E[Upload optional file attachments]
-    E --> F[Click Submit Ticket]
-    
-    F --> G{Inputs Valid & File <= 5MB?}
-    G -->|No| G_Err[Render UI form field error messages]
-    G -->|Yes| H[Submit CreateTicketCommand]
-    
-    H --> I[Ticket Service writes to Ticket DB]
-    I --> J[Generate Ticket ID #000001]
-    J --> K{Category mapping exists?}
-    
-    K -->|Yes| L[Set Ticket's Assigned Team]
-    K -->|No| M[Route to Admin Triage queue]
-    
-    L --> N{Team has active member?}
-    N -->|Yes| O[Auto-assign to Team Lead & set In Progress]
-    N -->|No| P[Set as Unassigned]
-    
-    M --> P
-    
-    O --> Q[Publish TicketCreatedEvent to Kafka]
-    P --> Q
-    
-    Q --> R[Queue email & WhatsApp creation alerts]
-    R --> S[End Workflow]
-```
-
----
+| Stage | Description |
+| --- | --- |
+| User submission | Facility User enters the ticket information and submits it. |
+| Validation | Required fields and attachment rules are checked. |
+| Ticket creation | Ticketing Service stores the new incident and ticket number. |
+| Routing | Category mapping selects the responsible support team. |
+| Assignment | The ticket is assigned to an available/team-lead expert or sent to triage. |
+| Notification | Ticket-created event triggers email or other enabled alerts. |
 
 ## 11.2.2 Ticket Assignment Flow
 
-Shows Joseph assigning a ticket to John.
+<ZoomableImage src="/img/process-workflows/ticket-assignment-flow.svg" alt="Ticket assignment flow" maxHeight="560px" />
 
-<ZoomableImage src={ticketAssignmentFlow} alt="Ticket Assignment Flow" />
+Ticket assignment starts when a Service Desk user opens the ticket details page and selects an eligible expert. The system records the assignment, updates the ticket state, and uses the latest active assignment as the ticket owner for workflow, reporting, and filtering.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Joseph as Service Desk Agent (Joseph)
-    participant Gateway as API Gateway
-    participant TS as Ticket Service
-    participant US as User Service
-    participant DB as Ticket PostgreSQL DB
-    participant Kafka as Kafka Event Bus
-    
-    Joseph->>Gateway: Open Ticket details page
-    Gateway->>TS: GET /api/v1/tickets/45
-    TS->>US: Fetch Experts in ticket's current team
-    US-->>TS: Return list of Experts
-    TS-->>Joseph: Render Assignee dropdown list
-    Joseph->>Gateway: Select Expert John & confirm
-    Gateway->>TS: POST /api/v1/tickets/45/assign (expert_id: 12)
-    TS->>DB: Update ticket: expert_id = 12, status = 'In Progress'
-    TS->>Kafka: Publish TicketAssignedEvent
-    DB-->>TS: Confirm write
-    TS-->>Joseph: UI updates (Status: In Progress, Expert: John)
-```
-
----
+| Stage | Description |
+| --- | --- |
+| Ticket review | Service Desk reviews the ticket details. |
+| Expert selection | Eligible experts are loaded from the team/user access context. |
+| Assignment save | Assignment data is stored against the ticket. |
+| Status update | The ticket moves into the active handling state. |
+| Visibility update | UI and reports reflect the latest assignment. |
 
 ## 11.2.3 Ticket Reassignment Flow
 
-Shows reassigning a ticket to a different expert.
+<ZoomableImage src="/img/process-workflows/ticket-reassignment-flow.svg" alt="Ticket reassignment flow" maxHeight="580px" />
 
-<ZoomableImage src={ticketReassignmentFlow} alt="Ticket Reassignment Flow" />
+Ticket reassignment is used when a ticket must move from one expert to another. The system validates the new expert, stores the reassignment as assignment history, and sends notifications to the new owner. This preserved history supports escalation and technician reports.
 
-```mermaid
-graph TD
-    A[Start Reassignment] --> B[Joseph opens Ticket details]
-    B --> C[Select Assignee dropdown]
-    C --> D[Choose new Expert John]
-    D --> E[Click Confirm Reassignment]
-    
-    E --> F{New Expert is in active Team?}
-    F -->|No| F_Err[Throw validation error: Expert must be in team]
-    F -->|Yes| G[Submit ReassignTicketCommand]
-    
-    G --> H[Update Ticket DB: expert_id = John]
-    H --> I[Log reassignment timeline log]
-    I --> J[Publish TicketReassignedEvent to Kafka]
-    J --> K[Dispatch Kafka alerts to John]
-    K --> L[End Reassignment]
-```
-
----
+| Stage | Description |
+| --- | --- |
+| Reassignment request | Service Desk chooses a new expert from the ticket details page. |
+| Validation | The new expert must be active and valid for the selected team/context. |
+| History update | The new assignment is recorded without losing the previous assignment trail. |
+| Notification | The new owner receives the reassignment alert. |
+| Reporting impact | Reassignment history contributes to escalation and technician performance reports. |
 
 ## 11.2.4 Ticket Resolution Flow
 
-Tracks ticket resolution, closure, and the 7-day reopen window.
+<ZoomableImage src="/img/process-workflows/ticket-resolution-flow.svg" alt="Ticket resolution flow" maxHeight="640px" />
 
-<ZoomableImage src={ticketResolutionFlow} alt="Ticket Resolution Flow" />
+Ticket resolution is completed by the assigned expert after entering clear resolution details. The system validates the resolution note, closes the ticket, stores the resolution message, publishes a closure event, and starts the reopen/finalization logic.
 
-```mermaid
-graph TD
-    A[Expert John opens assigned Ticket] --> B[Click Resolve Ticket]
-    B --> C[Input Resolution Details & click Submit]
-    
-    C --> D{Details >= 20 characters?}
-    D -->|No| D_Err[Prompt: Resolution detail is too short]
-    D -->|Yes| E[Submit CloseTicketCommand]
-    
-    E --> F[Update local DB: status = Closed]
-    F --> G[Append Resolution Update message to thread]
-    G --> H[Publish TicketClosedEvent to Kafka]
-    H --> I[Dispatch ticket closed alerts to Dr. Mary]
-    I --> J[Start 7-day timer]
-    
-    J --> K{Did Dr. Mary reply within 7 days?}
-    K -->|Yes| L[Submit ReopenTicketCommand]
-    L --> M[Update DB: status = Open]
-    M --> N[Publish TicketReopenedEvent to Kafka]
-    N --> A
-    
-    K -->|No/Timer Expires| O[Status finalized; lock ticket from edits]
-    O --> P[End Workflow]
-```
-
----
+| Stage | Description |
+| --- | --- |
+| Resolution entry | Expert provides resolution details. |
+| Validation | The note must be meaningful enough for audit and user communication. |
+| Ticket closure | Ticket status and resolved date are updated. |
+| Thread update | Resolution message is appended to the ticket conversation. |
+| User notification | Reporter receives the closure notification. |
+| Reopen/finalize | The ticket can be reopened within policy or finalized after the allowed window. |
 
 ## 11.2.5 Notification Engine Flow
 
-Visualizes the event-driven notifications loop.
+<ZoomableImage src="/img/process-workflows/notification-engine-flow.svg" alt="Notification engine flow" maxHeight="560px" />
 
-<ZoomableImage src={notificationEngineFlow} alt="Notification Engine Flow" />
+The notification engine keeps user-facing commands fast by handling alerts asynchronously. Ticket commands publish events, background workers consume them, templates are rendered using event data, and messages are delivered through configured channels such as SMTP or other enabled gateways.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant App as Ticket Service Command
-    participant Kafka as Kafka Event Bus
-    participant Worker as Background Alert Consumer
-    participant Templates as Template Engine
-    participant Gateways as SMTP / WhatsApp Gateways
-    actor Mary as Recipient (Dr. Mary)
-    
-    App->>App: Process Command (e.g. Ticket Closed)
-    App->>Kafka: Publish Event (Event ID, Submitter Details)
-    App-->>App: Return success to UI immediately
-    
-    Note over Worker: Listens to Kafka topic 'ticket-notifications'
-    Kafka-.>>Worker: Deliver TicketClosedEvent message
-    Worker->>Templates: Fetch template matching event
-    Templates-->>Worker: Return compiled body
-    Worker->>Gateways: Dispatch payloads (SMTP/Twilio API)
-    Gateways->>Mary: Deliver Email / WhatsApp message
-```
+| Stage | Description |
+| --- | --- |
+| Event creation | Ticket workflow creates an event such as created, assigned, reassigned, closed, or reopened. |
+| Event publish | Kafka receives the event without blocking the UI response. |
+| Worker processing | Background consumers read the event and decide who should be notified. |
+| Template rendering | Message body is generated from the configured template and event data. |
+| Delivery | SMTP or another enabled channel sends the notification. |

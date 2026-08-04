@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}
+      .title{font:700 32px Arial,sans-serif;fill:#111827}
+      .subtitle{font:400 16px Arial,sans-serif;fill:#4b5563}
+      .group{fill:#ffffff;stroke:#d1d5db;stroke-width:2;rx:16}
+      .groupTitle{font:700 18px Arial,sans-serif;fill:#374151}
+      .incident{fill:#eef2ff;stroke:#6d5dfc;stroke-width:3;rx:12}
+      .box{fill:#ffffff;stroke:#64748b;stroke-width:2;rx:10}
+      .box2{fill:#ecfdf5;stroke:#10b981;stroke-width:2;rx:10}
+      .box3{fill:#fff7ed;stroke:#f97316;stroke-width:2;rx:10}
+      .box4{fill:#fdf2f8;stroke:#ec4899;stroke-width:2;rx:10}
+      .head{font:700 15px Arial,sans-serif;fill:#111827}
+      .field{font:400 13px Arial,sans-serif;fill:#374151}
+      .rel{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#94a3b8;stroke-width:2;fill:none;stroke-dasharray:7 7;marker-end:url(#arrow)}
+      .label{font:600 12px Arial,sans-serif;fill:#475569}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1600" height="1100"/>
+  <text class="title" x="56" y="58">Ticketing Service Relationship Diagram</text>
+  <text class="subtitle" x="56" y="88">Migrated Ticketing Service entities for ticket lifecycle, routing, assignment, conversation, attachments, audit history, and SLA configuration.</text>
+
+  <rect class="group" x="515" y="135" width="570" height="340"/>
+  <text class="groupTitle" x="540" y="168">Core Ticket</text>
+  <rect class="incident" x="610" y="205" width="380" height="205"/>
+  <text class="head" x="640" y="238">Incidents</text>
+  <text class="field" x="640" y="266">PK Oid</text>
+  <text class="field" x="640" y="288">SLNumber, TicketTitle, Description</text>
+  <text class="field" x="640" y="310">IncidentStatus, Source, Priority</text>
+  <text class="field" x="640" y="332">DueDate, DateResolved</text>
+  <text class="field" x="640" y="354">FacilityId, ContactId, Expert references</text>
+  <text class="field" x="640" y="376">CategoryId, TeamId, ApplicationId, BranchId</text>
+  <text class="field" x="640" y="398">OrganizationId for tenant boundary</text>
+
+  <rect class="group" x="40" y="135" width="420" height="435"/>
+  <text class="groupTitle" x="65" y="168">Routing and Configuration</text>
+  <rect class="box2" x="85" y="205" width="155" height="95"/>
+  <text class="head" x="105" y="233">Categories</text>
+  <text class="field" x="105" y="258">Name</text>
+  <text class="field" x="105" y="280">ParentCategoryId</text>
+  <rect class="box2" x="275" y="205" width="145" height="95"/>
+  <text class="head" x="295" y="233">Teams</text>
+  <text class="field" x="295" y="258">Name</text>
+  <text class="field" x="295" y="280">IsAssigned</text>
+  <rect class="box2" x="145" y="348" width="215" height="105"/>
+  <text class="head" x="165" y="376">IdentifiedCategories</text>
+  <text class="field" x="165" y="401">CategoryId</text>
+  <text class="field" x="165" y="423">TeamId</text>
+  <rect class="box2" x="95" y="485" width="160" height="70"/>
+  <text class="head" x="115" y="513">Applications</text>
+  <text class="field" x="115" y="535">Name</text>
+  <rect class="box2" x="285" y="485" width="140" height="70"/>
+  <text class="head" x="305" y="513">PriorityConfig</text>
+  <text class="field" x="305" y="535">Priority + time</text>
+  <path class="rel" d="M240 252 L275 252"/>
+  <path class="rel" d="M162 300 C165 330 190 340 210 348"/>
+  <path class="rel" d="M347 300 C340 330 315 340 295 348"/>
+  <path class="rel" d="M420 252 C520 252 555 265 610 285"/>
+  <path class="rel" d="M360 252 C500 230 550 250 610 300"/>
+  <path class="rel" d="M255 520 C420 500 545 420 610 362"/>
+  <path class="dash" d="M355 520 C550 575 800 555 910 410"/>
+
+  <rect class="group" x="1140" y="135" width="410" height="435"/>
+  <text class="groupTitle" x="1165" y="168">Assignment and Access</text>
+  <rect class="box3" x="1195" y="205" width="270" height="125"/>
+  <text class="head" x="1215" y="233">IdentifiedAssignedIncidents</text>
+  <text class="field" x="1215" y="258">IncidentId</text>
+  <text class="field" x="1215" y="280">ExpertId, TeamId</text>
+  <text class="field" x="1215" y="302">AllowAccess, DateIdentified</text>
+  <rect class="box3" x="1195" y="380" width="155" height="105"/>
+  <text class="head" x="1215" y="408">TeamMembers</text>
+  <text class="field" x="1215" y="433">UserId</text>
+  <text class="field" x="1215" y="455">TeamId</text>
+  <rect class="box3" x="1370" y="380" width="155" height="105"/>
+  <text class="head" x="1390" y="408">BranchPermissions</text>
+  <text class="field" x="1390" y="433">BranchId</text>
+  <text class="field" x="1390" y="455">UserAccountId</text>
+  <path class="rel" d="M990 300 C1075 300 1120 270 1195 270"/>
+  <path class="dash" d="M1272 380 C1160 305 1035 290 990 300"/>
+  <text class="label" x="1050" y="260">assignment history</text>
+
+  <rect class="group" x="40" y="625" width="510" height="390"/>
+  <text class="groupTitle" x="65" y="658">Conversation and Attachments</text>
+  <rect class="box" x="85" y="700" width="175" height="115"/>
+  <text class="head" x="105" y="728">Messages</text>
+  <text class="field" x="105" y="753">IncidentId</text>
+  <text class="field" x="105" y="775">IsInternal</text>
+  <text class="field" x="105" y="797">IsResolution</text>
+  <rect class="box" x="310" y="700" width="200" height="115"/>
+  <text class="head" x="330" y="728">MessageAttachments</text>
+  <text class="field" x="330" y="753">MessageId</text>
+  <text class="field" x="330" y="775">AttachmentPath</text>
+  <rect class="box" x="175" y="870" width="230" height="110"/>
+  <text class="head" x="195" y="898">IncidentAttacments</text>
+  <text class="field" x="195" y="923">IncidentId</text>
+  <text class="field" x="195" y="945">AttacmentPath</text>
+  <text class="field" x="195" y="967">MailAttachmentId</text>
+  <path class="rel" d="M260 758 L310 758"/>
+  <path class="rel" d="M610 370 C430 515 250 620 172 700"/>
+  <path class="rel" d="M620 410 C495 565 365 745 290 870"/>
+
+  <rect class="group" x="610" y="625" width="430" height="390"/>
+  <text class="groupTitle" x="635" y="658">Audit and Suggestions</text>
+  <rect class="box4" x="660" y="700" width="165" height="115"/>
+  <text class="head" x="680" y="728">IncidentHistories</text>
+  <text class="field" x="680" y="753">IncidentId</text>
+  <text class="field" x="680" y="775">ActionType</text>
+  <text class="field" x="680" y="797">Field changes</text>
+  <rect class="box4" x="850" y="700" width="155" height="115"/>
+  <text class="head" x="870" y="728">Suggestions</text>
+  <text class="field" x="870" y="753">IncidentId</text>
+  <text class="field" x="870" y="775">SourceIncidentId</text>
+  <text class="field" x="870" y="797">SimilarityScore</text>
+  <rect class="box4" x="715" y="870" width="210" height="95"/>
+  <text class="head" x="735" y="898">Reporting Source Data</text>
+  <text class="field" x="735" y="923">Status, SLA, messages</text>
+  <text class="field" x="735" y="945">Assignments, facilities</text>
+  <path class="rel" d="M750 410 C710 520 730 615 742 700"/>
+  <path class="rel" d="M910 410 C970 525 970 620 927 700"/>
+  <path class="dash" d="M800 410 L820 870"/>
+
+  <rect class="group" x="1095" y="625" width="455" height="390"/>
+  <text class="groupTitle" x="1120" y="658">Logical User Service References</text>
+  <rect class="box" x="1145" y="700" width="160" height="95"/>
+  <text class="head" x="1165" y="728">FacilityId</text>
+  <text class="field" x="1165" y="753">User Service</text>
+  <text class="field" x="1165" y="775">Companies.Oid</text>
+  <rect class="box" x="1335" y="700" width="160" height="95"/>
+  <text class="head" x="1355" y="728">ContactId</text>
+  <text class="field" x="1355" y="753">User Service</text>
+  <text class="field" x="1355" y="775">Contacts.Oid</text>
+  <rect class="box" x="1145" y="850" width="160" height="95"/>
+  <text class="head" x="1165" y="878">ExpertId</text>
+  <text class="field" x="1165" y="903">User Service</text>
+  <text class="field" x="1165" y="925">UserAccounts.Oid</text>
+  <rect class="box" x="1335" y="850" width="160" height="95"/>
+  <text class="head" x="1355" y="878">OrganizationId</text>
+  <text class="field" x="1355" y="903">User Service</text>
+  <text class="field" x="1355" y="925">Organizations.Oid</text>
+  <path class="dash" d="M990 345 C1100 475 1180 600 1225 700"/>
+  <path class="dash" d="M990 360 C1140 505 1330 610 1415 700"/>
+  <path class="dash" d="M1330 330 C1265 520 1235 715 1225 850"/>
+  <path class="dash" d="M910 205 C1160 210 1355 515 1415 850"/>
+</svg>

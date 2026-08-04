@@ -39,14 +39,14 @@ const handoverDocs: DocCard[] = [
     title: 'Reports',
     description:
       'Ticket dashboards, exports, monitoring views, SLA reporting, and reporting security expectations.',
-    to: '/docs/reporting-and-security',
+    to: '/docs/reports',
     meta: 'Operations',
   },
   {
     title: 'Architecture / Technical Design',
     description:
       'Deployment architecture, CQRS/MediatR services, gateway routing, database ownership, Kafka events, and integrations.',
-    to: '/docs/architecture-technical-design',
+    to: '/docs/system-architecture-technical-design',
     meta: 'Technical',
   },
   {
