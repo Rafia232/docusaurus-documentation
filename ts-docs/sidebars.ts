@@ -22,16 +22,16 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'installation-manual',
-          label: '1. Installation Manual',
+          label: '1. Installation Guide',
         },
         {
           type: 'doc',
           id: 'admin-configuration-guide',
-          label: '2. Admin & Configuration Guide',
+          label: '2. Administration & Configuration Guide',
         },
         {
           type: 'category',
-          label: '3. Role-Based User Guide',
+          label: '3. Role-Based User Guides',
           link: {
             type: 'doc',
             id: 'role-based-user-guide',
@@ -61,7 +61,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: '4. Dashboard',
+          label: '4. Dashboards',
           link: {
             type: 'doc',
             id: 'dashboard',
@@ -184,7 +184,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'acceptance-criteria-and-future',
-          label: '12.3 Operational & Technical Risk Matrix & Future Roadmap',
+          label: '12.3 Risk Matrix & Future Roadmap',
         },
         {
           type: 'doc',

@@ -9,17 +9,17 @@ This guide explains how administrators can configure the organization, regions, 
 
 Administrators should complete the initial configuration in the following sequence:
 
-**1. Set Organization Profile**   
-**2. Regions**   
-**3. Locations**   
-**4. Users**  
-**5. Assign Roles to Users**  
-**6. Assign Permissions to Roles**  
-**7. Email Configuration**   
-**8. Automation Rules**  
-**9. Categories and Subcategories**  
-**10. Applications**  
-**11. Priorities**
+1. [Set Organization Profile](/docs/admin-configuration-guide#21-set-organization-profile)
+2. [Regions](/docs/admin-configuration-guide#22-regions)
+3. [Locations](/docs/admin-configuration-guide#23-locations)
+4. [Users](/docs/admin-configuration-guide#24-users)
+5. [Assign Roles to Users](/docs/admin-configuration-guide#25-assign-roles-to-users)
+6. [Assign Permissions to Roles](/docs/admin-configuration-guide#26-assign-permissions-to-roles)
+7. [Email Configuration](/docs/admin-configuration-guide#27-email-configuration)
+8. [Automation Rules](/docs/admin-configuration-guide#28-automation-rules)
+9. [Categories and Subcategories](/docs/admin-configuration-guide#29-categories-and-subcategories)
+10. [Applications](/docs/admin-configuration-guide#210-applications)
+11. [Priorities](/docs/admin-configuration-guide#211-priorities)
 
 :::note
 Regions and locations should be configured before creating regional and facility users. This ensures that the correct region and facility can be assigned during user creation.

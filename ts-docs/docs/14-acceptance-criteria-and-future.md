@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-title: 12.3 AOperational & Technical Risk Matrix & Future Roadmap
+title: 12.3 Risk Matrix & Future Roadmap
 ---
 
-# 12.3 Operational & Technical Risk Matrix & Future Roadmap
+# 12.3 Risk Matrix & Future Roadmap
 
 This section documents operational and technical risk mitigations and the product development roadmap.
 
