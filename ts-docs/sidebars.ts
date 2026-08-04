@@ -1,23 +1,14 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
-/**
- * Creating a sidebar enables you to:
- * - create an ordered group of docs
- * - render a sidebar for each doc of that group
- * - provide next/previous navigation
- *
- * The sidebars can be generated from the filesystem, or explicitly defined here.
- *
- * Create as many sidebars as you want.
- */
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
+
     {
       type: 'category',
-      label: 'Project Handover',
+      label: 'Getting Started',
+      collapsible: true,
+      collapsed: false,
       items: [
         {
           type: 'doc',
@@ -29,9 +20,19 @@ const sidebars: SidebarsConfig = {
           id: 'admin-configuration-guide',
           label: '2. Administration & Configuration Guide',
         },
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'User Operations',
+      collapsible: true,
+      collapsed: true,
+      items: [
         {
           type: 'category',
           label: '3. Role-Based User Guides',
+          collapsed: true,
           link: {
             type: 'doc',
             id: 'role-based-user-guide',
@@ -59,9 +60,11 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
+
         {
           type: 'category',
           label: '4. Dashboards',
+          collapsed: true,
           link: {
             type: 'doc',
             id: 'dashboard',
@@ -70,28 +73,34 @@ const sidebars: SidebarsConfig = {
             {
               type: 'link',
               label: '4.1 Technician Dashboard',
-              href: '/docs/dashboard#41-technician-dashboard--regional-user',
+              href:
+                '/docs/dashboard#41-technician-dashboard--regional-user',
             },
             {
               type: 'link',
               label: '4.2 Regional Dashboard',
-              href: '/docs/dashboard#42-regional-dashboard--regional-user',
+              href:
+                '/docs/dashboard#42-regional-dashboard--regional-user',
             },
             {
               type: 'link',
               label: '4.3 Management Dashboard',
-              href: '/docs/dashboard#43-management-dashboard--national-user',
+              href:
+                '/docs/dashboard#43-management-dashboard--national-user',
             },
             {
               type: 'link',
               label: '4.4 Executive Dashboard',
-              href: '/docs/dashboard#44-executive-dashboard--administrator',
+              href:
+                '/docs/dashboard#44-executive-dashboard--administrator',
             },
           ],
         },
+
         {
           type: 'category',
           label: '5. Reports',
+          collapsed: true,
           link: {
             type: 'doc',
             id: 'reports',
@@ -99,7 +108,7 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'link',
-              label: '5.1 Tickets Log',
+              label: '5.1 Ticket Log',
               href: '/docs/reports#tickets-log',
             },
             {
@@ -124,6 +133,15 @@ const sidebars: SidebarsConfig = {
             },
           ],
         },
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'Technical Documentation',
+      collapsible: true,
+      collapsed: true,
+      items: [
         {
           type: 'doc',
           id: 'security-architecture',
@@ -144,6 +162,15 @@ const sidebars: SidebarsConfig = {
           id: 'integrations',
           label: '9. API / Integration Documentation',
         },
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'Handover & Readiness',
+      collapsible: true,
+      collapsed: true,
+      items: [
         {
           type: 'doc',
           id: 'code-transfer-readiness',
@@ -151,9 +178,12 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+
     {
       type: 'category',
-      label: 'Operations & Support Guides',
+      label: 'Operations & Support',
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
@@ -167,9 +197,12 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+
     {
       type: 'category',
       label: 'Technical Reference',
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
