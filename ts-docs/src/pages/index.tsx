@@ -166,7 +166,7 @@ function HomeHero() {
 
         <p className={styles.subtitle}>
           Access the full documentation package for installing, configuring,
-          operating, integrating, and transferring the TeraSupport helpdesk
+          operating, integrating, and transferring the MoH Helpdesk
           platform.
         </p>
 
