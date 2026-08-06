@@ -1582,7 +1582,7 @@ Functional verification:
 3. Create or verify organization.
 4. Create user.
 5. Create region and facility.
-6. Create category and team.
+6. Create category.
 7. Create ticket from portal.
 8. Assign ticket.
 9. Send reply.

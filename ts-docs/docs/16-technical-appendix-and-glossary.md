@@ -41,7 +41,7 @@ This section contains the Glossary of terms and the Technical Appendix containin
 - `ticket-creation`: Carries `TicketCreatedEvent` payloads.
 - `ticket-assignment`: Carries `TicketAssignedEvent` payloads.
 - `device-linking`: Carries `DeviceLinkedToTicketEvent` payloads.
-- `ticket-notifications`: Queue for email and WhatsApp notifications.
+- `ticket-notifications`: Queue for email.
 
 ### 12.4.2.3 Kafka Event Payload Schemas (JSON)
 

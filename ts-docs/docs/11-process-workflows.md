@@ -13,15 +13,14 @@ This section shows the main operational workflows used by the MoH Helpdesk platf
 
 <ZoomableImage src="/img/process-workflows/ticket-creation-flow.svg" alt="Facility user ticket creation flow" maxHeight="620px" />
 
-A Facility User creates a ticket from the self-service portal by entering the issue title, description, category, facility/device context, and optional attachments. The system validates the input, stores the ticket, generates the ticket number, applies category-to-team routing, assigns the ticket when possible, and publishes the creation event for notification handling.
+A Facility User creates a ticket from the self-service portal by entering the issue title, description, category, facility/device context, and optional attachments. The system validates the input, stores the ticket, generates the ticket number, applies category, assigns the ticket when possible, and publishes the creation event for notification handling.
 
 | Stage | Description |
 | --- | --- |
 | User submission | Facility User enters the ticket information and submits it. |
 | Validation | Required fields and attachment rules are checked. |
 | Ticket creation | Ticketing Service stores the new incident and ticket number. |
-| Routing | Category mapping selects the responsible support team. |
-| Assignment | The ticket is assigned to an available/team-lead expert or sent to triage. |
+| Assignment | The ticket is assigned to an available expert or sent to triage. |
 | Notification | Ticket-created event triggers email or other enabled alerts. |
 
 ## 11.2.2 Ticket Assignment Flow
@@ -33,7 +32,7 @@ Ticket assignment starts when a Service Desk user opens the ticket details page 
 | Stage | Description |
 | --- | --- |
 | Ticket review | Service Desk reviews the ticket details. |
-| Expert selection | Eligible experts are loaded from the team/user access context. |
+| Expert selection | Eligible experts are loaded from the user access context. |
 | Assignment save | Assignment data is stored against the ticket. |
 | Status update | The ticket moves into the active handling state. |
 | Visibility update | UI and reports reflect the latest assignment. |
@@ -47,7 +46,7 @@ Ticket reassignment is used when a ticket must move from one expert to another. 
 | Stage | Description |
 | --- | --- |
 | Reassignment request | Service Desk chooses a new expert from the ticket details page. |
-| Validation | The new expert must be active and valid for the selected team/context. |
+| Validation | The new expert must be active and valid for the selected context. |
 | History update | The new assignment is recorded without losing the previous assignment trail. |
 | Notification | The new owner receives the reassignment alert. |
 | Reporting impact | Reassignment history contributes to escalation and technician performance reports. |

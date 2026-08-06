@@ -14,12 +14,12 @@ This document summarizes the technical design of the MoH Helpdesk platform for h
 
 ## 7.1 System Context
 
-The MoH Helpdesk is a centralized support and ticket management platform used by facility users, regional users, national users, service desk teams, and administrators.
+The MoH Helpdesk is a centralized support and ticket management platform used by facility users, regional users, national users, and administrators.
 
 Core capabilities include:
 
 - Ticket creation from public portal, email, and internal form.
-- Ticket routing by category and team mapping.
+- Ticket routing by category and subcategory
 - Role-based visibility for facility, regional, national, and administrator users.
 - Ticket assignment, communication, attachments, and closure.
 - Reporting, SLA monitoring, and overdue tracking.
@@ -134,7 +134,6 @@ The platform can integrate with:
 - SMTP / MoH Mail Gateway for email alerts.
 - Kafka for asynchronous events.
 - Object storage such as MinIO or S3 for attachments.
-- Twilio WhatsApp Gateway if enabled in the deployed environment.
 - External device or facility systems if synchronization is configured.
 
 See [Integration Documentation](./9-integrations.md).
