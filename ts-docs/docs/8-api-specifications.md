@@ -51,28 +51,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/ticket-api/application/&#123;key&#125;` | PUT /ticket-api/application/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateApplication`<br />text/json: `UpdateApplication`<br />application/*+json: `UpdateApplication` | `200` OK |
 | **GET** | `/ticket-api/applications/&#123;organizationId&#125;` | GET /ticket-api/applications/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.3 Branch
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **POST** | `/ticket-api/branch` | POST /ticket-api/branch | - | application/json: `CreateBranch`<br />text/json: `CreateBranch`<br />application/*+json: `CreateBranch` | `200` OK |
-| **DELETE** | `/ticket-api/branch/&#123;key&#125;` | DELETE /ticket-api/branch/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **GET** | `/ticket-api/branch/&#123;key&#125;` | GET /ticket-api/branch/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **PUT** | `/ticket-api/branch/&#123;key&#125;` | PUT /ticket-api/branch/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateBranch`<br />text/json: `UpdateBranch`<br />application/*+json: `UpdateBranch` | `200` OK |
-| **GET** | `/ticket-api/branches/&#123;organizationId&#125;` | GET /ticket-api/branches/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
-| **PUT** | `/ticket-api/bulk-branches` | PUT /ticket-api/bulk-branches | - | application/json: `BulkBranchStatusDto`<br />text/json: `BulkBranchStatusDto`<br />application/*+json: `BulkBranchStatusDto` | `200` OK |
-
-### 8.3.4 BranchPermission
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **POST** | `/ticket-api/branch-permission` | POST /ticket-api/branch-permission | - | application/json: `CreateBranchPermission`<br />text/json: `CreateBranchPermission`<br />application/*+json: `CreateBranchPermission` | `200` OK |
-| **DELETE** | `/ticket-api/branch-permission/&#123;key&#125;` | DELETE /ticket-api/branch-permission/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **GET** | `/ticket-api/branch-permission/&#123;key&#125;` | GET /ticket-api/branch-permission/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **PUT** | `/ticket-api/branch-permission/&#123;key&#125;` | PUT /ticket-api/branch-permission/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateBranchPermission`<br />text/json: `UpdateBranchPermission`<br />application/*+json: `UpdateBranchPermission` | `200` OK |
-| **GET** | `/ticket-api/branch-permissions/&#123;organizationId&#125;/&#123;branchId&#125;` | GET /ticket-api/branch-permissions/&#123;organizationId&#125;/&#123;branchId&#125; | `organizationId` (path, required, string)<br />`branchId` (path, required, integer)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
-
-### 8.3.5 Category
+### 8.3.3 Category
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -85,7 +64,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/ticket-api/category/&#123;key&#125;` | PUT /ticket-api/category/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateCategory`<br />text/json: `UpdateCategory`<br />application/*+json: `UpdateCategory` | `200` OK |
 | **GET** | `/ticket-api/parent-categories/&#123;organizationId&#125;` | GET /ticket-api/parent-categories/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`search` (query, string) | - | `200` OK |
 
-### 8.3.6 IdentifiedCategory
+### 8.3.4 IdentifiedCategory
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -96,7 +75,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/identify-category/&#123;key&#125;` | GET /ticket-api/identify-category/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
 | **PUT** | `/ticket-api/identify-category/&#123;key&#125;` | PUT /ticket-api/identify-category/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateIdentifiedCategory`<br />text/json: `UpdateIdentifiedCategory`<br />application/*+json: `UpdateIdentifiedCategory` | `200` OK |
 
-### 8.3.7 Incident
+### 8.3.5 Incident
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -124,14 +103,12 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/incident/details-count/&#123;organizationId&#125;` | GET /ticket-api/incident/details-count/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`startDate` (query, string)<br />`endDate` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/incident/facility-wise-count/&#123;organizationId&#125;` | GET /ticket-api/incident/facility-wise-count/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`startDate` (query, string)<br />`endDate` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/incident/networkDeviceId/&#123;networkDeviceId&#125;` | GET /ticket-api/incident/networkDeviceId/&#123;networkDeviceId&#125; | `networkDeviceId` (path, required, string) | - | `200` OK |
-| **GET** | `/ticket-api/incident/team-wise-count/&#123;organizationId&#125;` | GET /ticket-api/incident/team-wise-count/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`startDate` (query, string)<br />`endDate` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/incidents/&#123;organizationId&#125;` | GET /ticket-api/incidents/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string)<br />`incidentStatus` (query)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`isAssigned` (query, boolean)<br />`companyName` (query, string)<br />`regionId` (query, string)<br />`expertUserId` (query, string)<br />`applicationId` (query, string)<br />`categoryId` (query, integer)<br />`parentCategoryId` (query, integer) | - | `200` OK |
 | **GET** | `/ticket-api/last-incident/organizationId/&#123;organizationId&#125;` | GET /ticket-api/last-incident/organizationId/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/ticket-api/similar-resolved-tickets/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/similar-resolved-tickets/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/ticket-api/ticket-solution-suggestions/&#123;organizationId&#125;` | GET /ticket-api/ticket-solution-suggestions/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`title` (query, string)<br />`description` (query, string) | - | `200` OK |
-| **PUT** | `/ticket-api/transfer-incident/&#123;key&#125;` | PUT /ticket-api/transfer-incident/&#123;key&#125; | `key` (path, required, string) | application/json: `TeamTransferDto`<br />text/json: `TeamTransferDto`<br />application/*+json: `TeamTransferDto` | `200` OK |
 
-### 8.3.8 IncidentAssigned
+### 8.3.6 IncidentAssigned
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -145,20 +122,20 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/incident-assigned/member/download-csv/&#123;organizationId&#125;` | GET /ticket-api/incident-assigned/member/download-csv/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`categoryId` (query, integer)<br />`brandName` (query, string)<br />`incidentStatus` (query) | - | `200` OK |
 | **GET** | `/ticket-api/incident-assigns/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/incident-assigns/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.9 IncidentAttachment
+### 8.3.7 IncidentAttachment
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **DELETE** | `/ticket-api/delete-incident-attachment` | DELETE /ticket-api/delete-incident-attachment | - | application/json: `DeleteAttachmentDto`<br />text/json: `DeleteAttachmentDto`<br />application/*+json: `DeleteAttachmentDto` | `200` OK |
 | **GET** | `/ticket-api/incident-attachment/&#123;incidentId&#125;` | GET /ticket-api/incident-attachment/&#123;incidentId&#125; | `incidentId` (path, required, string) | - | `200` OK |
 
-### 8.3.10 IncidentHistory
+### 8.3.8 IncidentHistory
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **GET** | `/ticket-api/incident-history/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/incident-history/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string)<br />`actionType` (query) | - | `200` OK |
 
-### 8.3.11 Message
+### 8.3.9 Message
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -170,14 +147,14 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/messages/&#123;incidentId&#125;` | GET /ticket-api/messages/&#123;incidentId&#125; | `incidentId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/messages/sl/&#123;sl&#125;/&#123;organizationId&#125;` | GET /ticket-api/messages/sl/&#123;sl&#125;/&#123;organizationId&#125; | `sl` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.12 PriorityConfiguration
+### 8.3.10 PriorityConfiguration
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **POST** | `/ticket-api/priority-configuration` | POST /ticket-api/priority-configuration | `organizationId` (query, string) | application/json: `array&lt;CreatePriorityConfigurationDto&gt;`<br />text/json: `array&lt;CreatePriorityConfigurationDto&gt;`<br />application/*+json: `array&lt;CreatePriorityConfigurationDto&gt;` | `200` OK |
 | **GET** | `/ticket-api/priority-configurations/&#123;organizationId&#125;` | GET /ticket-api/priority-configurations/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 
-### 8.3.13 Report
+### 8.3.11 Report
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -209,7 +186,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/technician-productivity` | GET /ticket-api/technician-productivity | `organizationId` (query, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`dashboardTimeFilter` (query) | - | `200` OK |
 | **GET** | `/ticket-api/technician-sla-ticket` | GET /ticket-api/technician-sla-ticket | `organizationId` (query, string)<br />`expertId` (query, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`dashboardTimeFilter` (query) | - | `200` OK |
 
-### 8.3.14 ReportFile
+### 8.3.12 ReportFile
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -239,27 +216,6 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/tickets-handled-per-technician-report-download` | GET /ticket-api/tickets-handled-per-technician-report-download | `organizationId` (query, string)<br />`userId` (query, string)<br />`fromDate` (query, string)<br />`toDate` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/weekly-incident-report` | GET /ticket-api/weekly-incident-report | `organizationId` (query, string)<br />`userId` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/weekly-incident-report-list` | GET /ticket-api/weekly-incident-report-list | `organizationId` (query, string)<br />`pageNumber` (query, integer)<br />`pageSize` (query, integer) | - | `200` OK |
-
-### 8.3.15 Team
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **POST** | `/ticket-api/team` | POST /ticket-api/team | - | application/json: `CreateTeam`<br />text/json: `CreateTeam`<br />application/*+json: `CreateTeam` | `200` OK |
-| **DELETE** | `/ticket-api/team/&#123;key&#125;` | DELETE /ticket-api/team/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **GET** | `/ticket-api/team/&#123;key&#125;` | GET /ticket-api/team/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **PUT** | `/ticket-api/team/&#123;key&#125;` | PUT /ticket-api/team/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateTeam`<br />text/json: `UpdateTeam`<br />application/*+json: `UpdateTeam` | `200` OK |
-| **GET** | `/ticket-api/teams/&#123;organizationId&#125;` | GET /ticket-api/teams/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
-| **GET** | `/ticket-api/user-teams/&#123;organizationId&#125;/&#123;userId&#125;` | GET /ticket-api/user-teams/&#123;organizationId&#125;/&#123;userId&#125; | `organizationId` (path, required, string)<br />`userId` (path, required, string) | - | `200` OK |
-
-### 8.3.16 TeamMember
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **DELETE** | `/ticket-api/bulk-team-member` | DELETE /ticket-api/bulk-team-member | - | application/json: `RemoveTeamMemberDto`<br />text/json: `RemoveTeamMemberDto`<br />application/*+json: `RemoveTeamMemberDto` | `200` OK |
-| **POST** | `/ticket-api/team-member` | POST /ticket-api/team-member | - | application/json: `CreateTeamMember`<br />text/json: `CreateTeamMember`<br />application/*+json: `CreateTeamMember` | `200` OK |
-| **DELETE** | `/ticket-api/team-member/&#123;key&#125;` | DELETE /ticket-api/team-member/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
-| **PUT** | `/ticket-api/team-member/&#123;key&#125;` | PUT /ticket-api/team-member/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateTeamMember`<br />text/json: `UpdateTeamMember`<br />application/*+json: `UpdateTeamMember` | `200` OK |
-| **GET** | `/ticket-api/team-members/&#123;organizationId&#125;/&#123;teamId&#125;` | GET /ticket-api/team-members/&#123;organizationId&#125;/&#123;teamId&#125; | `organizationId` (path, required, string)<br />`teamId` (path, required, integer)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
 ---
 
@@ -356,19 +312,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/user-api/user-active-in-active-from-organization` | PUT /user-api/user-active-in-active-from-organization | - | application/json: `InActiveUserFromOrganizationDto`<br />text/json: `InActiveUserFromOrganizationDto`<br />application/*+json: `InActiveUserFromOrganizationDto` | `200` OK |
 | **GET** | `/user-api/whats-app-phone-id/&#123;phoneId&#125;` | GET /user-api/whats-app-phone-id/&#123;phoneId&#125; | `phoneId` (path, required, string) | - | `200` OK |
 
-### 8.4.8 Package
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **POST** | `/user-api/multiple-packages` | POST /user-api/multiple-packages | - | application/json: `array&lt;CreatePackage&gt;`<br />text/json: `array&lt;CreatePackage&gt;`<br />application/*+json: `array&lt;CreatePackage&gt;` | `200` OK |
-| **POST** | `/user-api/package` | POST /user-api/package | - | application/json: `CreatePackage`<br />text/json: `CreatePackage`<br />application/*+json: `CreatePackage` | `200` OK |
-| **PUT** | `/user-api/package-status/&#123;key&#125;` | PUT /user-api/package-status/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdatePackageStatus`<br />text/json: `UpdatePackageStatus`<br />application/*+json: `UpdatePackageStatus` | `200` OK |
-| **DELETE** | `/user-api/package/&#123;key&#125;` | DELETE /user-api/package/&#123;key&#125; | `key` (path, required, string) | - | `200` OK |
-| **GET** | `/user-api/package/&#123;key&#125;` | GET /user-api/package/&#123;key&#125; | `key` (path, required, string) | - | `200` OK |
-| **PUT** | `/user-api/package/&#123;key&#125;` | PUT /user-api/package/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdatePackage`<br />text/json: `UpdatePackage`<br />application/*+json: `UpdatePackage` | `200` OK |
-| **GET** | `/user-api/packages` | GET /user-api/packages | `page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
-
-### 8.4.9 Region
+### 8.4.8 Region
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -378,14 +322,14 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/user-api/region/&#123;key&#125;` | PUT /user-api/region/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateRegion`<br />text/json: `UpdateRegion`<br />application/*+json: `UpdateRegion` | `200` OK |
 | **GET** | `/user-api/regions` | GET /user-api/regions | `OrganizationId` (query, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.4.10 RoleMapping
+### 8.4.9 RoleMapping
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **POST** | `/user-api/role-mapping` | POST /user-api/role-mapping | - | application/json: `FeatureMappingDto`<br />text/json: `FeatureMappingDto`<br />application/*+json: `FeatureMappingDto` | `200` OK |
 | **GET** | `/user-api/role-mappings/&#123;organizationId&#125;` | GET /user-api/role-mappings/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 
-### 8.4.11 UserAccess
+### 8.4.10 UserAccess
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -393,7 +337,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/user-access/&#123;userId&#125;/&#123;organizationId&#125;` | GET /user-api/user-access/&#123;userId&#125;/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`userId` (path, required, string) | - | `200` OK |
 | **GET** | `/user-api/user-access/validate/&#123;userEmail&#125;/&#123;serviceName&#125;/&#123;requiredRole&#125;` | GET /user-api/user-access/validate/&#123;userEmail&#125;/&#123;serviceName&#125;/&#123;requiredRole&#125; | `userEmail` (path, required, string)<br />`serviceName` (path, required, string)<br />`requiredRole` (path, required, string) | - | `200` OK |
 
-### 8.4.12 UserAccount
+### 8.4.11 UserAccount
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -422,20 +366,6 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/user-accounts/organizationId/&#123;organizationId&#125;` | GET /user-api/user-accounts/organizationId/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/user-api/user-accounts/search-by-text/&#123;organizationId&#125;` | GET /user-api/user-accounts/search-by-text/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`search` (query, string) | - | `200` OK |
 
-### 8.4.13 UserRequest
-
-| Method | Endpoint | Operation | Parameters | Request Body | Responses |
-| --- | --- | --- | --- | --- | --- |
-| **POST** | `/user-api/internal-user-request` | POST /user-api/internal-user-request | - | application/json: `CreateInternalUserRequestDto`<br />text/json: `CreateInternalUserRequestDto`<br />application/*+json: `CreateInternalUserRequestDto` | `200` OK |
-| **POST** | `/user-api/internal-user-request/status-update` | POST /user-api/internal-user-request/status-update | - | application/json: `InternalUserRequestStatusUpdateDto`<br />text/json: `InternalUserRequestStatusUpdateDto`<br />application/*+json: `InternalUserRequestStatusUpdateDto` | `200` OK |
-| **POST** | `/user-api/password-recovery-request` | POST /user-api/password-recovery-request | - | application/json: `RecoveryRequestDto`<br />text/json: `RecoveryRequestDto`<br />application/*+json: `RecoveryRequestDto` | `200` OK |
-| **DELETE** | `/user-api/remove-user-requests` | DELETE /user-api/remove-user-requests | - | application/json: `DeleteUserRequest`<br />text/json: `DeleteUserRequest`<br />application/*+json: `DeleteUserRequest` | `200` OK |
-| **POST** | `/user-api/reset-password-by-recovery-request` | POST /user-api/reset-password-by-recovery-request | - | application/json: `ResetPasswordByRecoveryRequestDto`<br />text/json: `ResetPasswordByRecoveryRequestDto`<br />application/*+json: `ResetPasswordByRecoveryRequestDto` | `200` OK |
-| **POST** | `/user-api/user-request` | POST /user-api/user-request | - | application/json: `CreateUserRequestDto`<br />text/json: `CreateUserRequestDto`<br />application/*+json: `CreateUserRequestDto` | `200` OK |
-| **POST** | `/user-api/user-request/set-password/&#123;userRequestId&#125;` | POST /user-api/user-request/set-password/&#123;userRequestId&#125; | `userRequestId` (path, required, string) | application/json: `SetPasswordDto`<br />text/json: `SetPasswordDto`<br />application/*+json: `SetPasswordDto` | `200` OK |
-| **POST** | `/user-api/user-request/status-update` | POST /user-api/user-request/status-update | - | application/json: `UserRequestStatusUpdateDto`<br />text/json: `UserRequestStatusUpdateDto`<br />application/*+json: `UserRequestStatusUpdateDto` | `200` OK |
-| **GET** | `/user-api/user-requests` | GET /user-api/user-requests | `page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string)<br />`organizationId` (query, string) | - | `200` OK |
-
 ---
 
 ## 8.5 Common Schemas and Enums
@@ -448,25 +378,20 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | --- | --- | --- | --- |
 | `ActionType` | enum | - | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15` |
 | `BooleanApiResponse` | object | - | `isSuccess`: `boolean`<br />`data`: `boolean`<br />`message`: `string`<br />`httpStatusCode`: `HttpStatusCode` |
-| `BulkBranchStatusDto` | object | - | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`branchId`: `array&lt;integer&gt;`<br />`isActive`: `boolean` |
 | `ClosedIncident` | object | - | `incidentId`: `array&lt;IncidenKey&gt;` |
 | `ContactDto` | object | - | `oid`: `string`<br />`contactFullName`: `string`<br />`contactEmail`: `string`<br />`companyId`: `string`<br />`contactPhone`: `string`<br />`organizationId`: `string` |
 | `CreateApplication` | object | `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string` |
-| `CreateBranch` | object | `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string`<br />`description`: `string`<br />`isActive`: `boolean` |
-| `CreateBranchPermission` | object | `branchId` | `createdBy`: `string`<br />`organizationId`: `string`<br />`branchId`: `integer`<br />`userAccountId`: `string`<br />`isActive`: `boolean` |
 | `CreateCategory` | object | `isSubCategory`, `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string`<br />`description`: `string`<br />`isSubCategory`: `boolean`<br />`parentCategoryId`: `integer` |
 | `CreateIdentifiedAssignedIncident` | object | `incidentId` | `createdBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`description`: `string`<br />`dateIdentified`: `string`<br />`allowAccess`: `boolean`<br />`incidentId`: `string`<br />`expertId`: `string` |
-| `CreateIdentifiedCategory` | object | `categoryId` | `createdBy`: `string`<br />`organizationId`: `string`<br />`categoryId`: `integer`<br />`teamId`: `integer` |
+| `CreateIdentifiedCategory` | object | `categoryId` | `createdBy`: `string`<br />`organizationId`: `string`<br />`categoryId`: `integer` |
 | `CreatePriorityConfigurationDto` | object | `createdBy`, `priority`, `timeInMinutes` | `priority`: `TicketPriority`<br />`timeInMinutes`: `number`<br />`createdBy`: `string` |
-| `CreateTeam` | object | `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string`<br />`description`: `string`<br />`isAssigned`: `boolean` |
-| `CreateTeamMember` | object | - | `createdBy`: `string`<br />`organizationId`: `string`<br />`userId`: `string`<br />`teamId`: `integer`<br />`isTeamLead`: `boolean`<br />`isPrimaryTeam`: `boolean` |
 | `DashboardTimeFilter` | enum | - | `1`, `2`, `3`, `4`, `5` |
 | `DeleteAttachmentDto` | object | - | `attachmentId`: `array&lt;integer&gt;` |
 | `ExtensionDto` | object | - | `oid`: `string`<br />`extentionName`: `string`<br />`extention`: `string`<br />`organizationId`: `string` |
 | `HttpStatusCode` | enum | - | `100`, `101`, `102`, `103`, `200`, `201`, `202`, `203`, `204`, `205`, `206`, `207`, `208`, `226`, `300`, `301`, `302`, `303`, `304`, `305`, `306`, `307`, `308`, `400`, `401`, `402`, `403`, `404`, `405`, `406`, `407`, `408`, `409`, `410`, `411`, `412`, `413`, `414`, `415`, `416`, `417`, `421`, `422`, `423`, `424`, `426`, `428`, `429`, `431`, `451`, `500`, `501`, `502`, `503`, `504`, `505`, `506`, `507`, `508`, `510`, `511` |
 | `IncidenKey` | object | - | `incidentId`: `string` |
 | `IncidentCreateMethod` | enum | - | `1`, `2`, `3`, `4`, `5` |
-| `IncidentDto` | object | `categoryId`, `description`, `facilityId`, `ticketTitle` | `createdBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`ticketTitle`: `string`<br />`description`: `string`<br />`facilityId`: `string`<br />`dateResolved`: `string`<br />`isAssigned`: `boolean`<br />`incidentStatus`: `IncidentStatus`<br />`incidentSource`: `SourceOfIncident`<br />`incidentCreateMethod`: `IncidentCreateMethod`<br />`dueDate`: `string`<br />`incidentPriority`: `TicketPriority`<br />`brandName`: `string`<br />`branchId`: `integer`<br />`contactId`: `string`<br />`expertId`: `string`<br />`slNumber`: `string`<br />...7 more |
+| `IncidentDto` | object | `categoryId`, `description`, `facilityId`, `ticketTitle` | `createdBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`ticketTitle`: `string`<br />`description`: `string`<br />`facilityId`: `string`<br />`dateResolved`: `string`<br />`isAssigned`: `boolean`<br />`incidentStatus`: `IncidentStatus`<br />`incidentSource`: `SourceOfIncident`<br />`incidentCreateMethod`: `IncidentCreateMethod`<br />`dueDate`: `string`<br />`incidentPriority`: `TicketPriority`<br />`brandName`: `string`<br />`contactId`: `string`<br />`expertId`: `string`<br />`slNumber`: `string`<br />...7 more |
 | `IncidentStatus` | enum | - | `0`, `1`, `2`, `3`, `4`, `5`, `6` |
 | `IncidentStatusDto` | object | - | `organizationId`: `string`<br />`incidentStatus`: `IncidentStatus`<br />`incidentId`: `string`<br />`modifiedBy`: `string` |
 | `Message` | object | - | `createdBy`: `string`<br />`dateCreated`: `string`<br />`modifiedBy`: `string`<br />`dateModified`: `string`<br />`organizationId`: `string`<br />`isDeleted`: `boolean`<br />`isSynced`: `boolean`<br />`isTPSynced`: `boolean`<br />`isArchived`: `boolean`<br />`oid`: `string`<br />`messageDate`: `string`<br />`description`: `string`<br />`isInternal`: `boolean`<br />`isResolution`: `boolean`<br />`isOpen`: `boolean`<br />`incidentId`: `string`<br />`emailMessageId`: `string` |
@@ -474,19 +399,13 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | `MessageDto` | object | - | `createdBy`: `string`<br />`dateCreated`: `string`<br />`modifiedBy`: `string`<br />`dateModified`: `string`<br />`organizationId`: `string`<br />`isDeleted`: `boolean`<br />`isSynced`: `boolean`<br />`isTPSynced`: `boolean`<br />`isArchived`: `boolean`<br />`oid`: `string`<br />`messageDate`: `string`<br />`description`: `string`<br />`isInternal`: `boolean`<br />`isResolution`: `boolean`<br />`isOpen`: `boolean`<br />`incidentId`: `string` |
 | `MessageDtoApiResponse` | object | - | `isSuccess`: `boolean`<br />`data`: `MessageDto`<br />`message`: `string`<br />`httpStatusCode`: `HttpStatusCode` |
 | `ObjectIEnumerableApiResponse` | object | - | `isSuccess`: `boolean`<br />`data`: `array&lt;object&gt;`<br />`message`: `string`<br />`httpStatusCode`: `HttpStatusCode` |
-| `RemoveTeamMemberDto` | object | - | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `array&lt;integer&gt;` |
 | `SourceOfIncident` | enum | - | `1`, `2`, `3`, `4`, `5` |
-| `TeamTransferDto` | object | - | `createdBy`: `string`<br />`dateCreated`: `string`<br />`modifiedBy`: `string`<br />`dateModified`: `string`<br />`organizationId`: `string`<br />`isDeleted`: `boolean`<br />`isSynced`: `boolean`<br />`isTPSynced`: `boolean`<br />`isArchived`: `boolean`<br />`incidentId`: `string`<br />`teamId`: `integer`<br />`expertId`: `string` |
 | `TextCorrectionRequestDto` | object | - | `text`: `string` |
 | `TicketPriority` | enum | - | `1`, `2`, `3`, `4` |
 | `UpdateApplication` | object | `name` | `id`: `string`<br />`name`: `string` |
-| `UpdateBranch` | object | `name`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`name`: `string`<br />`description`: `string`<br />`isActive`: `boolean` |
-| `UpdateBranchPermission` | object | `branchId`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`branchId`: `integer`<br />`userAccountId`: `string`<br />`isActive`: `boolean` |
 | `UpdateCategory` | object | `name`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`name`: `string`<br />`description`: `string`<br />`isSubCategory`: `boolean`<br />`parentCategoryId`: `integer` |
-| `UpdateIdentifiedAssignedIncident` | object | `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`description`: `string`<br />`dateIdentified`: `string`<br />`allowAccess`: `boolean`<br />`incidentId`: `string`<br />`teamId`: `integer`<br />`expertId`: `string` |
-| `UpdateIdentifiedCategory` | object | `categoryId`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`categoryId`: `integer`<br />`teamId`: `integer` |
-| `UpdateTeam` | object | `name`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`name`: `string`<br />`description`: `string`<br />`isAssigned`: `boolean` |
-| `UpdateTeamMember` | object | - | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`userId`: `string`<br />`teamId`: `integer`<br />`isTeamLead`: `boolean`<br />`isPrimaryTeam`: `boolean` |
+| `UpdateIdentifiedAssignedIncident` | object | `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`description`: `string`<br />`dateIdentified`: `string`<br />`allowAccess`: `boolean`<br />`incidentId`: `string`<br />`expertId`: `string` |
+| `UpdateIdentifiedCategory` | object | `categoryId`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`categoryId`: `integer` |
 
 ### 8.5.2 User API Schemas
 
@@ -509,15 +428,11 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | `CreateCompany` | object | `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string`<br />`description`: `string`<br />`address`: `string`<br />`primaryPhone`: `string`<br />`secondaryPhoneNumber`: `string`<br />`email`: `string`<br />`website`: `string`<br />`facebookPageUrl`: `string`<br />`linkedInPageUrl`: `string`<br />`facilityCode`: `string`<br />`regionId`: `string` |
 | `CreateContact` | object | `fullName` | `createdBy`: `string`<br />`organizationId`: `string`<br />`fullName`: `string`<br />`email`: `string`<br />`phone`: `string`<br />`companyId`: `string`<br />`password`: `string` |
 | `CreateDepartmentDto` | object | `departmentName` | `createdBy`: `string`<br />`organizationId`: `string`<br />`departmentName`: `string`<br />`description`: `string` |
-| `CreateInternalUserRequestDto` | object | - | `organizationId`: `string`<br />`email`: `string` |
 | `CreateOrganization` | object | `expiryDate`, `isActive`, `name` | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string`<br />`address`: `string`<br />`city`: `string`<br />`state`: `string`<br />`expiryDate`: `string`<br />`contactNumber`: `string`<br />`isActive`: `boolean` |
-| `CreatePackage` | object | `description`, `title` | `title`: `string`<br />`description`: `string`<br />`isActive`: `boolean`<br />`packageFeatures`: `array&lt;PackageFeature&gt;` |
 | `CreateRegion` | object | - | `createdBy`: `string`<br />`organizationId`: `string`<br />`name`: `string` |
 | `CreateUserAccount` | object | `email`, `firstName`, `password` | `createdBy`: `string`<br />`organizationId`: `string`<br />`firstName`: `string`<br />`surname`: `string`<br />`gender`: `Gender`<br />`dateOfBirth`: `string`<br />`email`: `string`<br />`countryCode`: `string`<br />`cellphone`: `string`<br />`address`: `string`<br />`password`: `string`<br />`regionId`: `string` |
 | `CreateUserAccountWithContact` | object | `email`, `firstName`, `organizationId`, `password`, `userType` | `firstName`: `string`<br />`surname`: `string`<br />`gender`: `Gender`<br />`dateOfBirth`: `string`<br />`email`: `string`<br />`countryCode`: `string`<br />`cellphone`: `string`<br />`address`: `string`<br />`password`: `string`<br />`regionId`: `string`<br />`companyId`: `string`<br />`userType`: `UserType`<br />`organizationId`: `string` |
-| `CreateUserRequestDto` | object | `email`, `firstName`, `organizationName` | `organizationName`: `string`<br />`firstName`: `string`<br />`surname`: `string`<br />`email`: `string`<br />`countryCode`: `string`<br />`cellphone`: `string` |
 | `DeleteAssignedOrganizationService` | object | - | `organizationId`: `string`<br />`services`: `array&lt;Service&gt;` |
-| `DeleteUserRequest` | object | - | `requestId`: `array&lt;string&gt;` |
 | `EventTypes` | enum | - | `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `21`, `22`, `23`, `41`, `42`, `43`, `44`, `45`, `46`, `61`, `62`, `63`, `64`, `65` |
 | `ExistingAutomationDto` | object | - | `channel`: `NotificationChannel`<br />`role`: `NotificationRole`<br />`isCreate`: `boolean` |
 | `Feature` | object | - | `featureName`: `FeatureName`<br />`actions`: `array&lt;ActionType&gt;` |
@@ -528,42 +443,34 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | `GetExistingAutomationDtoApiResponse` | object | - | `isSuccess`: `boolean`<br />`data`: `GetExistingAutomationDto`<br />`message`: `string`<br />`httpStatusCode`: `HttpStatusCode` |
 | `HttpStatusCode` | enum | - | `100`, `101`, `102`, `103`, `200`, `201`, `202`, `203`, `204`, `205`, `206`, `207`, `208`, `226`, `300`, `301`, `302`, `303`, `304`, `305`, `306`, `307`, `308`, `400`, `401`, `402`, `403`, `404`, `405`, `406`, `407`, `408`, `409`, `410`, `411`, `412`, `413`, `414`, `415`, `416`, `417`, `421`, `422`, `423`, `424`, `426`, `428`, `429`, `431`, `451`, `500`, `501`, `502`, `503`, `504`, `505`, `506`, `507`, `508`, `510`, `511` |
 | `InActiveUserFromOrganizationDto` | object | - | `organizationId`: `string`<br />`userId`: `string`<br />`active`: `boolean` |
-| `InternalUserRequestStatusUpdateDto` | object | `accept`, `userRequestId` | `userRequestId`: `string`<br />`accept`: `boolean` |
 | `LinkWhatsAppDto` | object | - | `phoneId`: `string`<br />`wabaId`: `string` |
 | `LoginDto` | object | `email`, `password` | `email`: `string`<br />`password`: `string` |
 | `LogoutDto` | object | - | `userId`: `string` |
 | `NotificationChannel` | enum | - | `0`, `1`, `2`, `3` |
 | `NotificationRole` | enum | - | `0`, `1`, `2`, `3`, `4`, `5`, `7`, `8`, `9`, `10`, `11`, `12` |
-| `PackageFeature` | object | `description` | `description`: `string` |
 | `RecoveryRequestDto` | object | `email`, `firstName` | `firstName`: `string`<br />`surName`: `string`<br />`email`: `string` |
 | `RefreshTokenDto` | object | - | `refreshToken`: `string` |
-| `ResetPasswordByRecoveryRequestDto` | object | `confirmPassword`, `newPassword` | `userRequestId`: `string`<br />`newPassword`: `string`<br />`confirmPassword`: `string` |
 | `ResponseDto` | object | - | `statusCode`: `HttpStatusCode`<br />`message`: `string`<br />`data`: `object`<br />`isSuccess`: `boolean` |
 | `RoleDto` | object | - | `role`: `ServiceRoleType`<br />`features`: `array&lt;Feature&gt;` |
 | `Service` | enum | - | `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `100` |
 | `ServiceRole` | object | - | `service`: `Service`<br />`roles`: `ServiceRoleType` |
 | `ServiceRoleType` | enum | - | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13` |
-| `SetPasswordDto` | object | `confirmPassword` | `userRequestId`: `string`<br />`newPassword`: `string`<br />`confirmPassword`: `string` |
 | `UpdateCompany` | object | `name`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`name`: `string`<br />`description`: `string`<br />`address`: `string`<br />`primaryPhone`: `string`<br />`secondaryPhoneNumber`: `string`<br />`email`: `string`<br />`website`: `string`<br />`facebookPageUrl`: `string`<br />`linkedInPageUrl`: `string`<br />`facilityCode`: `string`<br />`regionId`: `string` |
 | `UpdateContact` | object | `fullName`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`fullName`: `string`<br />`email`: `string`<br />`phone`: `string`<br />`companyId`: `string`<br />`password`: `string` |
 | `UpdateDepartmentDto` | object | `departmentName`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`departmentName`: `string`<br />`description`: `string` |
 | `UpdateOrganization` | object | `expiryDate`, `isActive`, `name`, `oid`, `userId` | `oid`: `string`<br />`name`: `string`<br />`address`: `string`<br />`city`: `string`<br />`state`: `string`<br />`expiryDate`: `string`<br />`contactNumber`: `string`<br />`isActive`: `boolean`<br />`organizationSuffix`: `string`<br />`isPublicPortalConfigured`: `boolean`<br />`userId`: `string` |
 | `UpdateOrganizationByOrganizationAdmin` | object | `name`, `oid`, `userId` | `oid`: `string`<br />`name`: `string`<br />`address`: `string`<br />`city`: `string`<br />`state`: `string`<br />`contactNumber`: `string`<br />`organizationSuffix`: `string`<br />`isPublicPortalConfigured`: `boolean`<br />`userId`: `string` |
-| `UpdatePackage` | object | `description`, `oid`, `title` | `oid`: `string`<br />`title`: `string`<br />`isActive`: `boolean`<br />`description`: `string`<br />`packageFeatures`: `array&lt;PackageFeature&gt;` |
-| `UpdatePackageStatus` | object | `oid` | `oid`: `string`<br />`isActive`: `boolean` |
 | `UpdateRegion` | object | `id`, `name` | `id`: `string`<br />`name`: `string` |
 | `UpdateUserAccount` | object | `email`, `firstName`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`firstName`: `string`<br />`surname`: `string`<br />`gender`: `Gender`<br />`dateOfBirth`: `string`<br />`email`: `string`<br />`countryCode`: `string`<br />`cellphone`: `string`<br />`address`: `string`<br />`regionId`: `string`<br />`userType`: `UserType` |
-| `UserRequestStatusUpdateDto` | object | `requestStatus`, `userRequestId` | `userRequestId`: `string`<br />`requestStatus`: `UserRuquestStatus` |
 | `UserRoleDto` | object | - | `userId`: `string`<br />`organizationId`: `string`<br />`createdBy`: `string`<br />`serviceRoles`: `array&lt;ServiceRole&gt;` |
-| `UserRuquestStatus` | enum | - | `1`, `2`, `3`, `4`, `5`, `6` |
 | `UserType` | enum | - | `1`, `2`, `3`, `4` |
 
 ---
 
 ## 8.6 Integration Notes
 
-- Use the **User API** for authentication, user accounts, contacts, roles, organizations, departments, regions, packages, automation rules, and user requests.
-- Use the **Ticketing API** for branches, categories, incidents/tickets, assignments, attachments, messages, priority configuration, reports, report files, teams, and AI/application support endpoints.
+- Use the **User API** for authentication, user accounts, contacts, roles, organizations, departments, regions, and automation rules.
+- Use the **Ticketing API** for categories, incidents/tickets, assignments, attachments, messages, priority configuration, reports, report files, and AI/application support endpoints.
 - Report and report-file endpoints are part of the Ticketing API and support the documentation menu item **4. Reports**.
 - File upload/download behavior should be verified against the deployed storage provider and maximum upload policy before go-live.
 - Exact production base URLs depend on the IIS or Portainer reverse-proxy configuration documented in the installation manual.
@@ -579,7 +486,7 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | Configure regions and organizations | Region and organization endpoints return saved values. |
 | Create ticket category | Ticketing API stores category and returns it in category list. |
 | Create incident/ticket | Ticketing API creates a new ticket with expected status and identifiers. |
-| Assign ticket | Assignment endpoints update responsible team/user. |
+| Assign ticket | Assignment endpoints update the responsible user. |
 | Add message | Message appears in ticket conversation. |
 | Upload/list attachment | Attachment is stored and returned by attachment endpoint. |
 | Generate reports | Report endpoints return filtered report data. |

@@ -90,16 +90,70 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Documentation',
           items: [
             {
-              label: 'Introduction',
-              to: '/docs/intro',
+              label: 'Installation Manual',
+              to: '/docs/installation-manual',
+            },
+            {
+              label: 'Admin & Configuration',
+              to: '/docs/admin-configuration-guide',
+            },
+            {
+              label: 'Role-Based User Guide',
+              to: '/docs/role-based-user-guide',
+            },
+            {
+              label: 'Reports',
+              to: '/docs/reports',
+            },
+          ],
+        },
+        {
+          title: 'Technical Reference',
+          items: [
+            {
+              label: 'Architecture / Technical Design',
+              to: '/docs/system-architecture-technical-design',
+            },
+            {
+              label: 'REST API Specifications',
+              to: '/docs/api-specifications',
+            },
+            {
+              label: 'API / Integration Documentation',
+              to: '/docs/integrations',
+            },
+            {
+              label: 'Data Architecture',
+              to: '/docs/data-architecture',
+            },
+          ],
+        },
+        {
+          title: 'Operations & Handover',
+          items: [
+            {
+              label: 'Ticket Lifecycle',
+              to: '/docs/ticket-lifecycle-and-journey',
+            },
+            {
+              label: 'Process Workflows',
+              to: '/docs/process-workflows',
+            },
+            {
+              label: 'Deployment & Testing',
+              to: '/docs/deployment-and-testing',
+            },
+            {
+              label: 'Code Transfer Readiness',
+              to: '/docs/code-transfer-readiness',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Ministry of Health (MoH). Built with Docusaurus.`,
+      copyright: '©️ 2026 Ministry of Health (MoH), Eswatini',
     },
 
     prism: {

@@ -17,14 +17,3 @@ This section documents operational and technical risk mitigations and the produc
 | **R-2: ID Guessing (Insecure Direct Object Reference)** <br /> Guest users attempt to view other clinics' tickets. | **Critical** | **High** | Front-facing requests retrieve ticket details using a secure UUID `tracking_token` rather than DB incremental IDs. |
 | **R-3: Kafka Cluster Failure** <br /> Message synchronization between services stops. | **Critical** | **Low** | Implement a local DB Outbox Pattern. Services write outbound events to a local DB table and publish once Kafka reconnects. |
 | **R-4: Disk Space Exhaustion** <br /> File uploads fill storage drives. | **High** | **Medium** | Store files on S3 object storage rather than local VM storage. Enforce strict 5 MB file limits on the API gateway layer. |
-
----
-
-## 12.3.2 Future Enhancements Roadmap
-
-- **SLA Management:** Dedicated SLA timers tracking response and resolution progress.
-- **Escalation Rules:** Automatic reassignment to higher teams if a ticket exceeds resolution limits.
-- **Knowledge Base:** Integrated portal articles suggesting self-service solutions.
-- **AI Classification & Routing:** Machine-learning categorization based on ticket history.
-- **Chatbot Support:** WhatsApp/Telegram bots allowing users to check ticket statuses.
-- **Mobile App:** Support apps for agents and experts to log and resolve tickets.

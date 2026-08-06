@@ -9,7 +9,7 @@ import ZoomableImage from '@site/src/components/ZoomableImage';
 
 This section documents the migrated database model for the MoH Helpdesk platform. The current implementation uses separate PostgreSQL databases per service. This page focuses on the two core service databases requested for handover:
 
-- **User Service database**: identity, organization, facility, access, package, and automation configuration.
+- **User Service database**: identity, organization, facility, access, and automation configuration.
 - **Ticketing Service database**: ticket lifecycle, assignment, categorization, conversation, attachment, SLA, and reporting source data.
 
 The tables below are based on the Entity Framework Core model snapshots and entities currently migrated in the codebase.
@@ -34,14 +34,13 @@ Cross-service references are stored mainly as GUIDs. For example, Ticketing stor
 
 ## 12.1.2 User Service Data Model
 
-The User Service owns platform identity, organizations, facilities, regions, contacts, service access, roles, packages, user requests, and notification automation settings.
+The User Service owns platform identity, organizations, facilities, regions, contacts, service access, roles, and notification automation settings.
 
 ### User Service Tables
 
 | Table | Primary Key | Main Fields | Purpose |
 | --- | --- | --- | --- |
 | `UserAccounts` | `Oid` | `FirstName`, `Surname`, `Email`, `Cellphone`, `Password`, `RegionId`, `UserType`, `IsSystemAdministrator`, `IsActive` | Stores internal system users such as administrators, national users, regional users, and support users. |
-| `Biometrics` | `Oid` | `Image`, `Fingerprint` | Stores biometric data linked one-to-one with a user account. |
 | `Organizations` | `Oid` | `Name`, `Address`, `City`, `State`, `ExpiryDate`, `ContactNumber`, `OrganizationSuffix`, `IsPublicPortalConfigured`, `IsActive`, `Status` | Stores tenant or client organizations. |
 | `IdentifiedOrganizations` | `Oid` | `UserAccountId`, `OrganizationId`, `IsActive`, `IsAdministrator` | Maps users to organizations and marks organization-level administrators. |
 | `AssignedOrganizationServices` | `Oid` | `OrganizationId`, `Service` | Defines which platform services are enabled for an organization. |
@@ -54,9 +53,6 @@ The User Service owns platform identity, organizations, facilities, regions, con
 | `IdentifiedUserRoles` | `Oid` | `IdentifiedUserAccessId`, `Roles` | Defines service roles for a user's service access. |
 | `IdentifiedRoleActions` | `Oid` | `Role`, `Feature`, `ActionType` | Defines role-to-feature/action permission rules. |
 | `LoginHistories` | `Oid` | `LoginDateTime`, `IsLoggedOut`, `UserId` | Stores login session history for audit and activity tracking. |
-| `Packages` | `Oid` | `Title`, `Description`, `IsActive` | Stores commercial or subscription package definitions. |
-| `PackageFeatures` | `Oid` | `PackageId`, `Description` | Stores feature rows under each package. |
-| `UserRequests` | `Oid` | `OrganizationName`, `RequestDate`, `FirstName`, `Surname`, `Email`, `Cellphone`, `RequestStatus`, `Gender` | Stores onboarding or access requests before final account setup. |
 | `AutomationRules` | `Oid` | `ServiceType`, `EventType`, `IsCreate`, `AutoAssignTime`, `Description`, `OrganizationId` | Stores notification/automation rules per service, event type, and organization. |
 | `AutomationChannels` | `Oid` | `AutomationRuleId`, `Channel` | Stores delivery channels for an automation rule. |
 | `IdentifiedAutomationRoles` | `Oid` | `AutomationChannelId`, `Role` | Stores recipient roles for an automation channel. |
@@ -89,21 +85,16 @@ The Ticketing Service owns service desk tickets and all local data needed to cla
 
 | Table | Primary Key | Main Fields | Purpose |
 | --- | --- | --- | --- |
-| `Incidents` | `Oid` | `SLNumber`, `TicketTitle`, `Description`, `DateResolved`, `IsAssigned`, `IncidentStatus`, `IncidentSource`, `DueDate`, `IncidentPriority`, `IncidentCreateMethod`, `TicketType`, `FacilityId`, `ContactId`, `MailThreadId`, `CategoryId`, `TeamId`, `ApplicationId`, `BranchId`, `Images` | Central ticket/case table. Stores ticket identity, status, SLA dates, source, priority, ownership references, category/team routing, and external references. |
+| `Incidents` | `Oid` | `SLNumber`, `TicketTitle`, `Description`, `DateResolved`, `IsAssigned`, `IncidentStatus`, `IncidentSource`, `DueDate`, `IncidentPriority`, `IncidentCreateMethod`, `TicketType`, `FacilityId`, `ContactId`, `MailThreadId`, `CategoryId`, `ApplicationId`, `Images` | Central ticket/case table. Stores ticket identity, status, SLA dates, source, priority, ownership references, category routing, and external references. |
 | `Applications` | `Oid` | `Name` | Stores application/system names used to classify incidents. |
-| `Branches` | `Oid` | `Name`, `Description`, `IsActive` | Stores branch/location records used by tickets and branch permissions. |
-| `BranchPermissions` | `Oid` | `BranchId`, `UserAccountId`, `IsActive` | Maps users to branches for access control. |
 | `Categories` | `Oid` | `Name`, `Description`, `ParentCategoryId` | Stores ticket categories and parent-child category grouping. |
-| `Teams` | `Oid` | `Name`, `Description`, `IsAssigned` | Stores support teams. |
-| `TeamMembers` | `Oid` | `UserId`, `TeamId`, `IsTeamLead`, `IsPrimaryTeam` | Maps user IDs to teams. |
-| `IdentifiedCategories` | `Oid` | `CategoryId`, `TeamId` | Maps categories to teams for routing/assignment. |
-| `IdentifiedAssignedIncidents` | `Oid` | `Description`, `DateIdentified`, `AllowAccess`, `IncidentId`, `ExpertId`, `TeamId` | Stores incident assignment history and current access/ownership records. |
+| `IdentifiedCategories` | `Oid` | `CategoryId` | Stores identified category records used by ticket classification/routing workflows. |
+| `IdentifiedAssignedIncidents` | `Oid` | `Description`, `DateIdentified`, `AllowAccess`, `IncidentId`, `ExpertId` | Stores incident assignment history and current access/ownership records. |
 | `Messages` | `Oid` | `MessageDate`, `Description`, `IsInternal`, `IsResolution`, `IsOpen`, `IncidentId`, `EmailMessageId` | Stores ticket conversation entries, internal notes, and resolution messages. |
 | `MessageAttachments` | `Oid` | `AttachmentPath`, `MessageId` | Stores file references attached to ticket messages. |
 | `IncidentAttacments` | `Oid` | `AttacmentPath`, `IncidentId`, `MailAttachmentId` | Stores file references attached directly to incidents. The migrated table name preserves the existing spelling. |
 | `IncidentHistories` | `Oid` | `Description`, `ActionType`, `ActionDate`, `FieldName`, `OldFieldValue`, `NewFieldValue`, `IncidentId`, `UserAccountId`, `ContactId` | Stores ticket audit history and field-change records. |
 | `IncidentSolutionSuggestions` | `Oid` | `IncidentId`, `SourceIncidentId`, `SourceSLNumber`, `SuggestedSolution`, `SimilarityScore`, `IsAiVerified`, `AiVerificationReason`, `Status`, `CustomerRespondedAt`, `CustomerMessageId` | Stores AI/similar-ticket solution suggestions for resolution support. |
-| `PriorityConfigurations` | `Oid` | `Priority`, `TimeInMinutes` | Stores SLA time configuration by ticket priority. |
 
 ### Ticketing Service Relationship Diagram
 
@@ -115,14 +106,13 @@ The migration defines these important relationships:
 
 | Relationship | Meaning |
 | --- | --- |
-| Incident to Category, Team, Application, Branch | A ticket can be classified by category, routed to a team, linked to an application, and optionally tied to a branch. |
+| Incident to Category and Application | A ticket can be classified by category and linked to an application. |
 | Incident to Messages | One ticket can have many conversation messages, internal notes, and resolution messages. |
 | Incident to Identified Assigned Incidents | Assignment history is retained as separate rows, which supports reassignment and escalation reporting. |
 | Message to Message Attachments | Message-specific files are stored separately from incident-level files. |
 | Incident to Incident Attachments | Ticket-level attachments are stored as file paths linked to the incident. |
 | Incident to Incident Histories | Field changes and lifecycle actions are audited against the ticket. |
-| Category to Identified Categories to Team | Category-to-team routing is configurable through a mapping table. |
-| Team to Team Members | Team membership is stored separately from the team definition and references User Service users by GUID. |
+| Category to Identified Categories | Category identification records support ticket classification workflows. |
 
 The Ticketing Service has a composite unique index on `SLNumber` and `OrganizationId`, so ticket serial numbers are unique inside each organization.
 
@@ -136,8 +126,6 @@ The service databases remain independently owned. The following Ticketing fields
 | `Incidents.FacilityId` | `Companies.Oid` |
 | `Incidents.ContactId` | `Contacts.Oid` |
 | `IdentifiedAssignedIncidents.ExpertId` | `UserAccounts.Oid` |
-| `TeamMembers.UserId` | `UserAccounts.Oid` |
-| `BranchPermissions.UserAccountId` | `UserAccounts.Oid` |
 | `IncidentHistories.UserAccountId` | `UserAccounts.Oid` |
 | `IncidentHistories.ContactId` | `Contacts.Oid` |
 

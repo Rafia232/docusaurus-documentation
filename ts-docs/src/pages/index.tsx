@@ -123,7 +123,7 @@ const handoverDocs: DocCard[] = [
     number: '12.2',
     title: 'Deployment & Testing',
     description:
-      'Deployment topology, Kubernetes infrastructure, environments, testing approaches, validation activities, and release readiness.',
+      'Deployment topology, environments, testing approaches, validation activities, and release readiness.',
     to: '/docs/deployment-and-testing',
     meta: 'Reference',
   },

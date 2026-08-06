@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
   <defs>
     <style>
       .bg{fill:#f8fafc}
@@ -20,130 +20,117 @@
       <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
     </marker>
   </defs>
-  <rect class="bg" x="0" y="0" width="1600" height="1050"/>
+
+  <rect class="bg" x="0" y="0" width="1600" height="980"/>
   <text class="title" x="56" y="58">User Service Relationship Diagram</text>
-  <text class="subtitle" x="56" y="88">Migrated User Service entities for identity, organization, facilities, access control, packages, and notification automation.</text>
+  <text class="subtitle" x="56" y="88">Migrated User Service entities for identity, organization, facilities, access control, departments, and notification automation.</text>
 
-  <rect class="group" x="40" y="125" width="520" height="410"/>
-  <text class="groupTitle" x="65" y="158">Identity and Organization</text>
-  <rect class="box" x="70" y="185" width="200" height="126"/>
-  <text class="head" x="90" y="213">UserAccounts</text>
-  <text class="field" x="90" y="238">PK Oid</text>
-  <text class="field" x="90" y="260">Email, Name, Cellphone</text>
-  <text class="field" x="90" y="282">RegionId, UserType</text>
-  <rect class="box" x="330" y="185" width="200" height="126"/>
-  <text class="head" x="350" y="213">Organizations</text>
-  <text class="field" x="350" y="238">PK Oid</text>
-  <text class="field" x="350" y="260">Name, Suffix, Status</text>
-  <text class="field" x="350" y="282">Portal flags</text>
-  <rect class="box" x="190" y="365" width="220" height="126"/>
-  <text class="head" x="210" y="393">IdentifiedOrganizations</text>
-  <text class="field" x="210" y="418">UserAccountId</text>
-  <text class="field" x="210" y="440">OrganizationId</text>
-  <text class="field" x="210" y="462">IsAdministrator</text>
-  <path class="rel" d="M270 248 C305 248 295 395 190 428"/>
-  <text class="label" x="116" y="350">user assigned</text>
-  <path class="rel" d="M430 311 C430 350 395 370 410 428"/>
-  <text class="label" x="424" y="350">organization owns</text>
-  <rect class="box" x="70" y="342" width="125" height="105"/>
-  <text class="head" x="88" y="370">Biometrics</text>
-  <text class="field" x="88" y="395">PK Oid</text>
-  <text class="field" x="88" y="417">Fingerprint</text>
-  <path class="rel" d="M145 311 L145 342"/>
-  <rect class="box" x="420" y="342" width="110" height="105"/>
-  <text class="head" x="438" y="370">Login</text>
-  <text class="field" x="438" y="395">History</text>
-  <text class="field" x="438" y="417">UserId</text>
-  <path class="rel" d="M270 245 C360 245 475 285 475 342"/>
+  <rect class="group" x="50" y="130" width="500" height="370"/>
+  <text class="groupTitle" x="75" y="164">Identity and Organization</text>
+  <rect class="box" x="85" y="205" width="200" height="126"/>
+  <text class="head" x="105" y="233">UserAccounts</text>
+  <text class="field" x="105" y="258">PK Oid</text>
+  <text class="field" x="105" y="280">Email, Name, Cellphone</text>
+  <text class="field" x="105" y="302">RegionId, UserType</text>
+  <rect class="box" x="315" y="205" width="200" height="126"/>
+  <text class="head" x="335" y="233">Organizations</text>
+  <text class="field" x="335" y="258">PK Oid</text>
+  <text class="field" x="335" y="280">Name, Suffix, Status</text>
+  <text class="field" x="335" y="302">Portal flags</text>
+  <rect class="box" x="180" y="370" width="220" height="105"/>
+  <text class="head" x="200" y="398">IdentifiedOrganizations</text>
+  <text class="field" x="200" y="423">UserAccountId</text>
+  <text class="field" x="200" y="445">OrganizationId</text>
+  <text class="field" x="200" y="467">IsAdministrator</text>
+  <rect class="box" x="420" y="370" width="105" height="105"/>
+  <text class="head" x="438" y="398">Login</text>
+  <text class="field" x="438" y="423">History</text>
+  <text class="field" x="438" y="445">UserId</text>
+  <path class="rel" d="M285 268 C330 285 295 355 220 370"/>
+  <path class="rel" d="M415 331 C415 350 395 365 400 422"/>
+  <path class="rel" d="M285 250 C365 255 470 295 472 370"/>
+  <text class="label" x="116" y="360">user assigned</text>
+  <text class="label" x="407" y="355">organization owns</text>
 
-  <rect class="group" x="600" y="125" width="440" height="410"/>
-  <text class="groupTitle" x="625" y="158">Facility and Region</text>
-  <rect class="box2" x="720" y="185" width="180" height="105"/>
-  <text class="head" x="742" y="213">Regions</text>
-  <text class="field" x="742" y="238">PK Oid</text>
-  <text class="field" x="742" y="260">Name</text>
-  <rect class="box2" x="645" y="360" width="180" height="118"/>
-  <text class="head" x="667" y="388">Companies</text>
-  <text class="field" x="667" y="413">Facility records</text>
-  <text class="field" x="667" y="435">RegionId</text>
-  <text class="field" x="667" y="457">FacilityCode</text>
-  <rect class="box2" x="845" y="360" width="160" height="118"/>
-  <text class="head" x="867" y="388">Contacts</text>
-  <text class="field" x="867" y="413">FullName</text>
-  <text class="field" x="867" y="435">Email, Phone</text>
-  <text class="field" x="867" y="457">CompanyId</text>
-  <path class="rel" d="M788 290 C760 320 735 330 735 360"/>
-  <text class="label" x="675" y="326">contains</text>
-  <path class="rel" d="M825 419 L845 419"/>
-  <text class="label" x="813" y="404">has</text>
-  <path class="dash" d="M900 236 C985 236 1048 110 268 210"/>
-  <text class="label" x="923" y="210">users can be tied to regions</text>
+  <rect class="group" x="610" y="130" width="430" height="370"/>
+  <text class="groupTitle" x="635" y="164">Facility and Region</text>
+  <rect class="box2" x="735" y="205" width="180" height="105"/>
+  <text class="head" x="757" y="233">Regions</text>
+  <text class="field" x="757" y="258">PK Oid</text>
+  <text class="field" x="757" y="280">Name</text>
+  <rect class="box2" x="655" y="365" width="180" height="118"/>
+  <text class="head" x="677" y="393">Companies</text>
+  <text class="field" x="677" y="418">Facility records</text>
+  <text class="field" x="677" y="440">RegionId</text>
+  <text class="field" x="677" y="462">FacilityCode</text>
+  <rect class="box2" x="855" y="365" width="160" height="118"/>
+  <text class="head" x="877" y="393">Contacts</text>
+  <text class="field" x="877" y="418">FullName</text>
+  <text class="field" x="877" y="440">Email, Phone</text>
+  <text class="field" x="877" y="462">CompanyId</text>
+  <path class="rel" d="M803 310 C770 330 745 345 745 365"/>
+  <path class="rel" d="M835 424 L855 424"/>
+  <path class="dash" d="M735 255 C600 250 420 230 285 245"/>
+  <text class="label" x="688" y="346">contains</text>
+  <text class="label" x="818" y="409">has</text>
+  <text class="label" x="545" y="226">users can be tied to regions</text>
 
-  <rect class="group" x="1080" y="125" width="470" height="410"/>
-  <text class="groupTitle" x="1105" y="158">Service Access and Permissions</text>
-  <rect class="box3" x="1125" y="185" width="190" height="112"/>
-  <text class="head" x="1145" y="213">IdentifiedUserAccesses</text>
-  <text class="field" x="1145" y="238">UserAccountId</text>
-  <text class="field" x="1145" y="260">Services</text>
-  <rect class="box3" x="1330" y="185" width="180" height="112"/>
-  <text class="head" x="1350" y="213">IdentifiedUserRoles</text>
-  <text class="field" x="1350" y="238">AccessId</text>
-  <text class="field" x="1350" y="260">Roles</text>
-  <rect class="box3" x="1195" y="360" width="230" height="118"/>
-  <text class="head" x="1215" y="388">IdentifiedRoleActions</text>
-  <text class="field" x="1215" y="413">Role</text>
-  <text class="field" x="1215" y="435">Feature</text>
-  <text class="field" x="1215" y="457">ActionType</text>
-  <path class="rel" d="M1315 241 L1330 241"/>
-  <path class="dash" d="M1420 297 C1420 330 1390 350 1375 360"/>
-  <path class="dash" d="M1125 236 C1030 220 420 145 270 215"/>
-  <text class="label" x="1027" y="213">access belongs to user</text>
+  <rect class="group" x="1080" y="130" width="470" height="370"/>
+  <text class="groupTitle" x="1105" y="164">Service Access and Permissions</text>
+  <rect class="box3" x="1125" y="205" width="190" height="112"/>
+  <text class="head" x="1145" y="233">IdentifiedUserAccesses</text>
+  <text class="field" x="1145" y="258">UserAccountId</text>
+  <text class="field" x="1145" y="280">Services</text>
+  <rect class="box3" x="1330" y="205" width="180" height="112"/>
+  <text class="head" x="1350" y="233">IdentifiedUserRoles</text>
+  <text class="field" x="1350" y="258">AccessId</text>
+  <text class="field" x="1350" y="280">Roles</text>
+  <rect class="box3" x="1195" y="365" width="230" height="118"/>
+  <text class="head" x="1215" y="393">IdentifiedRoleActions</text>
+  <text class="field" x="1215" y="418">Role</text>
+  <text class="field" x="1215" y="440">Feature</text>
+  <text class="field" x="1215" y="462">ActionType</text>
+  <path class="rel" d="M1315 261 L1330 261"/>
+  <path class="dash" d="M1420 317 C1420 345 1390 358 1375 365"/>
+  <path class="dash" d="M1125 256 C930 220 500 190 285 232"/>
+  <text class="label" x="1015" y="232">access belongs to user</text>
 
-  <rect class="group" x="40" y="590" width="470" height="360"/>
-  <text class="groupTitle" x="65" y="623">Departments and Packages</text>
-  <rect class="box4" x="75" y="660" width="165" height="105"/>
-  <text class="head" x="95" y="688">Departments</text>
-  <text class="field" x="95" y="713">PK Oid</text>
-  <text class="field" x="95" y="735">Name</text>
-  <rect class="box4" x="275" y="660" width="195" height="105"/>
-  <text class="head" x="295" y="688">UserDepartments</text>
-  <text class="field" x="295" y="713">DepartmentId</text>
-  <text class="field" x="295" y="735">IdentifiedUserId</text>
-  <path class="rel" d="M240 712 L275 712"/>
-  <rect class="box4" x="75" y="815" width="165" height="95"/>
-  <text class="head" x="95" y="843">Packages</text>
-  <text class="field" x="95" y="868">Title</text>
-  <text class="field" x="95" y="890">IsActive</text>
-  <rect class="box4" x="275" y="815" width="195" height="95"/>
-  <text class="head" x="295" y="843">PackageFeatures</text>
-  <text class="field" x="295" y="868">PackageId</text>
-  <text class="field" x="295" y="890">Description</text>
-  <path class="rel" d="M240 862 L275 862"/>
+  <rect class="group" x="50" y="560" width="500" height="270"/>
+  <text class="groupTitle" x="75" y="594">Departments</text>
+  <rect class="box4" x="95" y="655" width="170" height="105"/>
+  <text class="head" x="115" y="683">Departments</text>
+  <text class="field" x="115" y="708">PK Oid</text>
+  <text class="field" x="115" y="730">Name</text>
+  <rect class="box4" x="320" y="655" width="200" height="105"/>
+  <text class="head" x="340" y="683">UserDepartments</text>
+  <text class="field" x="340" y="708">DepartmentId</text>
+  <text class="field" x="340" y="730">IdentifiedUserId</text>
+  <path class="rel" d="M265 708 L320 708"/>
+  <path class="dash" d="M420 655 C390 575 335 515 290 475"/>
+  <text class="label" x="315" y="625">department membership</text>
 
-  <rect class="group" x="555" y="590" width="995" height="360"/>
-  <text class="groupTitle" x="580" y="623">Organization Services and Automation</text>
-  <rect class="box" x="595" y="660" width="230" height="105"/>
-  <text class="head" x="615" y="688">AssignedOrganizationServices</text>
-  <text class="field" x="615" y="713">OrganizationId</text>
-  <text class="field" x="615" y="735">Service</text>
-  <rect class="box2" x="875" y="660" width="190" height="105"/>
-  <text class="head" x="895" y="688">AutomationRules</text>
-  <text class="field" x="895" y="713">ServiceType</text>
-  <text class="field" x="895" y="735">EventType</text>
-  <rect class="box2" x="1115" y="660" width="190" height="105"/>
-  <text class="head" x="1135" y="688">AutomationChannels</text>
-  <text class="field" x="1135" y="713">AutomationRuleId</text>
-  <text class="field" x="1135" y="735">Channel</text>
-  <rect class="box2" x="1355" y="660" width="155" height="105"/>
-  <text class="head" x="1375" y="688">AutomationRoles</text>
-  <text class="field" x="1375" y="713">ChannelId</text>
-  <text class="field" x="1375" y="735">Role</text>
-  <rect class="box3" x="875" y="815" width="190" height="95"/>
-  <text class="head" x="895" y="843">UserRequests</text>
-  <text class="field" x="895" y="868">OrganizationName</text>
-  <text class="field" x="895" y="890">RequestStatus</text>
-  <path class="dash" d="M595 712 C480 610 430 490 430 311"/>
-  <path class="dash" d="M875 712 C720 610 495 425 430 311"/>
-  <path class="rel" d="M1065 712 L1115 712"/>
-  <path class="rel" d="M1305 712 L1355 712"/>
+  <rect class="group" x="610" y="560" width="940" height="270"/>
+  <text class="groupTitle" x="635" y="594">Organization Services and Automation</text>
+  <rect class="box" x="660" y="655" width="230" height="105"/>
+  <text class="head" x="680" y="683">AssignedOrganizationServices</text>
+  <text class="field" x="680" y="708">OrganizationId</text>
+  <text class="field" x="680" y="730">Service</text>
+  <rect class="box2" x="940" y="655" width="190" height="105"/>
+  <text class="head" x="960" y="683">AutomationRules</text>
+  <text class="field" x="960" y="708">ServiceType</text>
+  <text class="field" x="960" y="730">EventType</text>
+  <rect class="box2" x="1180" y="655" width="190" height="105"/>
+  <text class="head" x="1200" y="683">AutomationChannels</text>
+  <text class="field" x="1200" y="708">AutomationRuleId</text>
+  <text class="field" x="1200" y="730">Channel</text>
+  <rect class="box2" x="1410" y="655" width="120" height="105"/>
+  <text class="head" x="1428" y="683">Roles</text>
+  <text class="field" x="1428" y="708">ChannelId</text>
+  <text class="field" x="1428" y="730">Role</text>
+  <path class="dash" d="M660 705 C560 650 460 465 415 331"/>
+  <path class="dash" d="M940 705 C780 610 520 430 415 331"/>
+  <path class="rel" d="M1130 708 L1180 708"/>
+  <path class="rel" d="M1370 708 L1410 708"/>
+  <text class="label" x="665" y="640">organization enables services</text>
+  <text class="label" x="930" y="640">rules belong to organization</text>
 </svg>
