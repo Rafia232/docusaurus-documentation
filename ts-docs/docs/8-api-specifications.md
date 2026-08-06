@@ -299,7 +299,6 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **GET** | `/user-api/check-organization-suffix-duplicate/&#123;organizationSuffix&#125;` | GET /user-api/check-organization-suffix-duplicate/&#123;organizationSuffix&#125; | `organizationSuffix` (path, required, string)<br />`organizationId` (query, string) | - | `200` OK |
-| **PUT** | `/user-api/link-whatsApp/&#123;organizationId&#125;` | PUT /user-api/link-whatsApp/&#123;organizationId&#125; | `organizationId` (path, required, string) | application/json: `LinkWhatsAppDto`<br />text/json: `LinkWhatsAppDto`<br />application/*+json: `LinkWhatsAppDto` | `200` OK |
 | **POST** | `/user-api/organization` | POST /user-api/organization | - | application/json: `CreateOrganization`<br />text/json: `CreateOrganization`<br />application/*+json: `CreateOrganization` | `200` OK |
 | **PUT** | `/user-api/organization-by-organization-admin/&#123;key&#125;` | PUT /user-api/organization-by-organization-admin/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateOrganizationByOrganizationAdmin`<br />text/json: `UpdateOrganizationByOrganizationAdmin`<br />application/*+json: `UpdateOrganizationByOrganizationAdmin` | `200` OK |
 | **GET** | `/user-api/organization-by-user/&#123;userId&#125;` | GET /user-api/organization-by-user/&#123;userId&#125; | `userId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
@@ -310,7 +309,6 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/user-api/organization/&#123;key&#125;` | PUT /user-api/organization/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateOrganization`<br />text/json: `UpdateOrganization`<br />application/*+json: `UpdateOrganization` | `200` OK |
 | **GET** | `/user-api/organizations` | GET /user-api/organizations | `page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 | **PUT** | `/user-api/user-active-in-active-from-organization` | PUT /user-api/user-active-in-active-from-organization | - | application/json: `InActiveUserFromOrganizationDto`<br />text/json: `InActiveUserFromOrganizationDto`<br />application/*+json: `InActiveUserFromOrganizationDto` | `200` OK |
-| **GET** | `/user-api/whats-app-phone-id/&#123;phoneId&#125;` | GET /user-api/whats-app-phone-id/&#123;phoneId&#125; | `phoneId` (path, required, string) | - | `200` OK |
 
 ### 8.4.8 Region
 
@@ -443,7 +441,6 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | `GetExistingAutomationDtoApiResponse` | object | - | `isSuccess`: `boolean`<br />`data`: `GetExistingAutomationDto`<br />`message`: `string`<br />`httpStatusCode`: `HttpStatusCode` |
 | `HttpStatusCode` | enum | - | `100`, `101`, `102`, `103`, `200`, `201`, `202`, `203`, `204`, `205`, `206`, `207`, `208`, `226`, `300`, `301`, `302`, `303`, `304`, `305`, `306`, `307`, `308`, `400`, `401`, `402`, `403`, `404`, `405`, `406`, `407`, `408`, `409`, `410`, `411`, `412`, `413`, `414`, `415`, `416`, `417`, `421`, `422`, `423`, `424`, `426`, `428`, `429`, `431`, `451`, `500`, `501`, `502`, `503`, `504`, `505`, `506`, `507`, `508`, `510`, `511` |
 | `InActiveUserFromOrganizationDto` | object | - | `organizationId`: `string`<br />`userId`: `string`<br />`active`: `boolean` |
-| `LinkWhatsAppDto` | object | - | `phoneId`: `string`<br />`wabaId`: `string` |
 | `LoginDto` | object | `email`, `password` | `email`: `string`<br />`password`: `string` |
 | `LogoutDto` | object | - | `userId`: `string` |
 | `NotificationChannel` | enum | - | `0`, `1`, `2`, `3` |
