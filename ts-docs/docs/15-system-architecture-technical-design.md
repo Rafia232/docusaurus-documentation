@@ -36,7 +36,7 @@ Core capabilities include:
 | Backend Services | .NET API services implementing business rules. |
 | Data Layer | PostgreSQL databases split by service domain. |
 | Event Layer | Kafka event bus for asynchronous communication. |
-| Storage Layer | Object storage for attachments. |
+| Storage Layer | Persistent application volumes for attachments; object storage is a recommended scalable target. |
 | Notification Layer | SMTP and optional messaging gateway integrations. |
 
 ---
@@ -45,16 +45,14 @@ Core capabilities include:
 
 <ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport deployment architecture diagram" maxHeight="640px" />
 
-This diagram uses the same Docusaurus zoomable format as the Installation Manual so technical reviewers can inspect the service boundaries and infrastructure routing.
-
 | Area | Architecture Detail |
 | --- | --- |
 | Entry Point | Users access the platform through public HTTPS, terminated by IIS, Nginx, or an external load balancer. |
 | Frontend | React/Vite web app serves the user interface and calls backend APIs through the gateway route. |
 | API Gateway | Ocelot API Gateway exposes stable public API routes and forwards requests to internal microservices. |
-| Services | User, Ticketing, CRM, Call Center, Device Management, Mail, and Meta services run as .NET 9 CQRS/MediatR services. |
+| Services | User, Ticketing, and Mail services run as .NET 9 CQRS/MediatR services behind the API Gateway. |
 | Data | PostgreSQL databases are separated by service domain to reduce coupling and simplify ownership. |
-| Events | Kafka handles asynchronous ticket, mail, user request, notification, and CRM/deal events. |
+| Events | Kafka handles asynchronous ticket, mail, user request, and notification events. |
 | Operations | Kafdrop, logs, IIS/Portainer, and database tools are used for deployment verification and support. |
 
 Supported deployment models:
@@ -119,8 +117,8 @@ See [Ticket Lifecycle and Journey](./17-ticket-lifecycle-and-journey.md) and [Pr
 | Authorization | Role and permission checks in frontend and backend service policies. |
 | Transport security | HTTPS for public access. |
 | Service-to-service security | mTLS recommended between internal services. |
-| Event security | Kafka SSL/TLS and SASL/SCRAM where enabled. |
-| Attachment security | Object storage with time-limited download links. |
+| Event security | Private-network Kafka in the supplied compose example; SSL/TLS and SASL/SCRAM are required when Kafka is exposed beyond the private network. |
+| Attachment security | Persistent volumes in the documented deployment; object storage with time-limited download links is a recommended enhancement. |
 | Audit integrity | Activity records retained for accountability. |
 
 See [Security Architecture](./7-security-architecture.md) for additional security notes.
@@ -133,7 +131,7 @@ The platform can integrate with:
 
 - SMTP / MoH Mail Gateway for email alerts.
 - Kafka for asynchronous events.
-- Object storage such as MinIO or S3 for attachments.
+- MinIO/S3 object storage for attachments when scalable external storage is configured.
 - External device or facility systems if synchronization is configured.
 
 See [Integration Documentation](./9-integrations.md).
@@ -145,7 +143,7 @@ See [Integration Documentation](./9-integrations.md).
 | Concern | Design Guidance |
 | --- | --- |
 | Logging | Application, IIS/container, database, and reverse proxy logs should be retained. |
-| Backup | PostgreSQL and object storage backups are required. |
+| Backup | PostgreSQL and attachment volume backups are required; include object storage backups where MinIO/S3 is used. |
 | Monitoring | Monitor API health, disk, memory, database, Kafka, and SMTP delivery. |
 | Recovery | Restore database, attachments, and configuration together. |
 | Scaling | Scale frontend and stateless API services horizontally where supported. |
@@ -162,4 +160,18 @@ See [Integration Documentation](./9-integrations.md).
 | Database growth | Apply indexing, archiving, and backup retention policies. |
 | Incorrect role mapping | Verify role matrix before go-live. |
 | Wrong category mapping | Test each category route with sample tickets. |
-| Attachment storage failure | Monitor object storage capacity and backup attachments. |
+| Attachment storage failure | Monitor attachment volume or object storage capacity and backup attachments. |
+
+---
+
+## 7.11 Report Implementation Notes
+
+Report implementation follows the CQRS structure used across the Ticketing microservice:
+
+1. The controller receives the report request.
+2. A MediatR query is created for the selected report.
+3. The query handler calls the report repository.
+4. The repository reads ticketing data, applies filters, performs grouping/calculations, and returns DTOs.
+5. Export handlers pass the calculated result into spreadsheet helper classes.
+
+When changing a report, update the calculation, displayed DTO, and export helper together so screen values and downloaded files remain consistent.

@@ -1,125 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="930" viewBox="0 0 1600 930">
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="880" viewBox="0 0 1500 880">
   <defs>
     <style>
-      .bg{fill:#f8fafc}
-      .title{font:700 34px Arial,sans-serif;fill:#111827}
-      .subtitle{font:400 16px Arial,sans-serif;fill:#475569}
-      .band{fill:#ffffff;stroke:#d1d5db;stroke-width:2;rx:18}
-      .bandTitle{font:700 18px Arial,sans-serif;fill:#374151}
-      .box{fill:#eef2ff;stroke:#6d5dfc;stroke-width:2;rx:12}
-      .boxGreen{fill:#ecfdf5;stroke:#10b981;stroke-width:2;rx:12}
-      .boxAmber{fill:#fff7ed;stroke:#f97316;stroke-width:2;rx:12}
-      .boxPink{fill:#fdf2f8;stroke:#ec4899;stroke-width:2;rx:12}
-      .boxSlate{fill:#f1f5f9;stroke:#64748b;stroke-width:2;rx:12}
-      .head{font:700 16px Arial,sans-serif;fill:#111827}
-      .text{font:400 13px Arial,sans-serif;fill:#374151}
-      .small{font:600 12px Arial,sans-serif;fill:#475569}
-      .arrow{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#arrow)}
-      .dash{stroke:#94a3b8;stroke-width:2;fill:none;stroke-dasharray:7 7;marker-end:url(#arrow)}
+      .bg{fill:#f8fafc}.title{font:700 34px Arial,sans-serif;fill:#111827}.subtitle{font:400 16px Arial,sans-serif;fill:#475569}.band{fill:#ffffff;stroke:#d1d5db;stroke-width:2;rx:18}.bandTitle{font:700 18px Arial,sans-serif;fill:#374151}.box{fill:#eef2ff;stroke:#6d5dfc;stroke-width:2;rx:12}.svc{fill:#ecfdf5;stroke:#10b981;stroke-width:2;rx:12}.data{fill:#fff7ed;stroke:#f97316;stroke-width:2;rx:12}.qa{fill:#fdf2f8;stroke:#ec4899;stroke-width:2;rx:12}.head{font:700 16px Arial,sans-serif;fill:#111827}.text{font:400 13px Arial,sans-serif;fill:#374151}.arrow{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#arrow)}.dash{stroke:#94a3b8;stroke-width:2;fill:none;stroke-dasharray:7 7;marker-end:url(#arrow)}
     </style>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
-    </marker>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
   </defs>
+  <rect class="bg" width="1500" height="880"/>
+  <text class="title" x="54" y="58">Deployment and Testing Flow</text>
+  <text class="subtitle" x="54" y="88">Production validation path for the web app, Ocelot gateway, supported .NET services, Kafka, PostgreSQL, and release checks.</text>
 
-  <rect class="bg" x="0" y="0" width="1600" height="930"/>
-  <text class="title" x="56" y="58">Deployment and Testing Flow</text>
-  <text class="subtitle" x="56" y="88">Production deployment path for the web app, Ocelot gateway, .NET microservices, Kafka, PostgreSQL, and validation checks.</text>
+  <rect class="band" x="45" y="125" width="1410" height="170"/>
+  <text class="bandTitle" x="70" y="158">1. User Entry and Web Layer</text>
+  <rect class="box" x="90" y="190" width="205" height="76"/><text class="head" x="116" y="220">End Users</text><text class="text" x="116" y="245">Facility, Regional, National</text>
+  <rect class="box" x="375" y="190" width="210" height="76"/><text class="head" x="405" y="220">HTTPS Entry</text><text class="text" x="405" y="245">IIS / Nginx / Load Balancer</text>
+  <rect class="box" x="665" y="190" width="215" height="76"/><text class="head" x="698" y="220">React Web App</text><text class="text" x="698" y="245">Static SPA delivery</text>
+  <rect class="box" x="960" y="190" width="220" height="76"/><text class="head" x="1000" y="220">Ocelot Gateway</text><text class="text" x="1000" y="245">Routes API traffic</text>
+  <path class="arrow" d="M295 228 L375 228"/><path class="arrow" d="M585 228 L665 228"/><path class="arrow" d="M880 228 L960 228"/>
 
-  <rect class="band" x="40" y="125" width="1520" height="175"/>
-  <text class="bandTitle" x="65" y="158">1. User Entry and Web Layer</text>
-  <rect class="box" x="80" y="188" width="210" height="80"/>
-  <text class="head" x="105" y="218">End Users</text>
-  <text class="text" x="105" y="243">Facility, Regional,</text>
-  <text class="text" x="105" y="262">National, Admin</text>
-  <rect class="box" x="370" y="188" width="220" height="80"/>
-  <text class="head" x="395" y="218">HTTPS Entry</text>
-  <text class="text" x="395" y="243">IIS / Nginx /</text>
-  <text class="text" x="395" y="262">Load Balancer</text>
-  <rect class="box" x="670" y="188" width="230" height="80"/>
-  <text class="head" x="695" y="218">React Web App</text>
-  <text class="text" x="695" y="243">Static SPA served</text>
-  <text class="text" x="695" y="262">to browser clients</text>
-  <rect class="box" x="980" y="188" width="230" height="80"/>
-  <text class="head" x="1005" y="218">Ocelot Gateway</text>
-  <text class="text" x="1005" y="243">Routes API traffic</text>
-  <text class="text" x="1005" y="262">to services</text>
-  <path class="arrow" d="M290 228 L370 228"/>
-  <path class="arrow" d="M590 228 L670 228"/>
-  <path class="arrow" d="M900 228 L980 228"/>
+  <rect class="band" x="45" y="330" width="1410" height="180"/>
+  <text class="bandTitle" x="70" y="363">2. Supported Service Layer</text>
+  <rect class="svc" x="175" y="395" width="220" height="80"/><text class="head" x="218" y="426">User Service</text><text class="text" x="215" y="451">Identity, roles, organizations</text>
+  <rect class="svc" x="515" y="395" width="220" height="80"/><text class="head" x="552" y="426">Ticketing Service</text><text class="text" x="550" y="451">Tickets, reports, SLA flow</text>
+  <rect class="svc" x="855" y="395" width="220" height="80"/><text class="head" x="902" y="426">Mail Service</text><text class="text" x="900" y="451">SMTP and mail workers</text>
+  <path class="arrow" d="M1070 266 C1070 330 985 360 965 395"/><path class="arrow" d="M1070 266 C960 330 760 365 625 395"/><path class="arrow" d="M1070 266 C850 315 520 360 285 395"/>
 
-  <rect class="band" x="40" y="335" width="1520" height="205"/>
-  <text class="bandTitle" x="65" y="368">2. Service Layer</text>
-  <rect class="boxGreen" x="80" y="400" width="185" height="88"/>
-  <text class="head" x="105" y="430">User Service</text>
-  <text class="text" x="105" y="455">Identity, roles,</text>
-  <text class="text" x="105" y="474">organizations</text>
-  <rect class="boxGreen" x="305" y="400" width="185" height="88"/>
-  <text class="head" x="330" y="430">Ticketing Service</text>
-  <text class="text" x="330" y="455">Tickets, reports,</text>
-  <text class="text" x="330" y="474">SLA, workflow</text>
-  <rect class="boxGreen" x="530" y="400" width="185" height="88"/>
-  <text class="head" x="555" y="430">Mail Service</text>
-  <text class="text" x="555" y="455">Templates, SMTP,</text>
-  <text class="text" x="555" y="474">mail workers</text>
-  <rect class="boxGreen" x="755" y="400" width="185" height="88"/>
-  <text class="head" x="780" y="430">Device Service</text>
-  <text class="text" x="780" y="455">Devices and</text>
-  <text class="text" x="780" y="474">asset records</text>
-  <rect class="boxGreen" x="980" y="400" width="185" height="88"/>
-  <text class="head" x="1005" y="430">CRM / Call Center</text>
-  <text class="text" x="1005" y="455">Optional service</text>
-  <text class="text" x="1005" y="474">modules</text>
-  <rect class="boxGreen" x="1205" y="400" width="185" height="88"/>
-  <text class="head" x="1230" y="430">Meta Service</text>
-  <text class="text" x="1230" y="455">Shared metadata</text>
-  <text class="text" x="1230" y="474">and lookups</text>
-  <path class="arrow" d="M1095 268 C1095 330 1025 365 1298 400"/>
-  <path class="arrow" d="M1095 268 C1095 330 1000 362 1072 400"/>
-  <path class="arrow" d="M1095 268 C1095 330 900 365 848 400"/>
-  <path class="arrow" d="M1095 268 C1095 330 760 365 622 400"/>
-  <path class="arrow" d="M1095 268 C1095 330 560 365 398 400"/>
-  <path class="arrow" d="M1095 268 C1095 330 350 365 172 400"/>
+  <rect class="band" x="45" y="545" width="900" height="245"/>
+  <text class="bandTitle" x="70" y="578">3. Data, Messaging, and Files</text>
+  <rect class="data" x="95" y="620" width="170" height="74"/><text class="head" x="130" y="650">TSUserDB</text><text class="text" x="130" y="674">PostgreSQL</text>
+  <rect class="data" x="305" y="620" width="170" height="74"/><text class="head" x="338" y="650">TSTicketDb</text><text class="text" x="340" y="674">PostgreSQL</text>
+  <rect class="data" x="515" y="620" width="170" height="74"/><text class="head" x="555" y="650">TSMailDB</text><text class="text" x="552" y="674">PostgreSQL</text>
+  <rect class="data" x="725" y="620" width="170" height="74"/><text class="head" x="780" y="650">Kafka</text><text class="text" x="750" y="674">Async events</text>
+  <rect class="data" x="230" y="725" width="220" height="48"/><text class="head" x="260" y="756">Attachment Storage</text>
+  <rect class="data" x="520" y="725" width="220" height="48"/><text class="head" x="555" y="756">SMTP Gateway</text>
+  <path class="dash" d="M285 475 L180 620"/><path class="dash" d="M625 475 L390 620"/><path class="dash" d="M965 475 L600 620"/><path class="dash" d="M625 475 C700 530 760 565 810 620"/>
 
-  <rect class="band" x="40" y="575" width="980" height="275"/>
-  <text class="bandTitle" x="65" y="608">3. Data, Messaging, and Files</text>
-  <rect class="boxAmber" x="85" y="645" width="175" height="82"/>
-  <text class="head" x="110" y="675">User DB</text>
-  <text class="text" x="110" y="700">PostgreSQL</text>
-  <rect class="boxAmber" x="300" y="645" width="175" height="82"/>
-  <text class="head" x="325" y="675">Ticket DB</text>
-  <text class="text" x="325" y="700">PostgreSQL</text>
-  <rect class="boxAmber" x="515" y="645" width="175" height="82"/>
-  <text class="head" x="540" y="675">Other Service DBs</text>
-  <text class="text" x="540" y="700">PostgreSQL</text>
-  <rect class="boxAmber" x="735" y="645" width="220" height="82"/>
-  <text class="head" x="760" y="675">Kafka Broker</text>
-  <text class="text" x="760" y="700">Async events and workers</text>
-  <rect class="boxAmber" x="200" y="770" width="240" height="55"/>
-  <text class="head" x="225" y="805">Attachment Storage</text>
-  <rect class="boxAmber" x="500" y="770" width="240" height="55"/>
-  <text class="head" x="525" y="805">SMTP / Mail Gateway</text>
-  <path class="dash" d="M172 488 L172 645"/>
-  <path class="dash" d="M398 488 L398 645"/>
-  <path class="dash" d="M622 488 C650 560 700 590 845 645"/>
-  <path class="dash" d="M398 488 C350 600 318 690 320 770"/>
-  <path class="dash" d="M622 488 C590 610 610 695 620 770"/>
-
-  <rect class="band" x="1060" y="575" width="500" height="275"/>
-  <text class="bandTitle" x="1085" y="608">4. Validation and Release</text>
-  <rect class="boxPink" x="1105" y="645" width="180" height="75"/>
-  <text class="head" x="1130" y="674">Smoke Test</text>
-  <text class="text" x="1130" y="699">App starts cleanly</text>
-  <rect class="boxPink" x="1325" y="645" width="180" height="75"/>
-  <text class="head" x="1350" y="674">API Health</text>
-  <text class="text" x="1350" y="699">Gateway routes work</text>
-  <rect class="boxPink" x="1105" y="760" width="180" height="75"/>
-  <text class="head" x="1130" y="789">Workflow QA</text>
-  <text class="text" x="1130" y="814">Ticket lifecycle</text>
-  <rect class="boxPink" x="1325" y="760" width="180" height="75"/>
-  <text class="head" x="1350" y="789">Release Sign-off</text>
-  <text class="text" x="1350" y="814">Logs and backups checked</text>
-  <path class="arrow" d="M1285 682 L1325 682"/>
-  <path class="arrow" d="M1415 720 L1415 760"/>
-  <path class="arrow" d="M1325 797 L1285 797"/>
+  <rect class="band" x="985" y="545" width="470" height="245"/>
+  <text class="bandTitle" x="1010" y="578">4. Validation and Release</text>
+  <rect class="qa" x="1035" y="625" width="170" height="68"/><text class="head" x="1062" y="654">Smoke Test</text><text class="text" x="1062" y="677">Startup checks</text>
+  <rect class="qa" x="1245" y="625" width="170" height="68"/><text class="head" x="1272" y="654">API Health</text><text class="text" x="1272" y="677">Gateway routes</text>
+  <rect class="qa" x="1035" y="725" width="170" height="68"/><text class="head" x="1062" y="754">Workflow QA</text><text class="text" x="1062" y="777">Ticket lifecycle</text>
+  <rect class="qa" x="1245" y="725" width="170" height="68"/><text class="head" x="1266" y="754">Release Sign-off</text><text class="text" x="1272" y="777">Go-live approval</text>
 </svg>

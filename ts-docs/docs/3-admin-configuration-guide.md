@@ -583,7 +583,7 @@ Automation rules can send email to multiple users. Review recipient selections c
 ---
 
 ## 2.9 Categories and Subcategories
-This settings is under **Service Desk**
+This setting is under **Service Desk**.
 
 Categories and subcategories are used to classify tickets according to the type of issue being reported.
 

@@ -5,7 +5,7 @@ title: 12.4 Technical Appendix & Glossary
 
 # 12.4 Technical Appendix & Glossary
 
-This section contains the Glossary of terms and the Technical Appendix containing event payloads and Kubernetes manifest structures.
+This section contains the Glossary of terms and the Technical Appendix containing attachment formats, Kafka topics, and event payload schemas.
 
 ---
 
@@ -20,8 +20,8 @@ This section contains the Glossary of terms and the Technical Appendix containin
 - **.NET 9**: Open-source framework used to build REST API services.
 - **MediatR**: In-process dispatcher library used to handle CQRS patterns.
 - **JWT (JSON Web Token)**: Bearer tokens used for authorization.
-- **mTLS (Mutual TLS)**: Secure service-to-service API communication.
-- **UUID (Universally Unique Identifier)**: 128-bit cryptographic key used for guest tracking links.
+- **mTLS (Mutual TLS)**: Certificate-based service-to-service API communication for hardened deployments.
+- **UUID (Universally Unique Identifier)**: A 128-bit identifier used to uniquely identify records or resources.
 
 ---
 

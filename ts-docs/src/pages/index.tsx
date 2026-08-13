@@ -17,7 +17,7 @@ type DocCard = {
 const handoverDocs: DocCard[] = [
   {
     number: '01',
-    title: 'Installation Guide',
+    title: 'Installation Manual',
     description:
       'Windows Server with IIS, Linux with Docker and Portainer, Kafka, PostgreSQL, services, NGINX, and verification steps.',
     to: '/docs/installation-manual',
@@ -129,9 +129,9 @@ const handoverDocs: DocCard[] = [
   },
   {
     number: '12.3',
-    title: 'Risk Matrix & Future Roadmap',
+    title: 'Risk Matrix',
     description:
-      'Operational and technical risks, mitigation strategies, planned enhancements, and future product roadmap items.',
+      'Operational and technical risks, impact levels, probability, and mitigation strategies.',
     to: '/docs/acceptance-criteria-and-future',
     meta: 'Reference',
   },
@@ -139,14 +139,14 @@ const handoverDocs: DocCard[] = [
     number: '12.4',
     title: 'Technical Appendix & Glossary',
     description:
-      'Technical terminology, attachment formats, Kafka topics, event payload schemas, and Kubernetes manifest structures.',
+      'Technical terminology, attachment formats, Kafka topics, and event payload schemas.',
     to: '/docs/technical-appendix-and-glossary',
     meta: 'Reference',
   },
 ];
 
 const checkpoints = [
-  'Public-safe deployment values only',
+  'Public deployment values use placeholders and network restrictions',
   'Windows IIS and Linux Portainer paths',
   'Role guides for Facility, Regional, National, Administrator',
   'Architecture, API, integration, and code-transfer coverage',

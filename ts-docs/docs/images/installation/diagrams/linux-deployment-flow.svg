@@ -1,36 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="700" viewBox="0 0 1280 700" role="img" aria-labelledby="title desc">
-  <title id="title">Linux Docker Portainer Deployment Flow</title>
-  <desc id="desc">Linux deployment flow using Docker, Portainer, PostgreSQL, Kafka, application stack, Nginx, and verification.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="660" viewBox="0 0 1250 660">
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
-    <style>.bg{fill:#f8fafc}.box{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:8}.host{fill:#ecfeff;stroke:#0891b2}.docker{fill:#eef2ff;stroke:#4f46e5}.stack{fill:#f0fdf4;stroke:#16a34a}.edge{fill:#fff7ed;stroke:#ea580c}.line{stroke:#334155;stroke-width:2.2;fill:none;marker-end:url(#arrow)}.title{font:700 26px Arial,sans-serif;fill:#0f172a}.label{font:700 13px Arial,sans-serif;fill:#0f172a}.small{font:12px Arial,sans-serif;fill:#475569}</style>
+    <style>
+      .bg{fill:#f8fafc}.title{font:700 30px Arial,sans-serif;fill:#111827}.small{font:400 15px Arial,sans-serif;fill:#4b5563}.box{fill:#fff;stroke:#64748b;stroke-width:2;rx:12}.entry{fill:#eef2ff;stroke:#6d5dfc;stroke-width:2;rx:12}.svc{fill:#ecfdf5;stroke:#10b981;stroke-width:2;rx:12}.data{fill:#fff7ed;stroke:#f97316;stroke-width:2;rx:12}.msg{fill:#fdf2f8;stroke:#ec4899;stroke-width:2;rx:12}.label{font:700 16px Arial,sans-serif;fill:#111827}.text{font:400 13px Arial,sans-serif;fill:#374151}.line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
   </defs>
-  <rect class="bg" width="1280" height="700"/>
-  <text class="title" x="38" y="46">Linux Deployment With Docker and Portainer</text>
-  <text class="small" x="40" y="70">Containerized deployment path for TeraSupport services, web frontend, Kafka, PostgreSQL, and load balancing.</text>
-  <g>
-    <rect class="box host" x="45" y="115" width="170" height="62"/><text class="label" x="80" y="142">Prepare Ubuntu</text><text class="small" x="84" y="162">updates, firewall</text>
-    <rect class="box docker" x="255" y="115" width="170" height="62"/><text class="label" x="296" y="142">Install Docker</text><text class="small" x="289" y="162">Engine and Compose</text>
-    <rect class="box docker" x="465" y="115" width="170" height="62"/><text class="label" x="510" y="142">Install Portainer</text><text class="small" x="496" y="162">container management</text>
-    <rect class="box docker" x="675" y="115" width="170" height="62"/><text class="label" x="715" y="142">Create Network</text><text class="small" x="724" y="162">ts-network</text>
-    <rect class="box docker" x="885" y="115" width="170" height="62"/><text class="label" x="928" y="142">Build Images</text><text class="small" x="916" y="162">services, web, nginx</text>
-    <path class="line" d="M215 146 H255"/><path class="line" d="M425 146 H465"/><path class="line" d="M635 146 H675"/><path class="line" d="M845 146 H885"/>
-  </g>
-  <g>
-    <rect class="box docker" x="885" y="245" width="170" height="62"/><text class="label" x="925" y="272">Push Images</text><text class="small" x="917" y="292">container registry</text>
-    <rect class="box stack" x="675" y="245" width="170" height="62"/><text class="label" x="721" y="272">DB Stack</text><text class="small" x="704" y="292">PostgreSQL volumes</text>
-    <rect class="box stack" x="465" y="245" width="170" height="62"/><text class="label" x="509" y="272">Kafka Stack</text><text class="small" x="498" y="292">Zookeeper, broker, Kafdrop</text>
-    <rect class="box stack" x="255" y="245" width="170" height="62"/><text class="label" x="291" y="272">Application Stack</text><text class="small" x="295" y="292">APIs, web, Nginx</text>
-    <rect class="box edge" x="45" y="245" width="170" height="62"/><text class="label" x="82" y="272">Public Route</text><text class="small" x="80" y="292">HTTPS / load balancer</text>
-    <path class="line" d="M970 177 V245"/><path class="line" d="M885 276 H845"/><path class="line" d="M675 276 H635"/><path class="line" d="M465 276 H425"/><path class="line" d="M255 276 H215"/>
-  </g>
-  <rect class="box edge" x="45" y="390" width="190" height="72"/><text class="label" x="92" y="420">Internet Users</text><text class="small" x="88" y="442">public HTTPS entry</text>
-  <rect class="box edge" x="300" y="390" width="190" height="72"/><text class="label" x="337" y="420">Edge / Host LB</text><text class="small" x="334" y="442">Nginx or external LB</text>
-  <rect class="box edge" x="555" y="390" width="190" height="72"/><text class="label" x="600" y="420">Nginx Container</text><text class="small" x="608" y="442">published 3698:80</text>
-  <rect class="box docker" x="810" y="390" width="190" height="72"/><text class="label" x="851" y="420">Web Container</text><text class="small" x="867" y="442">React/Vite on 80</text>
-  <rect class="box stack" x="1035" y="390" width="190" height="72"/><text class="label" x="1078" y="420">API Services</text><text class="small" x="1074" y="442">Gateway routes to 8080</text>
-  <path class="line" d="M235 426 H300"/><path class="line" d="M490 426 H555"/><path class="line" d="M745 426 H810"/><path class="line" d="M1000 426 H1035"/>
-  <rect class="box stack" x="380" y="560" width="210" height="70"/><text class="label" x="429" y="590">PostgreSQL</text><text class="small" x="430" y="610">persistent volumes</text>
-  <rect class="box stack" x="690" y="560" width="210" height="70"/><text class="label" x="771" y="590">Kafka</text><text class="small" x="740" y="610">kafka:9092 and Kafdrop</text>
-  <path class="line" d="M1130 462 C1040 560 760 560 590 594"/><path class="line" d="M1130 462 C1040 530 920 558 900 594"/>
+  <rect class="bg" width="1250" height="660"/>
+  <text class="title" x="42" y="54">Linux / Portainer Deployment Flow</text>
+  <text class="small" x="42" y="82">Deploy database, Kafka, and application stacks on a shared Docker network.</text>
+  <rect class="entry" x="60" y="150" width="175" height="70"/><text class="label" x="104" y="182">Portainer</text><text class="text" x="98" y="204">Stack deploy</text>
+  <rect class="data" x="330" y="105" width="210" height="80"/><text class="label" x="380" y="137">PostgreSQL</text><text class="text" x="358" y="160">User, Ticket, Mail DBs</text>
+  <rect class="msg" x="330" y="245" width="210" height="80"/><text class="label" x="410" y="277">Kafka</text><text class="text" x="380" y="300">Broker and monitor</text>
+  <rect class="svc" x="650" y="175" width="210" height="86"/><text class="label" x="695" y="207">App Stack</text><text class="text" x="681" y="232">Gateway, services, web</text>
+  <rect class="entry" x="970" y="175" width="190" height="86"/><text class="label" x="1030" y="207">Nginx</text><text class="text" x="1012" y="232">Public entry</text>
+  <rect class="svc" x="650" y="390" width="135" height="64"/><text class="label" x="690" y="428">User</text>
+  <rect class="svc" x="805" y="390" width="135" height="64"/><text class="label" x="832" y="428">Ticketing</text>
+  <rect class="svc" x="960" y="390" width="135" height="64"/><text class="label" x="997" y="428">Mail</text>
+  <path class="line" d="M235 185 L330 145"/><path class="line" d="M235 185 L330 285"/><path class="line" d="M540 145 L650 218"/><path class="line" d="M540 285 L650 218"/><path class="line" d="M860 218 L970 218"/><path class="line" d="M735 261 L718 390"/><path class="line" d="M755 261 L872 390"/><path class="line" d="M775 261 L1027 390"/>
 </svg>

@@ -13,7 +13,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'installation-manual',
-          label: '1. Installation Guide',
+          label: '1. Installation Manual',
         },
         {
           type: 'doc',
@@ -109,7 +109,7 @@ const sidebars: SidebarsConfig = {
             {
               type: 'link',
               label: '5.1 Ticket Log',
-              href: '/docs/reports#51-tickets-log',
+              href: '/docs/reports#51-ticket-log',
             },
             {
               type: 'link',
@@ -217,7 +217,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'acceptance-criteria-and-future',
-          label: '12.3 Risk Matrix & Future Roadmap',
+          label: '12.3 Risk Matrix',
         },
         {
           type: 'doc',

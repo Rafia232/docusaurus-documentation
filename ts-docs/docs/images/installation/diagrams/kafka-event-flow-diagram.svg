@@ -1,30 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="520" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
-  <title id="title">Kafka Event Flow Diagram</title>
-  <desc id="desc">Sequence-style Kafka event flow from web app to gateway, ticketing service, Kafka, mail, user, and CRM services.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="560" viewBox="0 0 1250 560">
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker>
     <style>
-      .bg{fill:#f8fafc}.lane{stroke:#cbd5e1;stroke-width:2;stroke-dasharray:7 7}.head{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:8}.kafka{fill:#fdf2f8;stroke:#db2777}.svc{fill:#f0fdf4;stroke:#16a34a}.web{fill:#eef2ff;stroke:#4f46e5}.gateway{fill:#fff7ed;stroke:#ea580c}.msg{stroke:#334155;stroke-width:2;marker-end:url(#arrow)}.evt{stroke:#db2777;stroke-width:2;marker-end:url(#arrow);stroke-dasharray:8 5}.title{font:700 26px Arial,sans-serif;fill:#0f172a}.label{font:700 14px Arial,sans-serif;fill:#0f172a}.small{font:12px Arial,sans-serif;fill:#475569}
+      .bg{fill:#f8fafc}.title{font:700 30px Arial,sans-serif;fill:#111827}.small{font:400 15px Arial,sans-serif;fill:#4b5563}.box{fill:#fff;stroke:#64748b;stroke-width:2;rx:12}.entry{fill:#eef2ff;stroke:#6d5dfc;stroke-width:2;rx:12}.svc{fill:#ecfdf5;stroke:#10b981;stroke-width:2;rx:12}.data{fill:#fff7ed;stroke:#f97316;stroke-width:2;rx:12}.msg{fill:#fdf2f8;stroke:#ec4899;stroke-width:2;rx:12}.label{font:700 16px Arial,sans-serif;fill:#111827}.text{font:400 13px Arial,sans-serif;fill:#374151}.line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
     </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
   </defs>
-  <rect class="bg" width="1180" height="520"/>
-  <text class="title" x="36" y="46">Kafka Event Flow</text>
-  <text class="small" x="38" y="70">Ticket, message, email, user request, and CRM/deal events move asynchronously through Kafka topics.</text>
-  <g>
-    <rect class="head web" x="40" y="105" width="125" height="48"/><text class="label" x="75" y="134">Web App</text><line class="lane" x1="102" y1="153" x2="102" y2="470"/>
-    <rect class="head gateway" x="205" y="105" width="125" height="48"/><text class="label" x="229" y="134">Gateway</text><line class="lane" x1="267" y1="153" x2="267" y2="470"/>
-    <rect class="head svc" x="370" y="105" width="125" height="48"/><text class="label" x="396" y="134">Ticketing</text><line class="lane" x1="432" y1="153" x2="432" y2="470"/>
-    <rect class="head kafka" x="535" y="105" width="125" height="48"/><text class="label" x="577" y="134">Kafka</text><line class="lane" x1="597" y1="153" x2="597" y2="470"/>
-    <rect class="head svc" x="700" y="105" width="125" height="48"/><text class="label" x="734" y="134">Mail</text><line class="lane" x1="762" y1="153" x2="762" y2="470"/>
-    <rect class="head svc" x="865" y="105" width="125" height="48"/><text class="label" x="898" y="134">User</text><line class="lane" x1="927" y1="153" x2="927" y2="470"/>
-    <rect class="head svc" x="1030" y="105" width="110" height="48"/><text class="label" x="1054" y="134">CRM</text><line class="lane" x1="1085" y1="153" x2="1085" y2="470"/>
-  </g>
-  <line class="msg" x1="102" y1="190" x2="267" y2="190"/><text class="small" x="120" y="181">Create ticket / send message</text>
-  <line class="msg" x1="267" y1="235" x2="432" y2="235"/><text class="small" x="288" y="226">Route /ticket-api request</text>
-  <line class="evt" x1="432" y1="280" x2="597" y2="280"/><text class="small" x="448" y="271">ticket-create-topic</text>
-  <line class="evt" x1="597" y1="325" x2="762" y2="325"/><text class="small" x="620" y="316">mail/message event</text>
-  <line class="evt" x1="762" y1="370" x2="597" y2="370"/><text class="small" x="620" y="361">email-send-topic / status</text>
-  <line class="evt" x1="597" y1="415" x2="432" y2="415"/><text class="small" x="444" y="406">mail conversion/status</text>
-  <line class="evt" x1="597" y1="235" x2="927" y2="235"/><text class="small" x="708" y="226">user-request-update-topic</text>
-  <line class="evt" x1="597" y1="460" x2="1085" y2="460"/><text class="small" x="768" y="451">deal/mail events</text>
+  <rect class="bg" width="1250" height="560"/>
+  <text class="title" x="40" y="54">Kafka Event Flow</text>
+  <text class="small" x="40" y="82">Ticket, message, email, and user events move asynchronously through Kafka topics.</text>
+  <rect class="entry" x="60" y="150" width="140" height="58"/><text class="label" x="95" y="185">Web</text>
+  <rect class="entry" x="265" y="150" width="165" height="58"/><text class="label" x="305" y="185">Gateway</text>
+  <rect class="svc" x="500" y="95" width="150" height="58"/><text class="label" x="535" y="130">Ticketing</text>
+  <rect class="svc" x="500" y="225" width="150" height="58"/><text class="label" x="554" y="260">User</text>
+  <rect class="msg" x="730" y="150" width="150" height="58"/><text class="label" x="783" y="185">Kafka</text>
+  <rect class="svc" x="960" y="150" width="150" height="58"/><text class="label" x="1005" y="185">Mail</text>
+  <rect class="msg" x="730" y="330" width="150" height="58"/><text class="label" x="765" y="365">Kafdrop</text>
+  <path class="line" d="M200 179 L265 179"/><path class="line" d="M430 179 L500 124"/><path class="line" d="M430 179 L500 254"/><path class="line" d="M650 124 L730 179"/><path class="line" d="M650 254 L730 179"/><path class="line" d="M880 179 L960 179"/><path class="line" d="M805 208 L805 330"/>
+  <text class="text" x="690" y="455">Topics are monitored during deployment to confirm ticket creation, message, and email events are flowing.</text>
 </svg>

@@ -5,9 +5,7 @@ title: 10. Code Transfer Readiness
 
 # 10. Code Transfer Readiness
 
-This checklist defines what must be ready before transferring the MoH Helpdesk codebase and documentation to another team.
-
-The current repository is the documentation site. The actual application codebase must be reviewed separately for source-code comments, build scripts, tests, and deployment assets.
+This checklist defines the handover readiness criteria for transferring the MoH Helpdesk codebase and documentation to another team.
 
 ---
 
@@ -21,8 +19,8 @@ The current repository is the documentation site. The actual application codebas
 | Admin configuration guide | Added for categories, SLA, regions, lookups, and user management. |
 | Technical design document | Added as consolidated architecture reference. |
 | API documentation | Existing REST API document retained. |
-| Integration documentation | Added for REST, Kafka, SMTP, object storage, and external sync. |
-| Screenshots | Existing screenshots are present; installation screenshots still need to be captured from real environments. |
+| Integration documentation | Added for REST, Kafka, SMTP, attachment storage, and external sync. |
+| Screenshots | Existing application screenshots are present; deployment screenshots should be refreshed during each environment-specific handover package. |
 
 ---
 

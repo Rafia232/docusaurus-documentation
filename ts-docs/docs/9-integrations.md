@@ -17,8 +17,9 @@ This page documents external and cross-service integrations used by the MoH Help
 | PostgreSQL | Database | Persistent relational storage. | Yes |
 | Kafka | Event streaming | Ticket, notification, and service synchronization events. | Recommended |
 | SMTP / MoH Mail Gateway | Email | Sends platform notifications. | Yes |
-| Object Storage / MinIO / S3 | File storage | Stores ticket attachments. | Yes |
-| JWT/OAuth provider | Identity/security | Token authentication and authorization. | Yes |
+| Persistent application volume | File storage | Stores ticket attachments in the documented deployment. | Yes |
+| Object Storage / MinIO / S3 | File storage | Recommended target for scalable attachment storage. | Optional |
+| Application-issued JWT | Identity/security | Token authentication and authorization issued by the User Service. | Yes |
 | External device/facility systems | Data sync | Optional synchronization with external registries. | Optional |
 
 ---
@@ -100,26 +101,26 @@ Notification templates should be configured for:
 
 ---
 
-## 9.5 Object Storage Integration
+## 9.5 Attachment Storage Integration
 
-Ticket attachments should be stored outside the application server filesystem in object storage.
+The documented deployment stores ticket attachments on persistent application volumes mounted into the relevant services. Object storage such as MinIO or S3 is a recommended target architecture for larger or highly available deployments, but it is not required unless configured in the production stack.
 
 Supported pattern:
 
 | Item | Description |
 | --- | --- |
-| Bucket/container | Stores ticket attachments. |
-| Object key | Unique path or generated file identifier. |
+| Volume or bucket/container | Stores ticket attachments. |
+| File path or object key | Unique path or generated file identifier. |
 | File size limit | Recommended maximum: 5 MB per file. |
 | Allowed formats | PDF, DOC, DOCX, TXT, JPG, PNG. |
-| Download access | Time-limited signed URL where supported. |
+| Download access | Application-controlled file route; time-limited signed URL where object storage is configured. |
 
 Production requirements:
 
 - Enable access logging.
 - Enable backups or replication.
-- Restrict bucket access to application services.
-- Rotate access keys according to security policy.
+- Restrict storage access to application services.
+- Rotate object storage access keys according to security policy when object storage is used.
 
 ---
 

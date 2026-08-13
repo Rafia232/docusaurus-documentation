@@ -25,7 +25,7 @@ Use the left-hand navigation sidebar to browse the following sections of the sui
 
 | Sequence | Documentation Section | Included Content |
 |:---:|---|---|
-| 1 | **[Installation Guide](/docs/installation-manual)** | Provides the required steps for installing, configuring, and preparing the platform for use. |
+| 1 | **[Installation Manual](/docs/installation-manual)** | Provides the required steps for installing, configuring, and preparing the platform for use. |
 | 2 | **[Administration & Configuration Guide](/docs/admin-configuration-guide)** | Covers organization setup, regions, locations, users, roles, permissions, email configuration, automation rules, categories, subcategories, applications, and priorities. |
 
 ## User Operations
@@ -34,7 +34,7 @@ Use the left-hand navigation sidebar to browse the following sections of the sui
 |:---:|---|---|
 | 3 | **[Role-Based User Guides](/docs/role-based-user-guide)** | Provides instructions for each platform user type.<br /><br />**[3.1 Facility User](/docs/role-based-user-guide#31-facility-user)**<br />**[3.2 Regional User](/docs/role-based-user-guide#32-regional-user)**<br />**[3.3 National User](/docs/role-based-user-guide#33-national-user)**<br />**[3.4 Administrator](/docs/role-based-user-guide#34-administrator)** |
 | 4 | **[Dashboards](/docs/dashboard)** | Explains the role-based dashboards and the information available to each user.<br /><br />**[4.1 Technician Dashboard](/docs/dashboard#41-technician-dashboard--regional-user)**<br />**[4.2 Regional Dashboard](/docs/dashboard#42-regional-dashboard--regional-user)**<br />**[4.3 Management Dashboard](/docs/dashboard#43-management-dashboard--national-user)**<br />**[4.4 Executive Dashboard](/docs/dashboard#44-executive-dashboard--administrator)** |
-| 5 | **[Reports](/docs/reports)** | Describes the available ticket, incident, technician, facility, and SLA reports.<br /><br />**[5.1 Ticket Log](/docs/reports#51-tickets-log)**<br />**[5.2 Incident Reports](/docs/reports#52-incident-reports)**<br />**[5.3 Technician Reports](/docs/reports#53-technician-reports)**<br />**[5.4 Facility Reports](/docs/reports#54-facility-reports)**<br />**[5.5 SLA Reports](/docs/reports#55-sla-reports)** |
+| 5 | **[Reports](/docs/reports)** | Describes the available ticket, incident, technician, facility, and SLA reports.<br /><br />**[5.1 Ticket Log](/docs/reports#51-ticket-log)**<br />**[5.2 Incident Reports](/docs/reports#52-incident-reports)**<br />**[5.3 Technician Reports](/docs/reports#53-technician-reports)**<br />**[5.4 Facility Reports](/docs/reports#54-facility-reports)**<br />**[5.5 SLA Reports](/docs/reports#55-sla-reports)** |
 
 ## Technical Documentation
 
@@ -64,7 +64,7 @@ Use the left-hand navigation sidebar to browse the following sections of the sui
 |:---:|---|---|
 | 12.1 | **[Data Architecture](/docs/data-architecture)** | Documents the platform data model, database structure, relationships, data flow, storage, and data-management considerations. |
 | 12.2 | **[Deployment & Testing](/docs/deployment-and-testing)** | Covers deployment environments, deployment procedures, testing approaches, validation activities, and release-readiness requirements. |
-| 12.3 | **[Risk Matrix & Future Roadmap](/docs/acceptance-criteria-and-future)** | Documents operational and technical risks, mitigation considerations, acceptance criteria, planned improvements, and future roadmap items. |
+| 12.3 | **[Risk Matrix](/docs/acceptance-criteria-and-future)** | Documents operational and technical risks, impact levels, probability, and mitigation strategies. |
 | 12.4 | **[Technical Appendix & Glossary](/docs/technical-appendix-and-glossary)** | Provides supplementary technical references, abbreviations, definitions, terminology, and supporting platform information. |
 
 

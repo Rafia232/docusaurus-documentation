@@ -23,7 +23,7 @@ The platform is a .NET 9 CQRS/MediatR microservice system with an Ocelot API Gat
 
 ## 1.0 Visual Deployment Overview
 
-Use this diagram as the first visual in the installation manual. It shows how users enter the system and how the .NET 9 CQRS/MediatR services, Ocelot API Gateway, PostgreSQL, Kafka, and web frontend fit together.
+This deployment overview shows how users enter the system and how the .NET 9 CQRS/MediatR services, Ocelot API Gateway, PostgreSQL, Kafka, and web frontend fit together.
 
 <ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport visual deployment overview diagram" maxHeight="640px" />
 
@@ -64,7 +64,7 @@ Use these cards as the beginner deployment checklist for Windows Server and IIS.
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-04</span><span className="visual-step-title">Prepare Databases</span></div>
     <div className="visual-step-frame"><div className="visual-step-frame-inner">Install PostgreSQL and create service databases</div></div>
-    <div className="visual-step-body"><p>Install PostgreSQL using the official <a href="https://www.postgresql.org/download/windows/">PostgreSQL Windows installer</a>. The installer can include pgAdmin. If pgAdmin is needed separately, use the <a href="https://www.pgadmin.org/download/pgadmin-4-windows/">pgAdmin Windows download</a>.</p><ul><li>Create: <code>TSUserDB</code>, <code>TSTicketDb</code>, <code>TSCRMDb</code>, <code>TSCallCenterDb</code>, <code>TSDeviceDB</code>, and <code>TSMailDB</code>.</li><li>Create a production database user with a strong password.</li><li>Verify: connect using pgAdmin or <code>psql -h localhost -U &lt;user&gt; -d TSTicketDb</code>.</li></ul></div>
+    <div className="visual-step-body"><p>Install PostgreSQL using the official <a href="https://www.postgresql.org/download/windows/">PostgreSQL Windows installer</a>. The installer can include pgAdmin. If pgAdmin is needed separately, use the <a href="https://www.pgadmin.org/download/pgadmin-4-windows/">pgAdmin Windows download</a>.</p><ul><li>Create: <code>TSUserDB</code>, <code>TSTicketDb</code>, and <code>TSMailDB</code>.</li><li>Create a production database user with a strong password.</li><li>Verify: connect using pgAdmin or <code>psql -h localhost -U &lt;user&gt; -d TSTicketDb</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-05</span><span className="visual-step-title">Configure Kafka</span></div>
@@ -74,7 +74,7 @@ Use these cards as the beginner deployment checklist for Windows Server and IIS.
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-06</span><span className="visual-step-title">Publish Services</span></div>
     <div className="visual-step-frame"><div className="visual-step-frame-inner">Publish each .NET microservice in Release mode</div></div>
-    <div className="visual-step-body"><p>From the solution root, restore, build, and publish ApiGateway, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and Meta into separate folders under <code>C:\inetpub\terasupport</code>.</p><ul><li>Run: <code>dotnet restore TS.sln</code></li><li>Run: <code>dotnet build TS.sln -c Release</code></li><li>Verify: each publish folder contains the service DLL and generated <code>web.config</code>.</li></ul></div>
+    <div className="visual-step-body"><p>From the solution root, restore, build, and publish ApiGateway, User, Ticketing, and Mail into separate folders under <code>C:\inetpub\terasupport</code>.</p><ul><li>Run: <code>dotnet restore TS.sln</code></li><li>Run: <code>dotnet build TS.sln -c Release</code></li><li>Verify: each publish folder contains the service DLL and generated <code>web.config</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP WIN-07</span><span className="visual-step-title">Build Web App</span></div>
@@ -130,8 +130,8 @@ Use these cards as the beginner deployment checklist for Linux, Docker, and Port
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-04</span><span className="visual-step-title">Build Images</span></div>
-    <div className="visual-step-frame"><div className="visual-step-frame-inner">Build API Gateway, services, web, and Nginx images</div></div>
-    <div className="visual-step-body"><p>From the TeraSupport solution root, build each Dockerfile with the same image names used in production compose files.</p><ul><li>Run: <code>docker build -t arcapps/terasupport-api-gateway:latest -f ApiGateway/Dockerfile .</code></li><li>Repeat for User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, Meta, Web, and Nginx.</li><li>Verify: <code>docker images | grep terasupport</code>.</li></ul></div>
+    <div className="visual-step-frame"><div className="visual-step-frame-inner">Build API Gateway, User, Ticketing, Mail, Web, and Nginx images</div></div>
+    <div className="visual-step-body"><p>From the TeraSupport solution root, build each Dockerfile with the same image names used in production compose files.</p><ul><li>Run: <code>docker build -t arcapps/terasupport-api-gateway:latest -f ApiGateway/Dockerfile .</code></li><li>Repeat for User, Ticketing, Mail, Web, and Nginx.</li><li>Verify: <code>docker images | grep terasupport</code>.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-05</span><span className="visual-step-title">Deploy PostgreSQL Stack</span></div>
@@ -146,12 +146,12 @@ Use these cards as the beginner deployment checklist for Linux, Docker, and Port
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-07</span><span className="visual-step-title">Deploy App Stack</span></div>
     <div className="visual-step-frame"><div className="visual-step-frame-inner">Portainer → Stacks → Add stack → prod.compose.yml</div></div>
-    <div className="visual-step-body"><p>Create the application stack after database and Kafka stacks are healthy. Paste <code>prod.compose.yml</code>, update image tags, hostnames, secrets, and public URLs, then deploy.</p><ul><li>Verify: ApiGateway, Web, Nginx, User, Ticketing, CRM, CallCenter, DeviceManagement, Mail, and Meta containers are running.</li><li>Check logs for database connection or Kafka connection errors.</li><li>Restart only the affected container after fixing variables.</li></ul></div>
+    <div className="visual-step-body"><p>Create the application stack after database and Kafka stacks are healthy. Paste <code>prod.compose.yml</code>, update image tags, hostnames, secrets, and public URLs, then deploy.</p><ul><li>Verify: ApiGateway, Web, Nginx, User, Ticketing, and Mail containers are running.</li><li>Check logs for database connection or Kafka connection errors.</li><li>Restart only the affected container after fixing variables.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-08</span><span className="visual-step-title">Set Stack Variables</span></div>
     <div className="visual-step-frame"><div className="visual-step-frame-inner">Set DB, Kafka, JWT, Ocelot, and service URL variables</div></div>
-    <div className="visual-step-body"><p>Use production values for every secret and endpoint. For Docker, downstream service hostnames should normally be container names such as <code>user</code>, <code>ticketing</code>, <code>crm</code>, and <code>mail</code>.</p><ul><li>Set <code>KAFKA_HOST=kafka</code> and <code>KAFKA_PORT=9092</code>.</li><li>Set each <code>CONNECTIONSTRINGS__DBLOCATION</code> to the correct PostgreSQL container and database.</li><li>Do not leave sample JWT, database, SMTP, or Facebook/Meta secrets in production.</li></ul></div>
+    <div className="visual-step-body"><p>Use production values for every secret and endpoint. For Docker, downstream service hostnames should normally be container names such as <code>user</code>, <code>ticketing</code>, and <code>mail</code>.</p><ul><li>Set <code>KAFKA_HOST=kafka</code> and <code>KAFKA_PORT=9092</code>.</li><li>Set each <code>CONNECTIONSTRINGS__DBLOCATION</code> to the correct PostgreSQL container and database.</li><li>Do not leave sample JWT, database, or SMTP secrets in production.</li></ul></div>
   </div>
   <div className="visual-step">
     <div className="visual-step-header"><span className="visual-step-code">STEP LNX-09</span><span className="visual-step-title">Configure Load Balancer</span></div>
@@ -179,12 +179,8 @@ Use these cards as the beginner deployment checklist for Linux, Docker, and Port
 | API Gateway | `ApiGateway/ApiGateway.csproj` | .NET 9 | Ocelot reverse gateway for all backend APIs. |
 | User Service | `User/User.csproj` | .NET 9 | Authentication, users, roles, organizations, contacts, regions. |
 | Ticketing Service | `Ticketing/Ticketing.csproj` | .NET 9 | Tickets, categories, assignment, messages, reports, attachments. |
-| CRM Service | `CRM/CRM.csproj` | .NET 9 | CRM and deal/mail workflows. |
-| Call Center Service | `CallCenter/CallCenter.csproj` | .NET 9 | Call center module. |
-| Device Management Service | `DeviceManagement/DeviceManagement.csproj` | .NET 9 | Devices, RDP/device integrations, device tracking. |
 | Mail Service | `Mail/Mail.csproj` | .NET 9 | Mail ingestion, SMTP dispatch, Kafka mail workflows. |
-| Meta Service | `Meta/Meta.csproj` | .NET 9 | Social/meta integration features. |
-| Web App | `Web/` | Node 20, Vite, React 19 | User interface served by IIS or Nginx. |
+| Web App | `Web/` | Node LTS, Vite, React 19 | User interface served by IIS or Nginx. |
 | Nginx | `Nginx/default.conf` | Nginx | Linux container load balancer/reverse proxy. |
 
 Supporting projects:
@@ -212,7 +208,7 @@ Install these on the Windows Server:
 | ASP.NET Core Runtime | Included with Hosting Bundle. | [ASP.NET Core IIS hosting guide](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/) |
 | URL Rewrite | IIS URL Rewrite module. | [IIS URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) |
 | Application Request Routing | IIS ARR module for reverse proxy. | [IIS Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) |
-| Node.js | Node LTS for building the web app. | [Node.js downloads](https://nodejs.org/en/download) |
+| Node.js | Current supported Node LTS for building the web app. | [Node.js downloads](https://nodejs.org/en/download) |
 | Yarn | Required by the `Web/Dockerfile` and web project lockfile. | [Yarn installation](https://classic.yarnpkg.com/lang/en/docs/install/) |
 | PostgreSQL | PostgreSQL 17 recommended, or a managed PostgreSQL server. | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) |
 | pgAdmin | Optional GUI for PostgreSQL administration. | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) |
@@ -246,9 +242,6 @@ The solution uses PostgreSQL and separates databases by service domain.
 | Service | Database | Default Docker Host |
 | --- | --- | --- |
 | User | `TSUserDB` | `terasupport-db_postgres_user` |
-| Call Center | `TSCallCenterDb` | `terasupport-db_postgres_callcenter` |
-| CRM | `TSCRMDb` | `terasupport-db_postgres_crm` |
-| Device Management | `TSDeviceDB` | `terasupport-db_postgres_device` |
 | Mail | `TSMailDB` | `terasupport-db_postgres_mail` |
 | Ticketing | `TSTicketDb` | `terasupport-db_postgres_ticket` |
 
@@ -278,8 +271,8 @@ The services use .NET configuration binding, so nested settings are supplied wit
 | `LOGGING__LOGLEVEL__MICROSOFT_ASPNETCORE` | `Warning` | All .NET services |
 | `CONNECTIONSTRINGS__DBLOCATION` | `Host=db;Port=5432;Database=TSUserDB;Username=...;Password=...` | Services with EF Core |
 | `JWT__KEY` | Production secret | API Gateway, Ticketing |
-| `KAFKA_HOST` | `kafka` or server hostname | User, Ticketing, CRM, Mail |
-| `KAFKA_PORT` | `9092` inside Docker, `29092` host access | User, Ticketing, CRM, Mail |
+| `KAFKA_HOST` | `kafka` or server hostname | User, Ticketing, Mail |
+| `KAFKA_PORT` | `9092` inside Docker, `29092` host access | User, Ticketing, Mail |
 
 ### 1.4.2 API Gateway Variables
 
@@ -290,30 +283,19 @@ The services use .NET configuration binding, so nested settings are supplied wit
 | `OCELOTVARIABLES__USERMANAGEMENTSERVICEPORT` | `8080` or `7250` |
 | `OCELOTVARIABLES__TICKETINGSYSTEMSERVICEHOST` | `ticketing` or `localhost` |
 | `OCELOTVARIABLES__TICKETINGSYSTEMSERVICEPORT` | `8080` or `7137` |
-| `OCELOTVARIABLES__CRMSERVICEHOST` | `crm` or `localhost` |
-| `OCELOTVARIABLES__CRMSERVICEPORT` | `8080` or `7126` |
-| `OCELOTVARIABLES__CALLCENTERHOST` | `callcenter` or `localhost` |
-| `OCELOTVARIABLES__CALLCENTERPORT` | `8080` or `5042` |
-| `OCELOTVARIABLES__DEVICEHOST` | `devicemanagement` or `localhost` |
-| `OCELOTVARIABLES__DEVICEPORT` | `8080` or `7094` |
 | `OCELOTVARIABLES__MAILSERVICEHOST` | `mail` or `localhost` |
 | `OCELOTVARIABLES__MAILSERVICEPORT` | `8080` or `7122` |
-| `OCELOTVARIABLES__METASERVICEHOST` | `meta` or `localhost` |
-| `OCELOTVARIABLES__METASERVICEPORT` | `8080` or `5121` |
 
 ### 1.4.3 Service-Specific Variables
 
 | Service | Variables |
 | --- | --- |
 | User | `MAILAPI__BASEURL`, `KAFKA_HOST`, `KAFKA_PORT`, `CONNECTIONSTRINGS__DBLOCATION` |
-| Ticketing | `FILESETTING__FILEBASEURL`, `USERSERVICE__BASEURL`, `APISETTINGS__BASEURL`, `CRMSETTINGS__BASEURL`, `JWT__KEY`, `KAFKA_HOST`, `KAFKA_PORT`, `AISETTINGS__...` |
-| CRM | `BASEAPISETTINGS__USERSERVICE`, `FILESETTING__FILEBASEURL`, `KAFKA_HOST`, `KAFKA_PORT` |
-| Device Management | `REMOTEDEVICESETTINGS__BASEURL`, `REMOTEDEVICESETTINGS__AUTHTOKEN`, `APISETTINGS__BASEURL`, `APISETTINGS__TICKETAPIURL` |
+| Ticketing | `FILESETTING__FILEBASEURL`, `USERSERVICE__BASEURL`, `APISETTINGS__BASEURL`, `JWT__KEY`, `KAFKA_HOST`, `KAFKA_PORT`, `AISETTINGS__...` |
 | Mail | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `KAFKA_HOST`, `KAFKA_PORT`, `TicketHTTP_HOST` |
-| Meta | `FACEBOOK__...`, `INSTAGRAMS__...`, `SERVERBASE__URL`, `BASEAPISETTINGS__USERSERVICE`, `FILESETTING__FILEBASEURL` |
 | Web | `VITE_API_URL`, `VITE_OLLAMA_BASE_URL`, `VITE_OLLAMA_PROXY_TARGET`, `VITE_OLLAMA_DEFAULT_MODEL` |
 
-Do not copy development `.env` secrets directly into production. Replace all tokens, passwords, JWT keys, remote-device tokens, and social API credentials.
+Do not copy development `.env` secrets directly into production. Replace all tokens, passwords, JWT keys, and SMTP credentials.
 
 ---
 
@@ -326,11 +308,7 @@ Do not copy development `.env` secrets directly into production. Replace all tok
 | API Gateway | 5256 | 7062 |
 | User | 5184 | 7250 |
 | Ticketing | 5193 | 7137 |
-| CRM | 5265 | 7126 |
-| Call Center | 5042 | 7012 |
-| Device Management | 5028 | 7094 |
 | Mail | 5070 | 7122 |
-| Meta | 5121 | 7247 |
 
 ### 1.5.2 Docker Runtime Ports
 
@@ -341,11 +319,7 @@ Each .NET Dockerfile exposes internal port `8080`. Nginx publishes the external 
 | `apigateway` | 8080 | Internal, through Nginx |
 | `user` | 8080 | Internal |
 | `ticketing` | 8080 | Internal |
-| `crm` | 8080 | Internal |
-| `callcenter` | 8080 | Internal |
-| `devicemanagement` | 8080 | Internal |
 | `mail` | 8080 | Internal |
-| `meta` | 8080 | Internal |
 | `web` | 80 | Internal, through Nginx |
 | `nginx` | 80 | Public mapped port, current compose uses `3698:80` |
 | `kafka` | 9092 / 29092 | Internal Docker / external host access |
@@ -436,7 +410,7 @@ Before connecting TeraSupport services to Kafka, verify:
 | Broker is reachable | Run `kafka-topics --bootstrap-server <host>:<port> --list` or open Kafdrop. |
 | Required topics exist | Confirm the topics listed in section 1.6.2 are present, or confirm auto-topic creation is enabled. |
 | Consumer groups appear | Trigger a test ticket/message event and confirm consumer groups appear in Kafdrop or Kafka CLI output. |
-| Application configuration is correct | Confirm `KAFKA_HOST` and `KAFKA_PORT` are set for User, Ticketing, CRM, and Mail services. |
+| Application configuration is correct | Confirm `KAFKA_HOST` and `KAFKA_PORT` are set for User, Ticketing, and Mail services. |
 | Service logs are clean | Check service logs for successful producer/consumer startup and no repeated broker connection errors. |
 
 ---
@@ -549,9 +523,6 @@ Create the required databases:
 
 ```sql
 CREATE DATABASE "TSUserDB";
-CREATE DATABASE "TSCallCenterDb";
-CREATE DATABASE "TSCRMDb";
-CREATE DATABASE "TSDeviceDB";
 CREATE DATABASE "TSMailDB";
 CREATE DATABASE "TSTicketDb";
 ```
@@ -561,9 +532,6 @@ Create a production database user:
 ```sql
 CREATE USER terasupport_prod WITH PASSWORD '<strong-password>';
 GRANT ALL PRIVILEGES ON DATABASE "TSUserDB" TO terasupport_prod;
-GRANT ALL PRIVILEGES ON DATABASE "TSCallCenterDb" TO terasupport_prod;
-GRANT ALL PRIVILEGES ON DATABASE "TSCRMDb" TO terasupport_prod;
-GRANT ALL PRIVILEGES ON DATABASE "TSDeviceDB" TO terasupport_prod;
 GRANT ALL PRIVILEGES ON DATABASE "TSMailDB" TO terasupport_prod;
 GRANT ALL PRIVILEGES ON DATABASE "TSTicketDb" TO terasupport_prod;
 ```
@@ -573,7 +541,7 @@ Verification checkpoint:
 | Check | Command / Expected Result |
 | --- | --- |
 | PostgreSQL service is running | Windows Services shows PostgreSQL running, or `pg_isready -h localhost -p 5432` returns accepting connections. |
-| Databases exist | pgAdmin or `psql -l` shows `TSUserDB`, `TSTicketDb`, `TSCRMDb`, `TSCallCenterDb`, `TSDeviceDB`, and `TSMailDB`. |
+| Databases exist | pgAdmin or `psql -l` shows `TSUserDB`, `TSTicketDb`, and `TSMailDB`. |
 | Production user has access | `psql -h localhost -U terasupport_prod -d TSTicketDb` connects successfully. |
 
 ### 1.7.5 Prepare Kafka on Windows
@@ -654,11 +622,7 @@ Publish each service:
 dotnet publish ApiGateway\ApiGateway.csproj -c Release -o C:\inetpub\terasupport\apigateway
 dotnet publish User\User.csproj -c Release -o C:\inetpub\terasupport\user
 dotnet publish Ticketing\Ticketing.csproj -c Release -o C:\inetpub\terasupport\ticketing
-dotnet publish CRM\CRM.csproj -c Release -o C:\inetpub\terasupport\crm
-dotnet publish CallCenter\CallCenter.csproj -c Release -o C:\inetpub\terasupport\callcenter
-dotnet publish DeviceManagement\DeviceManagement.csproj -c Release -o C:\inetpub\terasupport\devicemanagement
 dotnet publish Mail\Mail.csproj -c Release -o C:\inetpub\terasupport\mail
-dotnet publish Meta\Meta.csproj -c Release -o C:\inetpub\terasupport\meta
 ```
 
 Copy web build output:
@@ -677,11 +641,7 @@ Create one app pool per .NET service and one for the web app.
 | `TeraSupport.ApiGateway` | No Managed Code | Integrated | ApplicationPoolIdentity |
 | `TeraSupport.User` | No Managed Code | Integrated | ApplicationPoolIdentity |
 | `TeraSupport.Ticketing` | No Managed Code | Integrated | ApplicationPoolIdentity |
-| `TeraSupport.CRM` | No Managed Code | Integrated | ApplicationPoolIdentity |
-| `TeraSupport.CallCenter` | No Managed Code | Integrated | ApplicationPoolIdentity |
-| `TeraSupport.DeviceManagement` | No Managed Code | Integrated | ApplicationPoolIdentity |
 | `TeraSupport.Mail` | No Managed Code | Integrated | ApplicationPoolIdentity |
-| `TeraSupport.Meta` | No Managed Code | Integrated | ApplicationPoolIdentity |
 | `TeraSupport.Web` | No Managed Code | Integrated | ApplicationPoolIdentity |
 
 Recommended app pool settings:
@@ -712,11 +672,7 @@ Recommended Windows deployment pattern:
 | `TeraSupport.ApiGateway` | `http://localhost:5256` or private port | `C:\inetpub\terasupport\apigateway` |
 | `TeraSupport.User` | `http://localhost:5184` or private port | `C:\inetpub\terasupport\user` |
 | `TeraSupport.Ticketing` | `http://localhost:5193` or private port | `C:\inetpub\terasupport\ticketing` |
-| `TeraSupport.CRM` | `http://localhost:5265` or private port | `C:\inetpub\terasupport\crm` |
-| `TeraSupport.CallCenter` | `http://localhost:5042` or private port | `C:\inetpub\terasupport\callcenter` |
-| `TeraSupport.DeviceManagement` | `http://localhost:5028` or private port | `C:\inetpub\terasupport\devicemanagement` |
 | `TeraSupport.Mail` | `http://localhost:5070` or private port | `C:\inetpub\terasupport\mail` |
-| `TeraSupport.Meta` | `http://localhost:5121` or private port | `C:\inetpub\terasupport\meta` |
 
 Public traffic should enter through the web site and `/ts-api` should proxy to the API Gateway.
 
@@ -803,15 +759,14 @@ Verify in this order:
 3. User service starts.
 4. Ticketing service starts.
 5. Mail service starts and subscribes to Kafka.
-6. CRM service starts and subscribes to Kafka.
-7. API Gateway starts and loads Ocelot routes.
-8. Web app opens from IIS.
-9. `/ts-api/swagger` or gateway Swagger opens.
-10. Login works.
-11. Ticket creation works.
-12. Ticket assignment triggers Kafka/mail logs.
-13. Attachment upload/download works.
-14. Reports open and export.
+6. API Gateway starts and loads Ocelot routes.
+7. Web app opens from IIS.
+8. `/ts-api/swagger` or gateway Swagger opens.
+9. Login works.
+10. Ticket creation works.
+11. Ticket assignment triggers Kafka/mail logs.
+12. Attachment upload/download works.
+13. Reports open and export.
 
 Verification checkpoint:
 
@@ -924,11 +879,7 @@ cd /opt/TeraSupport
 docker build -t arcapps/terasupport-api-gateway:latest -f ApiGateway/Dockerfile .
 docker build -t arcapps/terasupport-user-service:latest -f User/Dockerfile .
 docker build -t arcapps/terasupport-ticketing-service:latest -f Ticketing/Dockerfile .
-docker build -t arcapps/terasupport-crm-service:latest -f CRM/Dockerfile .
-docker build -t arcapps/terasupport-callcenter-service:latest -f CallCenter/Dockerfile .
-docker build -t arcapps/terasupport-devicemanagement-service:latest -f DeviceManagement/Dockerfile .
 docker build -t arcapps/terasupport-mail-service:latest -f Mail/Dockerfile .
-docker build -t arcapps/terasupport-meta-service:latest -f Meta/Dockerfile .
 docker build -t arcapps/terasupport-web-service:latest -f Web/Dockerfile --build-arg VITE_API_URL=/ts-api .
 docker build -t arcapps/terasupport-nginx-service:latest -f Nginx/Dockerfile .
 ```
@@ -947,7 +898,7 @@ Verification checkpoint:
 
 | Check | Command / Expected Result |
 | --- | --- |
-| Images exist locally | `docker images | grep terasupport` lists API Gateway, services, web, and Nginx images. |
+| Images exist locally | `docker images | grep terasupport` lists API Gateway, User, Ticketing, Mail, Web, and Nginx images. |
 | Tags match compose files | Image names and tags match `prod.compose.yml`. |
 | Registry push is complete | If using a registry, `docker pull <registry-host>/<image>:<tag>` succeeds from the deployment server. |
 
@@ -970,14 +921,11 @@ Steps:
 7. Deploy the stack.
 8. Confirm all PostgreSQL containers are healthy.
 
-Current compose creates separate PostgreSQL containers:
+Current compose creates separate PostgreSQL containers. Keep these databases on the private Docker network unless an administrator explicitly needs temporary host access for maintenance.
 
-| Container | Host Port | Database |
+| Container | Internal Port | Database |
 | --- | ---: | --- |
 | `postgres_user` | 5432 | `TSUserDB` |
-| `postgres_callcenter` | 5433 | `TSCallCenterDb` |
-| `postgres_crm` | 5434 | `TSCRMDb` |
-| `postgres_device` | 5435 | `TSDeviceDB` |
 | `postgres_mail` | 5436 | `TSMailDB` |
 | `postgres_ticket` | 5437 | `TSTicketDb` |
 
@@ -990,8 +938,6 @@ services:
   postgres_user:
     image: postgres:17.5
     restart: always
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_USER: <POSTGRES_USER>
       POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
@@ -1006,68 +952,9 @@ services:
       timeout: 5s
       retries: 5
 
-  postgres_callcenter:
-    image: postgres:17.5
-    restart: always
-    ports:
-      - "5433:5432"
-    environment:
-      POSTGRES_USER: <POSTGRES_USER>
-      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
-      POSTGRES_DB: TSCallCenterDb
-    volumes:
-      - local_pgdata_callcenter:/var/lib/postgresql/data
-    networks:
-      - ts-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  postgres_crm:
-    image: postgres:17.5
-    restart: always
-    ports:
-      - "5434:5432"
-    environment:
-      POSTGRES_USER: <POSTGRES_USER>
-      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
-      POSTGRES_DB: TSCRMDb
-    volumes:
-      - local_pgdata_crm:/var/lib/postgresql/data
-    networks:
-      - ts-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  postgres_device:
-    image: postgres:17.5
-    restart: always
-    ports:
-      - "5435:5432"
-    environment:
-      POSTGRES_USER: <POSTGRES_USER>
-      POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
-      POSTGRES_DB: TSDeviceDB
-    volumes:
-      - local_pgdata_device:/var/lib/postgresql/data
-    networks:
-      - ts-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U <POSTGRES_USER>"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
   postgres_mail:
     image: postgres:17.5
     restart: always
-    ports:
-      - "5436:5432"
     environment:
       POSTGRES_USER: <POSTGRES_USER>
       POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
@@ -1085,8 +972,6 @@ services:
   postgres_ticket:
     image: postgres:17.5
     restart: always
-    ports:
-      - "5437:5432"
     environment:
       POSTGRES_USER: <POSTGRES_USER>
       POSTGRES_PASSWORD: <POSTGRES_PASSWORD>
@@ -1103,9 +988,6 @@ services:
 
 volumes:
   local_pgdata_user:
-  local_pgdata_callcenter:
-  local_pgdata_crm:
-  local_pgdata_device:
   local_pgdata_mail:
   local_pgdata_ticket:
 
@@ -1116,6 +998,8 @@ networks:
 
 Do not paste real database passwords into the public manual. Replace `<POSTGRES_USER>` and `<POSTGRES_PASSWORD>` only inside Portainer or a client-controlled secret vault.
 
+If host-side database administration is required, publish database ports only on a restricted private interface or through a VPN/bastion host, then remove the mappings after maintenance.
+
 If the production Docker network is named `tera_networks` instead of `ts-network`, replace the network name consistently in all three Portainer stacks. Do not mix both names.
 
 Verification checkpoint:
@@ -1123,7 +1007,7 @@ Verification checkpoint:
 | Check | Expected Result |
 | --- | --- |
 | Stack is running | Portainer shows the `terasupport-db` stack as deployed/running. |
-| PostgreSQL containers are healthy | User, Ticket, CRM, CallCenter, Device, and Mail database containers are running. |
+| PostgreSQL containers are healthy | User, Ticketing, and Mail database containers are running. |
 | Volumes are persistent | Each database container has a named volume mapped for data persistence. |
 
 ### 1.8.5 Deploy Kafka Stack in Portainer
@@ -1239,6 +1123,8 @@ services:
 
 Replace `<SERVER_IP_OR_DNS>` with the Linux server IP or internal DNS name used by host-based tools. Do not publish private IP addresses in public documentation.
 
+This compose example uses PLAINTEXT Kafka listeners for the private Docker network and host-side troubleshooting. For an internet-exposed or regulated production Kafka cluster, replace this listener configuration with SSL/TLS and SASL/SCRAM and update the matching service environment values.
+
 ### 1.8.6 Deploy Application Stack in Portainer
 
 Use:
@@ -1256,9 +1142,7 @@ Steps:
 5. Replace sample secrets:
    - Database passwords
    - `JWT__KEY`
-   - Remote device token
    - Mail credentials
-   - Meta/Facebook/Instagram credentials
    - Cloudflare tunnel token, if used
 6. Confirm all image names point to your registry.
 7. Deploy the stack.
@@ -1271,9 +1155,6 @@ Main services in production compose:
 | `apigateway` | `arcapps/terasupport-api-gateway:latest` |
 | `user` | `arcapps/terasupport-user-service:latest` |
 | `ticketing` | `arcapps/terasupport-ticketing-service:latest` |
-| `crm` | `arcapps/terasupport-crm-service:latest` |
-| `callcenter` | `arcapps/terasupport-callcenter-service:latest` |
-| `devicemanagement` | `arcapps/terasupport-devicemanagement-service:latest` |
 | `mail` | `arcapps/terasupport-mail-service:latest` |
 | `web` | `arcapps/terasupport-web-service:latest` |
 | `nginx` | `arcapps/terasupport-nginx-service:latest` |
@@ -1297,12 +1178,6 @@ services:
       - OCELOTVARIABLES__USERMANAGEMENTSERVICEPORT=8080
       - OCELOTVARIABLES__TICKETINGSYSTEMSERVICEHOST=ticketing
       - OCELOTVARIABLES__TICKETINGSYSTEMSERVICEPORT=8080
-      - OCELOTVARIABLES__CRMSERVICEHOST=crm
-      - OCELOTVARIABLES__CRMSERVICEPORT=8080
-      - OCELOTVARIABLES__CALLCENTERHOST=callcenter
-      - OCELOTVARIABLES__CALLCENTERPORT=8080
-      - OCELOTVARIABLES__DEVICEHOST=devicemanagement
-      - OCELOTVARIABLES__DEVICEPORT=8080
       - OCELOTVARIABLES__MAILSERVICEHOST=mail
       - OCELOTVARIABLES__MAILSERVICEPORT=8080
 
@@ -1333,42 +1208,6 @@ services:
       - JWT__KEY=<JWT_SIGNING_KEY>
       - KAFKA_HOST=kafka
       - KAFKA_PORT=9092
-
-  crm:
-    image: <REGISTRY>/terasupport-crm-service:<TAG>
-    networks:
-      - ts-network
-    volumes:
-      - crm-data:/app/wwwroot
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
-      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_crm;Port=5432;Database=TSCRMDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
-      - BASEAPISETTINGS__USERSERVICE=http://user:8080/user-api/
-      - FILESETTING__FILEBASEURL=<PUBLIC_FILE_BASE_URL>
-      - KAFKA_HOST=kafka
-      - KAFKA_PORT=9092
-
-  callcenter:
-    image: <REGISTRY>/terasupport-callcenter-service:<TAG>
-    networks:
-      - ts-network
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
-      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_callcenter;Port=5432;Database=TSCallCenterDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
-      - APISETTINGS__BASEURL=http://user:8080/
-
-  devicemanagement:
-    image: <REGISTRY>/terasupport-devicemanagement-service:<TAG>
-    networks:
-      - ts-network
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ALLOWEDHOSTS=<ALLOWED_HOSTS>
-      - CONNECTIONSTRINGS__DBLOCATION=Host=postgres_device;Port=5432;Database=TSDeviceDB;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
-      - APISETTINGS__BASEURL=http://user:8080/
-      - APISETTINGS__TICKETAPIURL=http://ticketing:8080/
 
   mail:
     image: <REGISTRY>/terasupport-mail-service:<TAG>
@@ -1404,9 +1243,6 @@ services:
     depends_on:
       - apigateway
       - web
-      - callcenter
-      - crm
-      - devicemanagement
       - mail
       - ticketing
       - user
@@ -1418,39 +1254,25 @@ networks:
 volumes:
   user-data:
   mail-data:
-  crm-data:
   ticketing-data:
 ```
 
-The public template intentionally removes optional parts. Do not include these in the public compose example unless the client explicitly enables them and provides values through a private channel:
+The public template intentionally removes optional integrations. Do not include these in the public compose example unless the client explicitly enables them and provides values through a private channel:
 
 | Optional Part | Public Manual Guidance |
 | --- | --- |
 | Cloudflare Tunnel | Remove from the public template. Add only in private deployment notes with `<CLOUDFLARE_TUNNEL_TOKEN>`. |
-| Meta/Facebook/Instagram service | Remove unless the integration is part of the production scope. Use placeholders only. |
-| Remote device integration token | Remove unless the module is enabled. Use `<REMOTE_DEVICE_AUTH_TOKEN>` only in private deployment values. |
+| Meta, Facebook, or Instagram integration | Remove unless the channel is deployed, approved, and documented for production. |
+| Remote device integration | Remove unless the remote-device service is deployed and approved for production. |
 | Ollama or AI endpoint | Remove unless the AI service is deployed and approved for production. |
 | Real public domain, IP, JWT key, DB password, SMTP credential | Never publish. Use placeholders in documentation and store real values in the client vault. |
-
-If Meta service is required in production, add it privately with placeholders only:
-
-```yaml
-meta:
-  image: <REGISTRY>/terasupport-meta-service:<TAG>
-  networks:
-    - ts-network
-  environment:
-    - ASPNETCORE_ENVIRONMENT=Production
-    - CONNECTIONSTRINGS__DBLOCATION=Host=<META_DB_HOST>;Port=5432;Database=TSMetaDb;Username=<POSTGRES_USER>;Password=<POSTGRES_PASSWORD>
-    - BASEAPISETTINGS__USERSERVICE=http://user:8080/user-api/
-```
 
 Verification checkpoint:
 
 | Check | Expected Result |
 | --- | --- |
 | Application stack is running | Portainer shows the application stack as deployed/running. |
-| Containers are stable | API Gateway, services, web, and Nginx containers do not restart repeatedly. |
+| Containers are stable | API Gateway, User, Ticketing, Mail, Web, and Nginx containers do not restart repeatedly. |
 | Service logs are clean | `docker logs <container>` does not show repeated database, Kafka, JWT, or routing errors. |
 | Environment values are production-ready | Sample secrets and placeholder URLs are replaced before go-live. |
 
@@ -1470,7 +1292,7 @@ Current routing pattern:
 | `/ts-api/` | `apigateway:8080` |
 | `/files/` | `apigateway:8080` |
 | `/swagger/` | `apigateway:8080` |
-| `/ollama-api/` | External Ollama host |
+| `/ollama-api/` | Optional external Ollama host, only when the AI integration is enabled |
 
 Production Nginx should include proxy headers:
 
@@ -1601,9 +1423,9 @@ The backend services use CQRS-style modules and MediatR handlers. Deployment mus
 | Service-specific database connection | Each service owns its data context. |
 | Correct `CONNECTIONSTRINGS__DBLOCATION` | EF Core `UseNpgsql` reads this value. |
 | Correct Kafka host/port | Producers and consumers read `KAFKA_HOST` and `KAFKA_PORT`. |
-| Correct downstream service URLs | Handlers call other services for user, ticket, CRM, device, and mail workflows. |
+| Correct downstream service URLs | Handlers call other services for user, ticketing, and mail workflows. |
 | JWT key consistency | Gateway and protected services must validate the same token signing key. |
-| File base URL consistency | Ticket/CRM/Mail attachments must resolve through the correct public URL. |
+| File base URL consistency | Ticket/Mail attachments must resolve through the correct public URL. |
 
 Because handlers are invoked by MediatR at runtime, a service may start successfully but fail business workflows if one of these values points to the wrong service or environment.
 
@@ -1613,14 +1435,11 @@ Because handlers are invoked by MediatR at runtime, a service may start successf
 
 ### 1.10.1 PostgreSQL Backup
 
-Run daily backups for all service databases:
+Run daily backups for the supported service databases:
 
 ```bash
 pg_dump -h <db-host> -U <db-user> -d TSUserDB > TSUserDB.sql
 pg_dump -h <db-host> -U <db-user> -d TSTicketDb > TSTicketDb.sql
-pg_dump -h <db-host> -U <db-user> -d TSCRMDb > TSCRMDb.sql
-pg_dump -h <db-host> -U <db-user> -d TSCallCenterDb > TSCallCenterDb.sql
-pg_dump -h <db-host> -U <db-user> -d TSDeviceDB > TSDeviceDB.sql
 pg_dump -h <db-host> -U <db-user> -d TSMailDB > TSMailDB.sql
 ```
 
@@ -1630,7 +1449,6 @@ Back up volumes used by:
 
 - PostgreSQL
 - `ticketing-data`
-- `crm-data`
 - `mail-data`
 - `user-data`
 - `ollama_data`, if Ollama is used locally
@@ -1666,7 +1484,7 @@ Use these links during deployment. Prefer official vendor pages so installers re
 | ASP.NET Core on IIS | [Microsoft IIS hosting guide](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/) | Confirm IIS role services and Hosting Bundle behavior. |
 | IIS URL Rewrite | [IIS URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) | Install rewrite rules support for proxy and SPA fallback. |
 | IIS ARR | [Application Request Routing](https://www.iis.net/downloads/microsoft/application-request-routing) | Enable IIS reverse proxy support. |
-| Node.js | [Node.js downloads](https://nodejs.org/en/download) | Install Node LTS for building the React/Vite web app. |
+| Node.js | [Node.js downloads](https://nodejs.org/en/download) | Install the current supported Node LTS for building the React/Vite web app. |
 | Yarn | [Yarn installation](https://classic.yarnpkg.com/lang/en/docs/install/) | Install Yarn for web dependencies. |
 | PostgreSQL Windows | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) | Install PostgreSQL server and optional pgAdmin. |
 | pgAdmin | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) | Manage PostgreSQL databases visually. |

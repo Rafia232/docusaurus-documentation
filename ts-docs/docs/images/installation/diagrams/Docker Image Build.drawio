@@ -1,1 +1,1 @@
-<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>
+<mxfile host="app.diagrams.net"><diagram name="Docker Image Build"><mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="2" value="Docker Image Build: Web, API Gateway, User, Ticketing, Mail, PostgreSQL, Kafka" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1"><mxGeometry x="80" y="80" width="520" height="120" as="geometry"/></mxCell></root></mxGraphModel></diagram></mxfile>

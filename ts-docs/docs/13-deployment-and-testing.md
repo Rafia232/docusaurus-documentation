@@ -15,7 +15,7 @@ This section summarizes how the deployed platform is arranged and how the releas
 
 The deployment begins at the public HTTPS entry point. Users access the React web application through IIS, Nginx, or a load balancer. The web application then sends API traffic to the Ocelot API Gateway, which routes requests to the required .NET microservice.
 
-Each service owns its own database and runtime responsibility. The User Service manages organizations, users, facilities, regions, roles, and access. The Ticketing Service manages the service desk ticket lifecycle, assignments, reports, SLA logic, messages, and attachments. Supporting services such as Mail, Device, CRM, Call Center, and Meta run beside the core services when enabled.
+Each service owns its own database and runtime responsibility. The User Service manages organizations, users, facilities, regions, roles, and access. The Ticketing Service manages the service desk ticket lifecycle, assignments, reports, SLA logic, messages, and attachments. The Mail Service handles email processing and notification delivery.
 
 Kafka is used for asynchronous communication between services and background workers. PostgreSQL stores each service database. Attachments are stored outside the relational tables as file/object paths, and email delivery is handled through the configured SMTP or mail gateway.
 
