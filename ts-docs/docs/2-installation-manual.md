@@ -16,6 +16,7 @@ The platform is a .NET 9 CQRS/MediatR microservice system with an Ocelot API Gat
 - .NET service configuration.
 - Required software packages.
 - Linux deployment with Docker, Nginx load balancer, and Portainer.
+- Optional local Ollama installation for AI-assisted features.
 - Docker image build, push, and stack deployment.
 - Beginner-friendly verification checkpoints.
 
@@ -213,6 +214,7 @@ Install these on the Windows Server:
 | PostgreSQL | PostgreSQL 17 recommended, or a managed PostgreSQL server. | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) |
 | pgAdmin | Optional GUI for PostgreSQL administration. | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) |
 | Kafka | Apache Kafka or Confluent Platform 7.4 compatible broker. | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) |
+| Ollama | Optional local AI runtime for approved on-server models. | [Ollama Windows documentation](https://docs.ollama.com/windows) |
 | Git | Required if pulling source code directly on the server. | [Git for Windows](https://git-scm.com/download/win) |
 | NSSM or Windows Service wrapper | Optional, only if running services outside IIS. | Use only if IIS is not used for service hosting |
 
@@ -230,6 +232,7 @@ Install these on the Linux host:
 | Nginx / Traefik / Cloudflare Tunnel | Public load-balancing or reverse-proxy option. | [Nginx load balancing](https://nginx.org/en/docs/http/load_balancing.html) |
 | PostgreSQL container | Existing compose uses `postgres:17.5`. | [PostgreSQL Docker image](https://hub.docker.com/_/postgres) |
 | Kafka/Zookeeper containers | Existing compose uses Confluent Platform `7.4.0`. | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) |
+| Ollama | Optional local AI runtime for approved on-server models. | [Ollama Linux documentation](https://docs.ollama.com/linux) |
 | Node.js | Optional on host if building web outside Docker. | [Node.js downloads](https://nodejs.org/en/download) |
 | .NET 9 SDK | Optional on host if building services outside Docker. | [.NET 9 downloads](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) |
 
@@ -297,6 +300,168 @@ The services use .NET configuration binding, so nested settings are supplied wit
 
 Do not copy development `.env` secrets directly into production. Replace all tokens, passwords, JWT keys, and SMTP credentials.
 
+### 1.4.4 Local Development Runbook
+
+For first-time local setup, use [Local Run Guide](./local-run-guide.md). It covers PostgreSQL and pgAdmin installation, database creation, environment variables, Visual Studio, VS Code, API startup order, API Gateway, and web app startup.
+
+### 1.4.5 Optional Local Ollama Installation
+
+Install Ollama only when TeraSupport AI-assisted features are enabled and approved for the deployment. Keep Ollama private to the server or internal network; do not expose port `11434` directly to the public internet.
+
+Recommended minimum planning values:
+
+| Item | Recommendation |
+| --- | --- |
+| CPU-only testing | 8 GB RAM minimum for small models. |
+| Production use | Dedicated GPU or a separately sized AI host is recommended. |
+| Disk space | Reserve enough space for model files; models can use many GB each. |
+| Default API URL | `http://localhost:11434` on the machine where Ollama is installed. |
+| Public exposure | Use API Gateway or Nginx proxy rules only when the application requires browser access. |
+
+#### Windows Server Installation
+
+Option A: install from PowerShell:
+
+```powershell
+irm https://ollama.com/install.ps1 | iex
+```
+
+Option B: download and run the Windows installer from the official Ollama download page.
+
+After installation, Ollama runs in the background and serves the local API on:
+
+```text
+http://localhost:11434
+```
+
+Verify from PowerShell:
+
+```powershell
+ollama --version
+Invoke-RestMethod http://localhost:11434/api/tags
+```
+
+Pull the approved model for the deployment:
+
+```powershell
+ollama pull <MODEL_NAME>
+ollama list
+```
+
+If IIS-hosted services need to call Ollama on the same Windows Server, use:
+
+```text
+VITE_OLLAMA_BASE_URL=/ollama-api
+VITE_OLLAMA_PROXY_TARGET=http://localhost:11434
+VITE_OLLAMA_DEFAULT_MODEL=<MODEL_NAME>
+```
+
+If Ollama must listen beyond localhost, set `OLLAMA_HOST` and restrict access with Windows Firewall to only the application server or private subnet:
+
+```powershell
+[Environment]::SetEnvironmentVariable("OLLAMA_HOST", "0.0.0.0:11434", "User")
+```
+
+Restart Ollama after changing `OLLAMA_HOST`.
+
+Windows verification checkpoint:
+
+| Check | Command / Expected Result |
+| --- | --- |
+| Ollama command works | `ollama --version` prints the installed version. |
+| API responds locally | `Invoke-RestMethod http://localhost:11434/api/tags` returns model data. |
+| Model is available | `ollama list` includes the approved deployment model. |
+| Network is restricted | Port `11434` is not publicly reachable. |
+
+#### Linux Server Installation
+
+Install Ollama from the official install script:
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+Enable and start the service:
+
+```bash
+sudo systemctl enable ollama
+sudo systemctl start ollama
+sudo systemctl status ollama
+```
+
+Verify the local API:
+
+```bash
+ollama --version
+curl http://localhost:11434/api/tags
+```
+
+Pull the approved model:
+
+```bash
+ollama pull <MODEL_NAME>
+ollama list
+```
+
+For Docker-hosted TeraSupport services on the same Linux host, prefer keeping Ollama on the host and proxying it through Nginx only when required:
+
+```text
+VITE_OLLAMA_BASE_URL=/ollama-api
+VITE_OLLAMA_PROXY_TARGET=http://host.docker.internal:11434
+VITE_OLLAMA_DEFAULT_MODEL=<MODEL_NAME>
+```
+
+On Linux Docker, `host.docker.internal` may require an `extra_hosts` mapping in the application or Nginx compose service:
+
+```yaml
+extra_hosts:
+  - "host.docker.internal:host-gateway"
+```
+
+If containers must call Ollama over the Docker network, configure Ollama to listen on the private interface only. Create a systemd override:
+
+```bash
+sudo systemctl edit ollama
+```
+
+Add:
+
+```ini
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0:11434"
+```
+
+Reload and restart:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+```
+
+Restrict the port with firewall rules so only trusted hosts or local containers can reach it.
+
+Linux verification checkpoint:
+
+| Check | Command / Expected Result |
+| --- | --- |
+| Ollama service is running | `sudo systemctl status ollama` shows active/running. |
+| API responds locally | `curl http://localhost:11434/api/tags` returns JSON. |
+| Model is available | `ollama list` includes the approved deployment model. |
+| Application can reach Ollama | The configured proxy or service URL reaches `11434` from the app environment. |
+| Network is restricted | Port `11434` is private, firewalled, or reachable only through the approved reverse proxy. |
+
+#### Application Configuration Notes
+
+Use these values only when the AI integration is enabled:
+
+| Variable | Example | Notes |
+| --- | --- | --- |
+| `VITE_OLLAMA_BASE_URL` | `/ollama-api` | Browser-facing path used by the web app. |
+| `VITE_OLLAMA_PROXY_TARGET` | `http://localhost:11434` or `http://host.docker.internal:11434` | Server-side proxy target. Do not expose this as a public URL. |
+| `VITE_OLLAMA_DEFAULT_MODEL` | `<MODEL_NAME>` | Must match a model from `ollama list`. |
+
+If the AI feature is disabled, leave the Ollama variables unset and remove `/ollama-api/` proxy rules from public Nginx or IIS examples.
+
 ---
 
 ## 1.5 Development and Production Ports
@@ -324,6 +489,7 @@ Each .NET Dockerfile exposes internal port `8080`. Nginx publishes the external 
 | `nginx` | 80 | Public mapped port, current compose uses `3698:80` |
 | `kafka` | 9092 / 29092 | Internal Docker / external host access |
 | `kafdrop` | 9000 | Current compose maps host `9001` |
+| `ollama` | 11434 | Optional local AI runtime; keep private or proxy through `/ollama-api/` |
 
 ---
 
@@ -1466,6 +1632,7 @@ Back up volumes used by:
 | API Gateway | Ocelot routes point to correct downstream services. |
 | Services | All .NET services start and expose Swagger/OpenAPI where enabled. |
 | Web | Vite build uses correct `VITE_API_URL`. |
+| Ollama | Optional; installed, model pulled, and `/ollama-api/` proxy verified only when AI features are enabled. |
 | Security | HTTPS enabled; secrets replaced; sample credentials removed. |
 | File Uploads | `client_max_body_size` and attachment storage verified. |
 | Reports | Ticketing report endpoints and UI reports verified. |
@@ -1489,6 +1656,8 @@ Use these links during deployment. Prefer official vendor pages so installers re
 | PostgreSQL Windows | [PostgreSQL Windows installer](https://www.postgresql.org/download/windows/) | Install PostgreSQL server and optional pgAdmin. |
 | pgAdmin | [pgAdmin Windows download](https://www.pgadmin.org/download/pgadmin-4-windows/) | Manage PostgreSQL databases visually. |
 | Kafka | [Apache Kafka Quickstart](https://kafka.apache.org/quickstart/) | Download Kafka and review broker/topic commands. |
+| Ollama Windows | [Ollama Windows documentation](https://docs.ollama.com/windows) | Install and configure local Ollama on Windows Server. |
+| Ollama Linux | [Ollama Linux documentation](https://docs.ollama.com/linux) | Install and configure the Ollama service on Linux Server. |
 | Docker Engine | [Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) | Install Docker Engine and Compose plugin. |
 | Portainer CE | [Portainer CE install](https://docs.portainer.io/start/install-ce) | Install Portainer for stack deployment. |
 | Nginx | [Nginx load balancing](https://nginx.org/en/docs/http/load_balancing.html) | Configure upstreams and reverse proxy routing. |

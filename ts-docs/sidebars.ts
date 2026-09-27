@@ -17,8 +17,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'local-run-guide',
+          label: '2. Local Run Guide',
+        },
+        {
+          type: 'doc',
           id: 'admin-configuration-guide',
-          label: '2. Administration & Configuration Guide',
+          label: '3. Administration & Configuration Guide',
         },
       ],
     },
