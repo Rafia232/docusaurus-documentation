@@ -1,15 +1,16 @@
 ---
-sidebar_position: 9
-title: 9. API / Integration Documentation
+id: integrations
+sidebar_position: 10
+title: 10. API / Integration Documentation
 ---
 
-# 9. API / Integration Documentation
+# 10. API / Integration Documentation
 
-This page documents external and cross-service integrations used by the MoH Helpdesk platform. Detailed REST endpoint definitions are maintained in [REST API Specifications](./8-api-specifications.md).
+This page documents external and cross-service integrations used by the MoH Helpdesk platform. Detailed REST endpoint definitions are maintained in [REST API Specifications](./9-rest-api-specifications.md).
 
 ---
 
-## 9.1 Integration Inventory
+## 10.1 Integration Inventory
 
 | Integration | Type | Purpose | Required |
 | --- | --- | --- | :---: |
@@ -24,7 +25,7 @@ This page documents external and cross-service integrations used by the MoH Help
 
 ---
 
-## 9.2 REST API Integration
+## 10.2 REST API Integration
 
 REST APIs use HTTP and JSON payloads. The primary ticket endpoints are routed with the `/ticket-api/` prefix.
 
@@ -45,11 +46,11 @@ Common headers:
 | `Content-Type: application/json` | Used for JSON request bodies. |
 | `Accept: application/json` | Requests JSON responses. |
 
-See [REST API Specifications](./8-api-specifications.md) for endpoint-level details.
+See [REST API Specifications](./9-rest-api-specifications.md) for endpoint-level details.
 
 ---
 
-## 9.3 Kafka Event Integration
+## 10.3 Kafka Event Integration
 
 Kafka supports asynchronous communication between services and notification workers.
 
@@ -71,11 +72,11 @@ Implementation guidance:
 - Enable TLS/SASL for production Kafka clusters.
 - Retain failed notification events for retry where supported.
 
-Kafka payload examples are available in [Technical Appendix & Glossary](./16-technical-appendix-and-glossary.md).
+Kafka payload examples are available in [Technical Appendix & Glossary](./13.4-technical-appendix-and-glossary.md).
 
 ---
 
-## 9.4 Email / SMTP Integration
+## 10.4 Email / SMTP Integration
 
 The platform uses SMTP or the MoH Mail Gateway to send email notifications.
 
@@ -101,7 +102,7 @@ Notification templates should be configured for:
 
 ---
 
-## 9.5 Attachment Storage Integration
+## 10.5 Attachment Storage Integration
 
 The documented deployment stores ticket attachments on persistent application volumes mounted into the relevant services. Object storage such as MinIO or S3 is a recommended target architecture for larger or highly available deployments, but it is not required unless configured in the production stack.
 
@@ -124,7 +125,7 @@ Production requirements:
 
 ---
 
-## 9.6 External Synchronization
+## 10.6 External Synchronization
 
 The data model includes sync-related flags such as `IsSynced` and `IsTPSynced`, indicating that some records may synchronize with external or third-party systems.
 
@@ -144,7 +145,7 @@ If no external synchronization is active in the production environment, record i
 
 ---
 
-## 9.7 Integration Verification Checklist
+## 10.7 Integration Verification Checklist
 
 | Test | Expected Result |
 | --- | --- |

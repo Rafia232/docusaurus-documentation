@@ -1,15 +1,16 @@
 ---
-sidebar_position: 10
-title: 10. Code Transfer Readiness
+id: code-transfer-readiness
+sidebar_position: 11
+title: 11. Source Code Handover & Readiness
 ---
 
-# 10. Code Transfer Readiness
+# 11. Source Code Handover & Readiness
 
 This checklist defines the handover readiness criteria for transferring the MoH Helpdesk codebase and documentation to another team.
 
 ---
 
-## 10.1 Documentation Repository Readiness
+## 11.1 Documentation Repository Readiness
 
 | Item | Status / Action |
 | --- | --- |
@@ -24,7 +25,7 @@ This checklist defines the handover readiness criteria for transferring the MoH 
 
 ---
 
-## 10.2 Application Codebase Readiness
+## 11.2 Application Codebase Readiness
 
 The application source repository should include:
 
@@ -43,7 +44,7 @@ The application source repository should include:
 
 ---
 
-## 10.3 Code Commenting Standard
+## 11.3 Code Commenting Standard
 
 Code should be well-commented where business rules are complex, but not cluttered with comments that repeat obvious syntax.
 
@@ -68,7 +69,7 @@ Avoid comments for:
 
 ---
 
-## 10.4 Transfer Package Checklist
+## 11.4 Transfer Package Checklist
 
 | Deliverable | Required |
 | --- | :---: |
@@ -91,7 +92,7 @@ Avoid comments for:
 
 ---
 
-## 10.5 Final Handover Acceptance
+## 11.5 Final Handover Acceptance
 
 Before sign-off, confirm:
 

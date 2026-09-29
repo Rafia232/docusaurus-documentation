@@ -1,18 +1,19 @@
 ---
-sidebar_position: 7
-title: 7. Architecture / Technical Design
+id: system-architecture-technical-design
+sidebar_position: 8
+title: 8. System Architecture & Technical Design
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 import erdImage from './images/erd.png';
 
-# 7. Architecture / Technical Design
+# 8. System Architecture & Technical Design
 
 This document summarizes the technical design of the MoH Helpdesk platform for handover, maintenance, and future enhancement.
 
 ---
 
-## 7.1 System Context
+## 8.1 System Context
 
 The MoH Helpdesk is a centralized support and ticket management platform used by facility users, regional users, national users, and administrators.
 
@@ -27,7 +28,7 @@ Core capabilities include:
 
 ---
 
-## 7.2 Logical Architecture
+## 8.2 Logical Architecture
 
 | Layer | Responsibility |
 | --- | --- |
@@ -41,7 +42,7 @@ Core capabilities include:
 
 ---
 
-## 7.3 Deployment Architecture
+## 8.3 Deployment Architecture
 
 <ZoomableImage src="/img/installation/diagrams/visual-deployment-overview.svg" alt="TeraSupport deployment architecture diagram" maxHeight="640px" />
 
@@ -64,7 +65,7 @@ Supported deployment models:
 
 ---
 
-## 7.4 Application Components
+## 8.4 Application Components
 
 | Component | Description |
 | --- | --- |
@@ -77,7 +78,7 @@ Supported deployment models:
 
 ---
 
-## 7.5 Data Architecture
+## 8.5 Data Architecture
 
 <ZoomableImage src={erdImage} alt="Entity Relationship Diagram" maxHeight="600px" />
 
@@ -89,11 +90,11 @@ The platform uses PostgreSQL with service-oriented database ownership.
 | Ticket database | Tickets, categories, assignments, messages, attachments, audit activity. |
 | Device database | Devices, facilities, external sync flags, device metadata. |
 
-See [Data Architecture](./12-data-architecture.md) for detailed table definitions and schema references.
+See [Data Architecture](./13.1-data-architecture.md) for detailed table definitions and schema references.
 
 ---
 
-## 7.6 Ticket Lifecycle Design
+## 8.6 Ticket Lifecycle Design
 
 The main ticket workflow is:
 
@@ -105,11 +106,11 @@ The main ticket workflow is:
 6. Ticket is closed after resolution.
 7. Notifications and audit history are retained.
 
-See [Ticket Lifecycle and Journey](./17-ticket-lifecycle-and-journey.md) and [Process Workflows](./11-process-workflows.md) for visual flows.
+See [Ticket Lifecycle Process](/docs/ticket-lifecycle-and-journey) and [Process Workflows](./12.2-process-workflows.md) for visual flows.
 
 ---
 
-## 7.7 Security Design
+## 8.7 Security Design
 
 | Security Area | Design |
 | --- | --- |
@@ -125,7 +126,7 @@ See [Security Architecture](./7-security-architecture.md) for additional securit
 
 ---
 
-## 7.8 Integration Design
+## 8.8 Integration Design
 
 The platform can integrate with:
 
@@ -134,11 +135,11 @@ The platform can integrate with:
 - MinIO/S3 object storage for attachments when scalable external storage is configured.
 - External device or facility systems if synchronization is configured.
 
-See [Integration Documentation](./9-integrations.md).
+See [Integration Documentation](/docs/integrations).
 
 ---
 
-## 7.9 Operational Design
+## 8.9 Operational Design
 
 | Concern | Design Guidance |
 | --- | --- |
@@ -151,7 +152,7 @@ See [Integration Documentation](./9-integrations.md).
 
 ---
 
-## 7.10 Key Technical Risks
+## 8.10 Key Technical Risks
 
 | Risk | Mitigation |
 | --- | --- |
@@ -164,7 +165,7 @@ See [Integration Documentation](./9-integrations.md).
 
 ---
 
-## 7.11 Report Implementation Notes
+## 8.11 Report Implementation Notes
 
 Report implementation follows the CQRS structure used across the Ticketing microservice:
 

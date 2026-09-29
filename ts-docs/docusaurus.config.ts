@@ -90,23 +90,51 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Documentation',
+          title: 'Getting Started',
           items: [
             {
-              label: 'Installation Manual',
-              to: '/docs/installation-manual',
+              label: 'Documentation Portal',
+              to: '/docs/intro',
             },
             {
-              label: 'Admin & Configuration',
-              to: '/docs/admin-configuration-guide',
+              label: 'Local Run Guide',
+              to: '/docs/local-run-guide',
             },
+          ],
+        },
+        {
+          title: 'User Operations',
+          items: [
             {
-              label: 'Role-Based User Guide',
+              label: 'Role-Based User Guides',
               to: '/docs/role-based-user-guide',
             },
+          ],
+        },
+        {
+          title: 'Technical Documentation',
+          items: [
             {
-              label: 'Reports',
-              to: '/docs/reports',
+              label: 'REST API Specifications',
+              to: '/docs/api-specifications',
+            },
+          ],
+        },
+        {
+          title: 'Handover & Readiness',
+          items: [
+            {
+              label: 'Source Code Handover & Readiness',
+              to: '/docs/code-transfer-readiness',
+            },
+          ],
+        },
+        {
+          title: 'Operations & Support',
+          items: [
+            {
+              label: 'Ticket Lifecycle',
+              to: '/docs/ticket-lifecycle-and-journey',
             },
           ],
         },
@@ -114,41 +142,8 @@ const config: Config = {
           title: 'Technical Reference',
           items: [
             {
-              label: 'Architecture / Technical Design',
-              to: '/docs/system-architecture-technical-design',
-            },
-            {
-              label: 'REST API Specifications',
-              to: '/docs/api-specifications',
-            },
-            {
-              label: 'API / Integration Documentation',
-              to: '/docs/integrations',
-            },
-            {
               label: 'Data Architecture',
               to: '/docs/data-architecture',
-            },
-          ],
-        },
-        {
-          title: 'Operations & Handover',
-          items: [
-            {
-              label: 'Ticket Lifecycle',
-              to: '/docs/ticket-lifecycle-and-journey',
-            },
-            {
-              label: 'Process Workflows',
-              to: '/docs/process-workflows',
-            },
-            {
-              label: 'Deployment & Testing',
-              to: '/docs/deployment-and-testing',
-            },
-            {
-              label: 'Code Transfer Readiness',
-              to: '/docs/code-transfer-readiness',
             },
           ],
         },

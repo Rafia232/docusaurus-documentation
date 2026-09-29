@@ -1,6 +1,6 @@
 ---
-sidebar_position: 5
-title: 5. Reports
+sidebar_position: 6
+title: 6. Reports
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
@@ -10,7 +10,7 @@ import technicianReportsScreenshot from './images/reports/technician-reports.png
 import facilityReportsScreenshot from './images/reports/facility-reports.png';
 import slaReportsScreenshot from './images/reports/sla-reports.png';
 
-# 5. Reports
+# 6. Reports
 
 The Reports module is available under **Service Desk -> Reports**. It groups ticket activity into five operational menus: Ticket Log, Incident Reports, Technician Reports, Facility Reports, and SLA Reports.
 
@@ -22,7 +22,7 @@ Most reports use the active organization as the primary boundary. Date-based rep
 
 The system also supports paging for table views. Search and advanced filters narrow the ticket list before the final report rows are shown.
 
-## 5.1 Ticket Log
+## 6.1 Ticket Log
 
 <ZoomableImage src={ticketsLogScreenshot} alt="Reports - Ticket Log" maxHeight="620px" />
 
@@ -49,7 +49,7 @@ The screen supports searching by ticket number, title, description, and category
 
 Only non-deleted tickets are included in the log.
 
-## 5.2 Incident Reports
+## 6.2 Incident Reports
 
 <ZoomableImage src={incidentReportsScreenshot} alt="Reports - Incident Reports" maxHeight="620px" />
 
@@ -66,7 +66,7 @@ Monthly average resolution time is calculated only from closed incidents that ha
 
 Annual SLA performance is calculated from closed tickets. A ticket is counted as within SLA when it was resolved on or before its due date. The annual trend groups ticket creation dates by month.
 
-## 5.3 Technician Reports
+## 6.3 Technician Reports
 
 <ZoomableImage src={technicianReportsScreenshot} alt="Reports - Technician Reports" maxHeight="620px" />
 
@@ -83,7 +83,7 @@ The completion rate in the workload report is calculated from closed tickets div
 
 First-time-fix performance uses a stricter rule than normal closure. A ticket must be resolved without reassignment/escalation and must have one resolution message. Tickets with multiple assignments or multiple resolution attempts are counted as not first-time fixed.
 
-## 5.4 Facility Reports
+## 6.4 Facility Reports
 
 <ZoomableImage src={facilityReportsScreenshot} alt="Reports - Facility Reports" maxHeight="620px" />
 
@@ -98,7 +98,7 @@ Facility completion rate is calculated as closed tickets divided by total ticket
 
 Configured facilities and regions can appear even when they have no tickets in the selected range. If a ticket has a facility that cannot be mapped to a configured region, it is grouped separately as unmapped data.
 
-## 5.5 SLA Reports
+## 6.5 SLA Reports
 
 <ZoomableImage src={slaReportsScreenshot} alt="Reports - SLA Reports" maxHeight="620px" />
 

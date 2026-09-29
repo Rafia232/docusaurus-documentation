@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
-title: Local Run Guide
+id: local-run-guide
+sidebar_position: 2
+title: 2. Local Run Guide
+sidebar_label: 2. Local Run Guide
 ---
-
-# Local Run Guide
 
 This guide explains how a new user can run TeraSupport on a local computer. Follow the steps in order. Do not start the APIs or web app before PostgreSQL, databases, Kafka, and environment variables are ready.
 
@@ -19,20 +19,30 @@ The local setup runs these projects:
 
 ---
 
-## Quick Run Summary
+## 2.1 Quick Run Summary
 
 After PostgreSQL, databases, Kafka, .NET, Node.js, and Yarn are installed, the local run process is simple:
 
 1. Create or copy the backend `.env` file provided with the project handover.
+
 2. Add database, Kafka, JWT, and service URL values in that `.env` file.
+
 3. Create or copy `Web/.env`.
+
 4. Add the API Gateway URL in `Web/.env`.
+
 5. Restore and build the backend solution.
+
 6. Run the backend projects together as multiple startup projects:
+
    - `User`
+
    - `Ticketing`
+
    - `Mail`
+
    - `ApiGateway`
+
 7. After the APIs are running, open the `Web` folder and run the frontend.
 
 Create or copy the `.env` file for each backend service. Use the exact file location and variable names from the project handover or `.env.example`.
@@ -131,8 +141,11 @@ VITE_OLLAMA_DEFAULT_MODEL=<local-model-name-if-used>
 Run backend from Visual Studio:
 
 1. Open `TS.sln`.
+
 2. Set `User`, `Ticketing`, `Mail`, and `ApiGateway` as multiple startup projects.
+
 3. Make sure each project loads its needed `.env` values.
+
 4. Click **Start**.
 
 Run backend from VS Code:
@@ -164,7 +177,7 @@ http://localhost:5173
 
 ---
 
-## 1. Install PostgreSQL and pgAdmin
+## 2.2 Install PostgreSQL and pgAdmin
 
 PostgreSQL is the database server. pgAdmin is the beginner-friendly visual tool used to create and inspect databases.
 
@@ -177,23 +190,34 @@ Download links:
 
 The PostgreSQL Windows installer normally includes PostgreSQL Server, pgAdmin, and StackBuilder.
 
-### 1.1 Download PostgreSQL
+### 2.2.1 Download PostgreSQL
 
 1. Open [PostgreSQL Windows downloads](https://www.postgresql.org/download/windows/).
+
 2. Click the download link for the interactive installer.
+
 3. Choose a supported PostgreSQL version.
+
 4. Download the Windows x86-64 installer.
 
-### 1.2 Install PostgreSQL
+### 2.2.2 Install PostgreSQL
 
 1. Run the downloaded PostgreSQL installer.
+
 2. Keep the default installation directory unless the project team gives another path.
+
 3. In **Select Components**, keep these checked:
+
    - PostgreSQL Server
+
    - pgAdmin 4
+
    - Command Line Tools
+
 4. In **Data Directory**, keep the default path unless another drive is required.
+
 5. Set and remember the password for the `postgres` admin user.
+
 6. Keep the default port:
 
 ```text
@@ -201,19 +225,26 @@ The PostgreSQL Windows installer normally includes PostgreSQL Server, pgAdmin, a
 ```
 
 7. Keep the default locale unless the project team gives another value.
+
 8. Finish the installation.
+
 9. StackBuilder can be skipped for local development unless another tool is required.
 
-### 1.3 Open pgAdmin and Connect
+### 2.2.3 Open pgAdmin and Connect
 
 1. Open **pgAdmin 4** from the Start menu.
+
 2. Set a pgAdmin master password if prompted.
+
 3. In the left sidebar, expand **Servers**.
+
 4. Select the local PostgreSQL server.
+
 5. Enter the `postgres` password created during installation.
+
 6. Confirm the server expands and shows **Databases**.
 
-### 1.4 Verify PostgreSQL Is Running
+### 2.2.4 Verify PostgreSQL Is Running
 
 Open Command Prompt, PowerShell, or the VS Code terminal:
 
@@ -231,7 +262,7 @@ If `pg_isready` is not recognized, PostgreSQL command line tools may not be in t
 
 ---
 
-## 2. Create Required Databases
+## 2.3 Create Required Databases
 
 TeraSupport uses separate databases for separate services.
 
@@ -241,20 +272,29 @@ TeraSupport uses separate databases for separate services.
 | Ticketing Service | `TSTicketDb` |
 | Mail Service | `TSMailDB` |
 
-### 2.1 Create Databases With pgAdmin
+### 2.3.1 Create Databases With pgAdmin
 
 1. Open pgAdmin.
+
 2. Expand **Servers**.
+
 3. Expand the local PostgreSQL server.
+
 4. Right-click **Databases**.
+
 5. Select **Create** -> **Database**.
+
 6. Enter `TSUserDB` as the database name.
+
 7. Click **Save**.
+
 8. Repeat the same steps for:
+
    - `TSTicketDb`
+
    - `TSMailDB`
 
-### 2.2 Create Databases With SQL
+### 2.3.2 Create Databases With SQL
 
 In pgAdmin, open **Tools** -> **Query Tool**, then run:
 
@@ -264,7 +304,7 @@ CREATE DATABASE "TSTicketDb";
 CREATE DATABASE "TSMailDB";
 ```
 
-### 2.3 Create Local Application User
+### 2.3.3 Create Local Application User
 
 Run this SQL in pgAdmin Query Tool:
 
@@ -278,7 +318,7 @@ GRANT ALL PRIVILEGES ON DATABASE "TSMailDB" TO terasupport_local;
 
 For team or production environments, replace `ChangeThisLocalPassword` with a strong secret.
 
-### 2.4 Verify Databases
+### 2.3.4 Verify Databases
 
 In pgAdmin, expand **Databases** and confirm the list contains:
 
@@ -290,7 +330,7 @@ TSMailDB
 
 ---
 
-## 3. Install Development Tools
+## 2.4 Install Development Tools
 
 Install these tools before opening the source code.
 
@@ -338,7 +378,7 @@ Recommended VS Code extensions:
 
 ---
 
-## 4. Download the Source Code
+## 2.5 Download the Source Code
 
 Open a terminal in the folder where the source code should be stored:
 
@@ -350,16 +390,18 @@ cd <terasupport-source-folder>
 If the project was shared as a ZIP file:
 
 1. Extract the ZIP file.
+
 2. Open the extracted folder.
+
 3. Confirm it contains backend folders such as `ApiGateway`, `User`, `Ticketing`, `Mail`, and frontend folder `Web`.
 
 ---
 
-## 5. Run Kafka Locally
+## 2.6 Run Kafka Locally
 
 Kafka must be running before testing ticket, mail, and notification events.
 
-### 5.1 Start Kafka With Docker Compose
+### 2.6.1 Start Kafka With Docker Compose
 
 If the source repository includes `prod.kafka.compose.yml`, run this from the source root:
 
@@ -379,7 +421,7 @@ If Kafdrop is enabled, open:
 http://localhost:9001
 ```
 
-### 5.2 Kafka Values for Local API Run
+### 2.6.2 Kafka Values for Local API Run
 
 When APIs are run directly from Visual Studio or VS Code:
 
@@ -397,7 +439,7 @@ KAFKA_PORT=9092
 
 ---
 
-## 6. Set Backend Environment Variables First
+## 2.7 Set Backend Environment Variables First
 
 Set environment variables before running any API. Every service must know its database, Kafka broker, JWT secret, and dependent service URLs.
 
@@ -413,7 +455,7 @@ KAFKA_PORT=29092
 JWT__KEY=UseALongLocalDevelopmentSecretKeyOnlyForLocalRun
 ```
 
-### 6.1 User Service Environment
+### 2.7.1 User Service Environment
 
 Set these for the `User` API:
 
@@ -422,7 +464,7 @@ CONNECTIONSTRINGS__DBLOCATION=Host=localhost;Port=5432;Database=TSUserDB;Usernam
 MAILAPI__BASEURL=https://localhost:7122
 ```
 
-### 6.2 Ticketing Service Environment
+### 2.7.2 Ticketing Service Environment
 
 Set these for the `Ticketing` API:
 
@@ -435,7 +477,7 @@ FILESETTING__FILEBASEURL=https://localhost:7137
 
 If AI settings are required by the source code, set the project-approved `AISETTINGS__...` values from the local `.env.example` or handover package.
 
-### 6.3 Mail Service Environment
+### 2.7.3 Mail Service Environment
 
 Set these for the `Mail` API:
 
@@ -450,7 +492,7 @@ TicketHTTP_HOST=https://localhost:7137
 
 If SMTP is required for local testing, also set the SMTP values provided by the project team. Do not use production SMTP credentials in a shared local machine.
 
-### 6.4 API Gateway Environment
+### 2.7.4 API Gateway Environment
 
 Set these for `ApiGateway`:
 
@@ -474,7 +516,7 @@ SwaggerSources__TicketingSystem=http://localhost:7137/swagger/v1/swagger.json
 SwaggerSources__MailSystem=http://localhost:7122/openapi/v1.json
 ```
 
-### 6.5 Web Environment
+### 2.7.5 Web Environment
 
 Inside the `Web` folder, create or update `.env`:
 
@@ -489,11 +531,11 @@ If Ollama or AI features are not part of local testing, keep the values as place
 
 ---
 
-## 7. Apply Database Tables and Seed Data
+## 2.8 Apply Database Tables and Seed Data
 
 The empty databases must receive tables before the APIs can work correctly.
 
-### 7.1 Restore and Build First
+### 2.8.1 Restore and Build First
 
 From the source root:
 
@@ -509,7 +551,7 @@ dotnet restore TS.sln
 dotnet build TS.sln
 ```
 
-### 7.2 Apply EF Core Migrations
+### 2.8.2 Apply EF Core Migrations
 
 If the services use Entity Framework Core migrations:
 
@@ -527,7 +569,7 @@ dotnet tool install --global dotnet-ef
 
 Then close and reopen the terminal and run the migration commands again.
 
-### 7.3 Apply SQL Scripts
+### 2.8.3 Apply SQL Scripts
 
 If the handover package uses SQL scripts instead of EF migrations, run each script against the correct database:
 
@@ -540,9 +582,13 @@ If the handover package uses SQL scripts instead of EF migrations, run each scri
 Use pgAdmin:
 
 1. Select the target database.
+
 2. Open **Tools** -> **Query Tool**.
+
 3. Open or paste the SQL script.
+
 4. Click **Execute**.
+
 5. Confirm tables appear under **Schemas** -> **Tables**.
 
 Minimum setup data usually includes:
@@ -558,27 +604,36 @@ Minimum setup data usually includes:
 
 ---
 
-## 8. Run the APIs With Visual Studio
+## 2.9 Run the APIs With Visual Studio
 
 Use this option when working on Windows with Visual Studio.
 
-### 8.1 Open the Solution
+### 2.9.1 Open the Solution
 
 1. Open Visual Studio.
+
 2. Select **Open a project or solution**.
+
 3. Open `TS.sln` from the source root.
+
 4. Wait for package restore to finish.
+
 5. Build the solution using **Build** -> **Build Solution**.
 
-### 8.2 Set Environment Variables in Visual Studio
+### 2.9.2 Set Environment Variables in Visual Studio
 
 For each API project:
 
 1. Right-click the project.
+
 2. Select **Properties**.
+
 3. Open **Debug** or **Debug launch profiles**.
+
 4. Select the local profile.
-5. Add the environment variables from section 6.
+
+5. Add the environment variables from section 2.7.
+
 6. Save the profile.
 
 Set service-specific values on the matching project:
@@ -590,18 +645,28 @@ Set service-specific values on the matching project:
 | `Mail` | Common values + Mail Service values |
 | `ApiGateway` | Common values + API Gateway values |
 
-### 8.3 Run Multiple Startup Projects
+### 2.9.3 Run Multiple Startup Projects
 
 1. Right-click the solution.
+
 2. Select **Configure Startup Projects**.
+
 3. Choose **Multiple startup projects**.
+
 4. Set these projects to **Start**:
+
    - `User`
+
    - `Ticketing`
+
    - `Mail`
+
    - `ApiGateway`
+
 5. Start `ApiGateway` after the three service APIs when possible.
+
 6. Click **Apply** and **OK**.
+
 7. Press **F5** or click **Start**.
 
 Expected local URLs:
@@ -623,11 +688,11 @@ Then restart Visual Studio and run the APIs again.
 
 ---
 
-## 9. Run the APIs With VS Code
+## 2.10 Run the APIs With VS Code
 
 Use this option when working from VS Code or terminal.
 
-### 9.1 Open the Folder
+### 2.10.1 Open the Folder
 
 ```bash
 cd <terasupport-source-folder>
@@ -636,7 +701,7 @@ code .
 
 Install recommended extensions when VS Code asks.
 
-### 9.2 Restore and Build
+### 2.10.2 Restore and Build
 
 Open the VS Code terminal:
 
@@ -645,7 +710,7 @@ dotnet restore
 dotnet build
 ```
 
-### 9.3 Run APIs in Separate Terminals
+### 2.10.3 Run APIs in Separate Terminals
 
 Open four terminals. Run one command in each terminal.
 
@@ -676,19 +741,22 @@ dotnet run --project ApiGateway/ApiGateway.csproj
 Start order:
 
 1. User API
+
 2. Ticketing API
+
 3. Mail API
+
 4. API Gateway
 
 The API Gateway should run after the service APIs because it routes requests to them.
 
 ---
 
-## 10. Run the Web App
+## 2.11 Run the Web App
 
 The web app should be started only after the APIs and API Gateway are running.
 
-### 10.1 Install Frontend Packages
+### 2.11.1 Install Frontend Packages
 
 Open a terminal:
 
@@ -697,7 +765,7 @@ cd Web
 yarn install
 ```
 
-### 10.2 Start the Web App
+### 2.11.2 Start the Web App
 
 ```bash
 yarn dev
@@ -719,7 +787,7 @@ That URL must match `VITE_API_URL`.
 
 ---
 
-## 11. Verify Everything Works
+## 2.12 Verify Everything Works
 
 Use this checklist after all services are running:
 
@@ -737,7 +805,7 @@ Use this checklist after all services are running:
 
 ---
 
-## 12. Common Beginner Issues
+## 2.13 Common Beginner Issues
 
 | Issue | Cause | Fix |
 | --- | --- | --- |
@@ -753,17 +821,26 @@ Use this checklist after all services are running:
 
 ---
 
-## 13. Local Startup Order Summary
+## 2.14 Local Startup Order Summary
 
 Use this order every time:
 
 1. Start PostgreSQL.
+
 2. Confirm `TSUserDB`, `TSTicketDb`, and `TSMailDB` exist.
+
 3. Start Kafka with Docker.
+
 4. Confirm environment variables are set.
+
 5. Run `User` API.
+
 6. Run `Ticketing` API.
+
 7. Run `Mail` API.
+
 8. Run `ApiGateway`.
+
 9. Run `Web`.
+
 10. Open the web app and test login.

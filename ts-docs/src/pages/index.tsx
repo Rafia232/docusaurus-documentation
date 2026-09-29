@@ -16,7 +16,15 @@ type DocCard = {
 
 const handoverDocs: DocCard[] = [
   {
-    number: '01',
+    number: '',
+    title: 'Introduction',
+    description:
+      'Overview of the project, documentation scope, and the handover structure for the MoH Helpdesk platform.',
+    to: '/docs/intro',
+    meta: 'Overview',
+  },
+  {
+    number: '1',
     title: 'Installation Manual',
     description:
       'Windows Server with IIS, Linux with Docker and Portainer, Kafka, PostgreSQL, services, NGINX, and verification steps.',
@@ -24,7 +32,15 @@ const handoverDocs: DocCard[] = [
     meta: 'Getting Started',
   },
   {
-    number: '02',
+    number: '2',
+    title: 'Local Run Guide',
+    description:
+      'Local setup instructions for running the application and its dependent services in a development environment.',
+    to: '/docs/local-run-guide',
+    meta: 'Getting Started',
+  },
+  {
+    number: '3',
     title: 'Administration & Configuration Guide',
     description:
       'Organization setup, regions, locations, users, roles, permissions, email configuration, automation rules, categories, applications, and priorities.',
@@ -32,7 +48,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Getting Started',
   },
   {
-    number: '03',
+    number: '4',
     title: 'Role-Based User Guides',
     description:
       'Facility, Regional, National, and Administrator workflows for everyday support operations.',
@@ -40,15 +56,15 @@ const handoverDocs: DocCard[] = [
     meta: 'User Operations',
   },
   {
-    number: '04',
+    number: '5',
     title: 'Dashboards',
     description:
-      'Technician, Regional, Management, and Executive dashboards with role-specific monitoring information.',
+      'Four dashboards for ticket monitoring, service performance, and organization-wide oversight.',
     to: '/docs/dashboard',
     meta: 'User Operations',
   },
   {
-    number: '05',
+    number: '6',
     title: 'Reports',
     description:
       'Ticket Log, Incident Reports, Technician Reports, Facility Reports, SLA monitoring, filters, and exports.',
@@ -56,7 +72,7 @@ const handoverDocs: DocCard[] = [
     meta: 'User Operations',
   },
   {
-    number: '06',
+    number: '7',
     title: 'Security Architecture',
     description:
       'Authentication, authorization, API gateway security, inter-service communication, event protection, audit integrity, and secure attachment access.',
@@ -64,7 +80,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Technical',
   },
   {
-    number: '07',
+    number: '8',
     title: 'System Architecture & Technical Design',
     description:
       'Deployment architecture, CQRS and MediatR services, gateway routing, database ownership, Kafka events, and application structure.',
@@ -72,7 +88,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Technical',
   },
   {
-    number: '08',
+    number: '9',
     title: 'REST API Specifications',
     description:
       'Ticketing and user API endpoints, request parameters, response structures, authentication requirements, and error handling.',
@@ -80,7 +96,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Technical',
   },
   {
-    number: '09',
+    number: '10',
     title: 'API / Integration Documentation',
     description:
       'Integration details for Kafka, email, file access, API gateway routes, service communication, event exchange, and external services.',
@@ -88,7 +104,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Technical',
   },
   {
-    number: '10',
+    number: '11',
     title: 'Source Code Handover & Readiness',
     description:
       'Repository transfer, sanitized configuration, environment requirements, dependencies, build verification, and ownership readiness.',
@@ -96,7 +112,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Handover',
   },
   {
-    number: '11.1',
+    number: '12.1',
     title: 'Ticket Lifecycle',
     description:
       'The complete ticket journey from creation and assignment through investigation, customer response, resolution, closure, and reporting.',
@@ -104,7 +120,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Operations',
   },
   {
-    number: '11.2',
+    number: '12.2',
     title: 'Process Workflows',
     description:
       'Operational workflows for ticket creation, assignment, reassignment, resolution, notifications, and support procedures.',
@@ -112,7 +128,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Operations',
   },
   {
-    number: '12.1',
+    number: '13.1',
     title: 'Data Architecture',
     description:
       'Platform data models, PostgreSQL databases, entity relationships, service ownership boundaries, storage, and data flow.',
@@ -120,7 +136,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Reference',
   },
   {
-    number: '12.2',
+    number: '13.2',
     title: 'Deployment & Testing',
     description:
       'Deployment topology, environments, testing approaches, validation activities, and release readiness.',
@@ -128,7 +144,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Reference',
   },
   {
-    number: '12.3',
+    number: '13.3',
     title: 'Risk Matrix',
     description:
       'Operational and technical risks, impact levels, probability, and mitigation strategies.',
@@ -136,7 +152,7 @@ const handoverDocs: DocCard[] = [
     meta: 'Reference',
   },
   {
-    number: '12.4',
+    number: '13.4',
     title: 'Technical Appendix & Glossary',
     description:
       'Technical terminology, attachment formats, Kafka topics, and event payload schemas.',
@@ -199,7 +215,7 @@ function HomeHero() {
 
         <div className={styles.panelMetricGrid}>
           <div>
-            <strong>16</strong>
+            <strong>18</strong>
             <span>Document pages</span>
           </div>
 

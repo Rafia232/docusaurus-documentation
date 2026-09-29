@@ -1,15 +1,16 @@
 ---
-sidebar_position: 8
-title: 8. REST API Specifications
+id: api-specifications
+sidebar_position: 9
+title: 9. REST API Specifications
 ---
 
-# 8. REST API Specifications
+# 9. REST API Specifications
 
 This API reference was updated from the supplied OpenAPI 3.0.4 specifications for the **Ticketing API** and **User API**. It is intended for implementation, integration, testing, and handover teams.
 
 ---
 
-## 8.1 API Sources
+## 9.1 API Sources
 
 | API | OpenAPI Title | Version | Path Count | Primary Base Path |
 | --- | --- | --- | ---: | --- |
@@ -20,7 +21,7 @@ This API reference was updated from the supplied OpenAPI 3.0.4 specifications fo
 
 ---
 
-## 8.2 Authentication and Common Headers
+## 9.2 Authentication and Common Headers
 
 Most protected endpoints should be called with a valid bearer token returned by the user/authentication service. Public endpoints, if any, must be confirmed during environment hardening.
 
@@ -33,15 +34,15 @@ Most protected endpoints should be called with a valid bearer token returned by 
 
 ---
 
-## 8.3 Ticketing API Catalog
+## 9.3 Ticketing API Catalog
 
-### 8.3.1 Ai
+### 9.3.1 Ai
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **POST** | `/ticket-api/correct-text` | POST /ticket-api/correct-text | - | application/json: `TextCorrectionRequestDto`<br />text/json: `TextCorrectionRequestDto`<br />application/*+json: `TextCorrectionRequestDto` | `200` OK |
 
-### 8.3.2 Application
+### 9.3.2 Application
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -51,7 +52,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/ticket-api/application/&#123;key&#125;` | PUT /ticket-api/application/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateApplication`<br />text/json: `UpdateApplication`<br />application/*+json: `UpdateApplication` | `200` OK |
 | **GET** | `/ticket-api/applications/&#123;organizationId&#125;` | GET /ticket-api/applications/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.3 Category
+### 9.3.3 Category
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -64,7 +65,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/ticket-api/category/&#123;key&#125;` | PUT /ticket-api/category/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateCategory`<br />text/json: `UpdateCategory`<br />application/*+json: `UpdateCategory` | `200` OK |
 | **GET** | `/ticket-api/parent-categories/&#123;organizationId&#125;` | GET /ticket-api/parent-categories/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`search` (query, string) | - | `200` OK |
 
-### 8.3.4 IdentifiedCategory
+### 9.3.4 IdentifiedCategory
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -75,7 +76,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/identify-category/&#123;key&#125;` | GET /ticket-api/identify-category/&#123;key&#125; | `key` (path, required, integer) | - | `200` OK |
 | **PUT** | `/ticket-api/identify-category/&#123;key&#125;` | PUT /ticket-api/identify-category/&#123;key&#125; | `key` (path, required, integer) | application/json: `UpdateIdentifiedCategory`<br />text/json: `UpdateIdentifiedCategory`<br />application/*+json: `UpdateIdentifiedCategory` | `200` OK |
 
-### 8.3.5 Incident
+### 9.3.5 Incident
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -108,7 +109,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/similar-resolved-tickets/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/similar-resolved-tickets/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/ticket-api/ticket-solution-suggestions/&#123;organizationId&#125;` | GET /ticket-api/ticket-solution-suggestions/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`title` (query, string)<br />`description` (query, string) | - | `200` OK |
 
-### 8.3.6 IncidentAssigned
+### 9.3.6 IncidentAssigned
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -122,20 +123,20 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/incident-assigned/member/download-csv/&#123;organizationId&#125;` | GET /ticket-api/incident-assigned/member/download-csv/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`categoryId` (query, integer)<br />`brandName` (query, string)<br />`incidentStatus` (query) | - | `200` OK |
 | **GET** | `/ticket-api/incident-assigns/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/incident-assigns/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.7 IncidentAttachment
+### 9.3.7 IncidentAttachment
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **DELETE** | `/ticket-api/delete-incident-attachment` | DELETE /ticket-api/delete-incident-attachment | - | application/json: `DeleteAttachmentDto`<br />text/json: `DeleteAttachmentDto`<br />application/*+json: `DeleteAttachmentDto` | `200` OK |
 | **GET** | `/ticket-api/incident-attachment/&#123;incidentId&#125;` | GET /ticket-api/incident-attachment/&#123;incidentId&#125; | `incidentId` (path, required, string) | - | `200` OK |
 
-### 8.3.8 IncidentHistory
+### 9.3.8 IncidentHistory
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **GET** | `/ticket-api/incident-history/&#123;incidentId&#125;/&#123;organizationId&#125;` | GET /ticket-api/incident-history/&#123;incidentId&#125;/&#123;organizationId&#125; | `incidentId` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string)<br />`actionType` (query) | - | `200` OK |
 
-### 8.3.9 Message
+### 9.3.9 Message
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -147,14 +148,14 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/messages/&#123;incidentId&#125;` | GET /ticket-api/messages/&#123;incidentId&#125; | `incidentId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 | **GET** | `/ticket-api/messages/sl/&#123;sl&#125;/&#123;organizationId&#125;` | GET /ticket-api/messages/sl/&#123;sl&#125;/&#123;organizationId&#125; | `sl` (path, required, string)<br />`organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.3.10 PriorityConfiguration
+### 9.3.10 PriorityConfiguration
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **POST** | `/ticket-api/priority-configuration` | POST /ticket-api/priority-configuration | `organizationId` (query, string) | application/json: `array&lt;CreatePriorityConfigurationDto&gt;`<br />text/json: `array&lt;CreatePriorityConfigurationDto&gt;`<br />application/*+json: `array&lt;CreatePriorityConfigurationDto&gt;` | `200` OK |
 | **GET** | `/ticket-api/priority-configurations/&#123;organizationId&#125;` | GET /ticket-api/priority-configurations/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 
-### 8.3.11 Report
+### 9.3.11 Report
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -186,7 +187,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/ticket-api/technician-productivity` | GET /ticket-api/technician-productivity | `organizationId` (query, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`dashboardTimeFilter` (query) | - | `200` OK |
 | **GET** | `/ticket-api/technician-sla-ticket` | GET /ticket-api/technician-sla-ticket | `organizationId` (query, string)<br />`expertId` (query, string)<br />`startDate` (query, string)<br />`endDate` (query, string)<br />`dashboardTimeFilter` (query) | - | `200` OK |
 
-### 8.3.12 ReportFile
+### 9.3.12 ReportFile
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -219,9 +220,9 @@ Most protected endpoints should be called with a valid bearer token returned by 
 
 ---
 
-## 8.4 User API Catalog
+## 9.4 User API Catalog
 
-### 8.4.1 AssignedDepartment
+### 9.4.1 AssignedDepartment
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -232,7 +233,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **POST** | `/user-api/multiple-assigned-department` | POST /user-api/multiple-assigned-department | - | application/json: `AssignDepartmentDto`<br />text/json: `AssignDepartmentDto`<br />application/*+json: `AssignDepartmentDto` | `200` OK |
 | **GET** | `/user-api/multiple-assigned-department/&#123;organizationId&#125;` | GET /user-api/multiple-assigned-department/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.4.2 AssignedOrganizationService
+### 9.4.2 AssignedOrganizationService
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -242,7 +243,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **POST** | `/user-api/multiple-assigned-organization-service` | POST /user-api/multiple-assigned-organization-service | - | application/json: `array&lt;CreateAssignedOrganizationService&gt;`<br />text/json: `array&lt;CreateAssignedOrganizationService&gt;`<br />application/*+json: `array&lt;CreateAssignedOrganizationService&gt;` | `200` OK |
 | **GET** | `/user-api/multiple-assigned-organization-service/&#123;organizationId&#125;` | GET /user-api/multiple-assigned-organization-service/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 
-### 8.4.3 AutomationRule
+### 9.4.3 AutomationRule
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -251,7 +252,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/automation-rules/by-time/&#123;organizationId&#125;` | GET /user-api/automation-rules/by-time/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/user-api/exist-automation-rule/&#123;organizationId&#125;/&#123;serviceType&#125;/&#123;eventType&#125;` | GET /user-api/exist-automation-rule/&#123;organizationId&#125;/&#123;serviceType&#125;/&#123;eventType&#125; | `organizationId` (path, required, string)<br />`serviceType` (path, required)<br />`eventType` (path, required) | - | `200` `GetExistingAutomationDtoApiResponse` OK |
 
-### 8.4.4 Company
+### 9.4.4 Company
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -262,7 +263,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/user-api/company/&#123;key&#125;` | PUT /user-api/company/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateCompany`<br />text/json: `UpdateCompany`<br />application/*+json: `UpdateCompany` | `200` OK |
 | **GET** | `/user-api/company/&#123;key&#125;/&#123;organizationId&#125;` | GET /user-api/company/&#123;key&#125;/&#123;organizationId&#125; | `key` (path, required, string)<br />`organizationId` (path, required, string) | - | `200` OK |
 
-### 8.4.5 Contact
+### 9.4.5 Contact
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -284,7 +285,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/contacts/&#123;companyId&#125;` | GET /user-api/contacts/&#123;companyId&#125; | `companyId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 | **GET** | `/user-api/search-contact/&#123;organizationId&#125;/&#123;search&#125;` | GET /user-api/search-contact/&#123;organizationId&#125;/&#123;search&#125; | `organizationId` (path, required, string)<br />`search` (path, required, string) | - | `200` OK |
 
-### 8.4.6 Department
+### 9.4.6 Department
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -294,7 +295,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/department/&#123;key&#125;/&#123;organizationId&#125;` | GET /user-api/department/&#123;key&#125;/&#123;organizationId&#125; | `key` (path, required, string)<br />`organizationId` (path, required, string) | - | `200` OK |
 | **GET** | `/user-api/departments/&#123;organizationId&#125;` | GET /user-api/departments/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.4.7 Organization
+### 9.4.7 Organization
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -310,7 +311,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/organizations` | GET /user-api/organizations | `page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 | **PUT** | `/user-api/user-active-in-active-from-organization` | PUT /user-api/user-active-in-active-from-organization | - | application/json: `InActiveUserFromOrganizationDto`<br />text/json: `InActiveUserFromOrganizationDto`<br />application/*+json: `InActiveUserFromOrganizationDto` | `200` OK |
 
-### 8.4.8 Region
+### 9.4.8 Region
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -320,14 +321,14 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **PUT** | `/user-api/region/&#123;key&#125;` | PUT /user-api/region/&#123;key&#125; | `key` (path, required, string) | application/json: `UpdateRegion`<br />text/json: `UpdateRegion`<br />application/*+json: `UpdateRegion` | `200` OK |
 | **GET** | `/user-api/regions` | GET /user-api/regions | `OrganizationId` (query, required, string)<br />`page` (query, integer)<br />`pageSize` (query, integer)<br />`search` (query, string)<br />`sort` (query, string)<br />`sortDirection` (query, string) | - | `200` OK |
 
-### 8.4.9 RoleMapping
+### 9.4.9 RoleMapping
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
 | **POST** | `/user-api/role-mapping` | POST /user-api/role-mapping | - | application/json: `FeatureMappingDto`<br />text/json: `FeatureMappingDto`<br />application/*+json: `FeatureMappingDto` | `200` OK |
 | **GET** | `/user-api/role-mappings/&#123;organizationId&#125;` | GET /user-api/role-mappings/&#123;organizationId&#125; | `organizationId` (path, required, string) | - | `200` OK |
 
-### 8.4.10 UserAccess
+### 9.4.10 UserAccess
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -335,7 +336,7 @@ Most protected endpoints should be called with a valid bearer token returned by 
 | **GET** | `/user-api/user-access/&#123;userId&#125;/&#123;organizationId&#125;` | GET /user-api/user-access/&#123;userId&#125;/&#123;organizationId&#125; | `organizationId` (path, required, string)<br />`userId` (path, required, string) | - | `200` OK |
 | **GET** | `/user-api/user-access/validate/&#123;userEmail&#125;/&#123;serviceName&#125;/&#123;requiredRole&#125;` | GET /user-api/user-access/validate/&#123;userEmail&#125;/&#123;serviceName&#125;/&#123;requiredRole&#125; | `userEmail` (path, required, string)<br />`serviceName` (path, required, string)<br />`requiredRole` (path, required, string) | - | `200` OK |
 
-### 8.4.11 UserAccount
+### 9.4.11 UserAccount
 
 | Method | Endpoint | Operation | Parameters | Request Body | Responses |
 | --- | --- | --- | --- | --- | --- |
@@ -366,11 +367,11 @@ Most protected endpoints should be called with a valid bearer token returned by 
 
 ---
 
-## 8.5 Common Schemas and Enums
+## 9.5 Common Schemas and Enums
 
 Schemas below are generated from the OpenAPI component definitions. They are grouped by API and should be used when preparing payloads or validating responses.
 
-### 8.5.1 Ticketing API Schemas
+### 9.5.1 Ticketing API Schemas
 
 | Schema | Type | Required Fields | Fields / Values |
 | --- | --- | --- | --- |
@@ -405,7 +406,7 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 | `UpdateIdentifiedAssignedIncident` | object | `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `string`<br />`description`: `string`<br />`dateIdentified`: `string`<br />`allowAccess`: `boolean`<br />`incidentId`: `string`<br />`expertId`: `string` |
 | `UpdateIdentifiedCategory` | object | `categoryId`, `oid` | `modifiedBy`: `string`<br />`organizationId`: `string`<br />`oid`: `integer`<br />`categoryId`: `integer` |
 
-### 8.5.2 User API Schemas
+### 9.5.2 User API Schemas
 
 | Schema | Type | Required Fields | Fields / Values |
 | --- | --- | --- | --- |
@@ -464,7 +465,7 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 
 ---
 
-## 8.6 Integration Notes
+## 9.6 Integration Notes
 
 - Use the **User API** for authentication, user accounts, contacts, roles, organizations, departments, regions, and automation rules.
 - Use the **Ticketing API** for categories, incidents/tickets, assignments, attachments, messages, priority configuration, reports, report files, and AI/application support endpoints.
@@ -474,7 +475,7 @@ Schemas below are generated from the OpenAPI component definitions. They are gro
 
 ---
 
-## 8.7 Verification Checklist
+## 9.7 Verification Checklist
 
 | Test | Expected Result |
 | --- | --- |

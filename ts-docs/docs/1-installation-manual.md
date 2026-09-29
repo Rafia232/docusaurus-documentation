@@ -1,6 +1,7 @@
 ---
+id: installation-manual
 sidebar_position: 2
-title: Installation Manual
+title: 1. Installation Manual
 ---
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
@@ -302,7 +303,7 @@ Do not copy development `.env` secrets directly into production. Replace all tok
 
 ### 1.4.4 Local Development Runbook
 
-For first-time local setup, use [Local Run Guide](./local-run-guide.md). It covers PostgreSQL and pgAdmin installation, database creation, environment variables, Visual Studio, VS Code, API startup order, API Gateway, and web app startup.
+For first-time local setup, use [Local Run Guide](./2-local-run-guide.md). It covers PostgreSQL and pgAdmin installation, database creation, environment variables, Visual Studio, VS Code, API startup order, API Gateway, and web app startup.
 
 ### 1.4.5 Optional Local Ollama Installation
 

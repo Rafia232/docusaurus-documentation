@@ -36,7 +36,7 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'category',
-          label: '3. Role-Based User Guides',
+          label: '4. Role-Based User Guides',
           collapsed: true,
           link: {
             type: 'doc',
@@ -45,30 +45,35 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'link',
-              label: '3.1 Facility User',
-              href: '/docs/role-based-user-guide#31-facility-user',
+              label: '4.1 Facility User',
+              href: '/docs/role-based-user-guide#41-facility-user',
             },
             {
               type: 'link',
-              label: '3.2 Regional User',
-              href: '/docs/role-based-user-guide#32-regional-user',
+              label: '4.2 Regional User',
+              href: '/docs/role-based-user-guide#42-regional-user',
             },
             {
               type: 'link',
-              label: '3.3 National User',
-              href: '/docs/role-based-user-guide#33-national-user',
+              label: '4.3 National User',
+              href: '/docs/role-based-user-guide#43-national-user',
             },
             {
               type: 'link',
-              label: '3.4 Administrator',
-              href: '/docs/role-based-user-guide#34-administrator',
+              label: '4.4 Management',
+              href: '/docs/role-based-user-guide#44-management-user',
+            },
+            {
+              type: 'link',
+              label: '4.5 Administrator',
+              href: '/docs/role-based-user-guide#45-administrator',
             },
           ],
         },
 
         {
           type: 'category',
-          label: '4. Dashboards',
+          label: '5. Dashboards',
           collapsed: true,
           link: {
             type: 'doc',
@@ -77,34 +82,34 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'link',
-              label: '4.1 Technician Dashboard',
+              label: '5.1 Technician Dashboard',
               href:
-                '/docs/dashboard#41-technician-dashboard--regional-user',
+                '/docs/dashboard#51-technician-dashboard--regional-user',
             },
             {
               type: 'link',
-              label: '4.2 Regional Dashboard',
+              label: '5.2 Regional Dashboard',
               href:
-                '/docs/dashboard#42-regional-dashboard--regional-user',
+                '/docs/dashboard#52-regional-dashboard--regional-user',
             },
             {
               type: 'link',
-              label: '4.3 Management Dashboard',
+              label: '5.3 Management Dashboard',
               href:
-                '/docs/dashboard#43-management-dashboard--national-user',
+                '/docs/dashboard#53-management-dashboard--administrator',
             },
             {
               type: 'link',
-              label: '4.4 Executive Dashboard',
+              label: '5.4 Executive Dashboard',
               href:
-                '/docs/dashboard#44-executive-dashboard--administrator',
+                '/docs/dashboard#54-executive-dashboard',
             },
           ],
         },
 
         {
           type: 'category',
-          label: '5. Reports',
+          label: '6. Reports',
           collapsed: true,
           link: {
             type: 'doc',
@@ -113,28 +118,28 @@ const sidebars: SidebarsConfig = {
           items: [
             {
               type: 'link',
-              label: '5.1 Ticket Log',
-              href: '/docs/reports#51-ticket-log',
+              label: '6.1 Ticket Log',
+              href: '/docs/reports#61-ticket-log',
             },
             {
               type: 'link',
-              label: '5.2 Incident Reports',
-              href: '/docs/reports#52-incident-reports',
+              label: '6.2 Incident Reports',
+              href: '/docs/reports#62-incident-reports',
             },
             {
               type: 'link',
-              label: '5.3 Technician Reports',
-              href: '/docs/reports#53-technician-reports',
+              label: '6.3 Technician Reports',
+              href: '/docs/reports#63-technician-reports',
             },
             {
               type: 'link',
-              label: '5.4 Facility Reports',
-              href: '/docs/reports#54-facility-reports',
+              label: '6.4 Facility Reports',
+              href: '/docs/reports#64-facility-reports',
             },
             {
               type: 'link',
-              label: '5.5 SLA Reports',
-              href: '/docs/reports#55-sla-reports',
+              label: '6.5 SLA Reports',
+              href: '/docs/reports#65-sla-reports',
             },
           ],
         },
@@ -150,22 +155,22 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'security-architecture',
-          label: '6. Security Architecture',
+          label: '7. Security Architecture',
         },
         {
           type: 'doc',
           id: 'system-architecture-technical-design',
-          label: '7. System Architecture & Technical Design',
+          label: '8. System Architecture & Technical Design',
         },
         {
           type: 'doc',
           id: 'api-specifications',
-          label: '8. REST API Specifications',
+          label: '9. REST API Specifications',
         },
         {
           type: 'doc',
           id: 'integrations',
-          label: '9. API / Integration Documentation',
+          label: '10. API / Integration Documentation',
         },
       ],
     },
@@ -179,7 +184,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'code-transfer-readiness',
-          label: '10. Source Code Handover & Readiness',
+          label: '11. Source Code Handover & Readiness',
         },
       ],
     },
@@ -193,12 +198,12 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'ticket-lifecycle-and-journey',
-          label: '11.1 Ticket Lifecycle',
+          label: '12.1 Ticket Lifecycle',
         },
         {
           type: 'doc',
           id: 'process-workflows',
-          label: '11.2 Process Workflows',
+          label: '12.2 Process Workflows',
         },
       ],
     },
@@ -212,22 +217,22 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'data-architecture',
-          label: '12.1 Data Architecture',
+          label: '13.1 Data Architecture',
         },
         {
           type: 'doc',
           id: 'deployment-and-testing',
-          label: '12.2 Deployment & Testing',
+          label: '13.2 Deployment & Testing',
         },
         {
           type: 'doc',
           id: 'acceptance-criteria-and-future',
-          label: '12.3 Risk Matrix',
+          label: '13.3 Risk Matrix',
         },
         {
           type: 'doc',
           id: 'technical-appendix-and-glossary',
-          label: '12.4 Technical Appendix & Glossary',
+          label: '13.4 Technical Appendix & Glossary',
         },
       ],
     },
