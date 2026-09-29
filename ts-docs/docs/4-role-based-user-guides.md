@@ -16,9 +16,9 @@ The guide is organized into the following user roles:
 | User Type | Responsibilities | Access Scope |
 |---|---|---|
 | [Facility User](/docs/role-based-user-guide#41-facility-user) | Create tickets, view ticket history, and reply to technicians. | Tickets created within the assigned facility/location. |
-| [Regional User](/docs/role-based-user-guide#42-regional-user) | Create and view regional tickets, self-assign, assign colleagues, resolve and escalate tickets, and access the technician dashboard. | Facilities within the assigned region. |
-| [National User](/docs/role-based-user-guide#43-national-user) | Monitor all regions, reassign tickets, manage escalations, and access the Executive Dashboard. | All tickets. |
-| [Management User](/docs/role-based-user-guide#44-management-user) | Review escalations from National Users and organization-wide service performance. | Tickets escalated to Management and dashboard access, subject to assigned permissions. |
+| [Regional User](/docs/role-based-user-guide#42-regional-user) | Manage regional tickets and escalate issues to National Users. | Facilities within the assigned region. |
+| [National User](/docs/role-based-user-guide#43-national-user) | Manage organization-wide tickets, receive regional escalations, and escalate issues to Management. | All tickets. |
+| [Management User](/docs/role-based-user-guide#44-management-user) | Receive National User escalations and review the Executive Dashboard. | Escalated tickets and dashboard access, subject to assigned permissions. |
 | [Administrator](/docs/role-based-user-guide#45-administrator) | Manage users, lookup tables, reports, dashboards, and system configuration. | Entire system. |
 
 ---
@@ -1335,9 +1335,9 @@ When a regional user is assigned as the Ticket Owner:
 
 ### 4.2.7.3 Escalate a Ticket
 
-When a Regional User needs higher-level support, escalate the ticket to the National level. Do not escalate directly from Regional to Management.
+When a Regional User needs higher-level support, escalate the ticket to a National User. Do not escalate directly from Regional to Management.
 
-Escalation moves upward only. Once a ticket is escalated to the National level, it cannot be reassigned to the Regional level.
+Escalation is one-way. Once escalated to the National level, a ticket cannot be reassigned to the Regional level.
 
 ---
 
@@ -1398,8 +1398,6 @@ National users can sign in to the platform using the account credentials created
 National users can perform the same ticket-management activities available to regional users, including:
 
 - View all tickets across the organization
-
-- Access the Executive Dashboard
 
 - Create new tickets
 
@@ -1971,17 +1969,17 @@ When a user is assigned as the Ticket Owner:
 
 - A later reassignment changes the Ticket Owner to the newly assigned user.
 
-### 4.3.7.3 Escalate a Ticket
-
-When a National User needs higher-level support, escalate the ticket to the Management level.
-
-Escalation moves upward only. Once a ticket is escalated to Management, it cannot be reassigned to the National or Regional level.
-
 :::note
 
 Ticket assignment should be completed from the Assign tab. Assignment is not available from the Edit Ticket page.
 
 :::
+
+### 4.3.7.3 Escalate a Ticket
+
+When a National User needs higher-level support, escalate the ticket to a Management User.
+
+Escalation is one-way. Once escalated to Management, a ticket cannot be reassigned to the National or Regional level.
 
 ---
 
@@ -2031,9 +2029,7 @@ Delete an attachment only when it is incorrect, duplicated, or no longer require
 
 ## 4.4 Management User
 
-The Administration & Configuration Guide lists Management Users as Team Members with management responsibilities. They receive tickets escalated from National Users and can access the [Executive Dashboard](/docs/dashboard#54-executive-dashboard) to review organization-wide service performance.
-
-Access to other pages and actions depends on the roles and permissions assigned to the account.
+The Administration & Configuration Guide lists Management Users as Team Members with management responsibilities. They receive tickets escalated from National Users and can access the [Executive Dashboard](/docs/dashboard#54-executive-dashboard), subject to assigned permissions.
 
 Once a ticket is escalated to Management, it cannot be reassigned to a lower support level.
 
